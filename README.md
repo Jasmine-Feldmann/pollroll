@@ -1,6 +1,6 @@
 # Pollarity
 
-Analyze and visualized trends in poll data.
+Analyze and visualize trends in poll data.
 
 Contributors:
 
