@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'pry'
+require 'json'
+
+file = File.open("data-files/polls_all.json")
+file.readlines.each do |row|
+  json = JSON.parse(row)
+  binding.pry
+end

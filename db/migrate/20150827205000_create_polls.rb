@@ -7,8 +7,6 @@ class CreatePolls < ActiveRecord::Migration
       t.string :source
       t.boolean :partisan
       t.string :affiliation
-      t.integer :topic_id, null: false
-      t.integer :sample_size
 
       t.timestamps null: false
     end
