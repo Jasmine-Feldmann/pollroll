@@ -41,5 +41,4 @@ def build_poll_args(poll)
     partisan: poll["partisan"] != "Nonpartisan",
     affiliation: poll["affiliation"]
   }
->>>>>>> seed-logic
 end
