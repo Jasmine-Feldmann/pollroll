@@ -11,4 +11,5 @@ Jasmine Feldmann | [Jasmine-Feldmann](https://github.com/Jasmine-Feldmann)
 Connor Ring      | [ccring](https://github.com/ccring)
 Jay Quigley      | [jayqui](https://github.com/jayqui)
 
-
+[charts wireframe](https://github.com/Jasmine-Feldmann/pollarity/blob/master/lib/assets/!IMAG1711.jpg)
+[user stories](https://github.com/Jasmine-Feldmann/pollarity/blob/master/lib/assets/!IMAG1714.jpg)
