@@ -1,5 +1,5 @@
 <select id="topics-dropdown">
   <% _.each(topics, function(topic) { %>
-    <option value="<%= topic.id %>"><%= topic.name %></option>
+    <option value="<%= topic.get("id") %>"><%= topic.get("name") %></option>
   <% }); %>
 </select>
