@@ -1,47 +1,44 @@
-def build_question_args(question)
-  {
-    state: question["state"] || "US",
-    content: question["name"]
-  }
-end
+require 'pry'
+require 'json'
+require 'net/http'
+require 'uri'
 
-def build_poll_args(poll)
-  {
-    pollster: poll["pollster"],
-    start_date: poll["start_date"],
-    end_date: poll["end_date"],
-    source: poll["source"],
-    partisan: poll["partisan"] != "Nonpartisan",
-    affiliation: poll["affiliation"]
-  }
-end
-
-def get_topic_name(question)
-  if question["topic"] == nil || question["topic"] == ""
-    question["name"]
-  else
-    question["topic"]
-  end
-end
-
-file = File.open("db/data-files/polls_all.json")
-file.readlines.each do |row|
-  json = JSON.parse(row)
-  json.each do |poll|
-    poll_obj = Poll.create!(build_poll_args(poll))
-    poll["questions"].each do |question|
-      topic = Topic.find_or_create_by!(name: get_topic_name(question))
-      question_obj = topic.questions.create!(build_question_args(question))
-      question["subpopulations"].each do |pop|
-        size = pop["observations"]
-        pop["responses"].each do |r|
-          Response.create!({ percentage: r["value"],
-                             answer: r["choice"],
-                             poll_id: poll_obj.id,
-                             question_id: question_obj.id,
-                             sample_size: size })
-        end
-      end
+def parse_chart_json(chart_json)
+  chart = new_topic.charts.create!(name: chart_json["title"],
+                                 slug: chart_json["slug"],
+                                 state: chart_json["state"])
+  chart_json["estimates_by_date"].each do |poll|
+    poll_date = poll["date"]
+    poll["estimates"].each do |response|
+      chart.responses.create!(date: poll_date,
+                              answer: response["choice"],
+                              percentage: response["value"])
     end
   end
+end
+
+states = %w( alabama alaska arizona arkansas california colorado connecticut
+             delaware florida georgia hawaii idaho illinois indiana iowa kansas
+             kentucky louisiana maine maryland massachusetts michigan minnesota
+             mississippi missouri montana nebraska nevada new-hampshire new-jersey
+             new-mexico new-york north-carolina north-dakota ohio oklahoma oregon
+             pennsylvania rhode-island south-carolina south-dakota tennessee texas
+             utah vermont virginia washington west-virginia wisconsin wyoming )
+
+new_topic = Topic.create!(name: "Obama Job Approval")
+base_slug = "obama-job-approval"
+base_url = "http://elections.huffingtonpost.com/pollster/api/charts/"
+
+
+chart_uri = URI(base_url + base_slug)
+chart_response = Net::HTTP.get_response(chart_uri)
+chart_json = JSON.parse(chart_response.body)
+parse_chart_json(chart_json)
+
+
+states.each do |state|
+  chart_uri = URI(base_url + state + "-" + base_slug)
+  chart_response = Net::HTTP.get_response(chart_uri)
+  chart_json = JSON.parse(chart_response.body)
+  parse_chart_json(chart_json)
 end

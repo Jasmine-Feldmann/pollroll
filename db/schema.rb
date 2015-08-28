@@ -28,12 +28,22 @@ ActiveRecord::Schema.define(version: 20150827205025) do
   add_index "charts", ["topic_id"], name: "index_charts_on_topic_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
+<<<<<<< HEAD
     t.integer  "chart_id",                           null: false
     t.string   "answer",                             null: false
     t.decimal  "percentage", precision: 5, scale: 2, null: false
     t.date     "date"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+=======
+    t.integer  "poll_id",     null: false
+    t.integer  "question_id", null: false
+    t.decimal  "percentage",  null: false
+    t.string   "answer",      null: false
+    t.integer  "sample_size"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+>>>>>>> 537d3589d4d5b28ef3bf9416558a49611e969206
   end
 
   add_index "responses", ["chart_id"], name: "index_responses_on_chart_id", using: :btree

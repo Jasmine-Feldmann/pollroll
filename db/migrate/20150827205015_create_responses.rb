@@ -4,7 +4,7 @@ class CreateResponses < ActiveRecord::Migration
       t.integer :chart_id, null: false
       t.string :answer, null: false
       t.decimal :percentage, precision: 5, scale: 2, null: false
-      t.date :date
+      t.date :date, null: false
 
       t.timestamps null: false
     end
