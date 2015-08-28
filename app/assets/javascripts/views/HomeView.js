@@ -7,7 +7,8 @@ var HomeView = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template);
-    var topicSelectorView = new topicSelectorView();
+    var topics = [];
+    var topicSelectorView = new TopicSelectorView({ collection: topics });
     topicSelectorView.render();
   }
 
