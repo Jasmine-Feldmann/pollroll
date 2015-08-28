@@ -21,6 +21,13 @@
         scope: 'usa',
         element: document.getElementById('map-container'),
         height: 500,
+        geographyConfig: {
+            highlightBorderColor: '#bada55',
+           popupTemplate: function(geography, data) {
+              return '<div class="hoverinfo">' + geography.properties.name + 'Electoral Votes:' +  data.electoralVotes + ' '
+            },
+            highlightBorderWidth: 3
+          },
 
 
          fills: {
@@ -33,7 +40,7 @@
          defaultFill: '#AAA'
         },
         data:{
-				 "AL": {"fillKey": "Republican", "electoralVotes": 32},
+		 "AL": {"fillKey": "Republican", "electoralVotes": 32},
          "AK": {"fillKey": "Republican", "electoralVotes": 32},
          "AR": {"fillKey": "Republican", "electoralVotes": 32},
          "AZ": {"fillKey": "Republican", "electoralVotes": 5},
@@ -83,6 +90,7 @@
          "WV": {"fillKey": "Republican", "electoralVotes": 32},
          "WY": {"fillKey": "Republican", "electoralVotes": 32},
        }
-      })       
+      })
+      election.labels(); 
       
      </script>
