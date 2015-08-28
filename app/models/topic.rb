@@ -6,11 +6,7 @@ class Topic < ActiveRecord::Base
   validates_presence_of :name
 
   def responses_json
-    topic_responses = []
-    self.questions.each do |q|
-      topic_responses << { question: q, responses: q.responses}
-    end
-    topic_responses
+    self.responses.map {|q| { question: q, responses: q.responses} }
   end
 
 end
