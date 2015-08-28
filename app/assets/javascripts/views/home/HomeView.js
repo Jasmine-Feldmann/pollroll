@@ -10,7 +10,7 @@ var HomeView = Backbone.View.extend({
     var topicsCollection = new TopicsCollection();
     topicsCollection.fetch({
       success: function(response) {
-        var topicSelectorView = new TopicSelectorView({ collection: response.models.slice(0,2) });
+        var topicSelectorView = new TopicSelectorView({ collection: response.models });
         topicSelectorView.render();
       }
     });

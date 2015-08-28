@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150827205025) do
     t.integer  "chart_id",                           null: false
     t.string   "answer",                             null: false
     t.decimal  "percentage", precision: 5, scale: 2, null: false
-    t.date     "date"
+    t.date     "date",                               null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
