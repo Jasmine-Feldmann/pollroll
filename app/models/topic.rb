@@ -5,7 +5,7 @@ class Topic < ActiveRecord::Base
   validates_presence_of :name
 
   def responses_json
-    self.questions.map {|q| { question: q, responses: q.responses} }
+    self.charts.map {|c| { chart: c, responses: c.responses} }
   end
 
 end
