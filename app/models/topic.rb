@@ -7,7 +7,9 @@ class Topic < ActiveRecord::Base
 
   def responses_json
     topic_responses = []
-    self.questions.each { |q| topic_responses << { q => q.responses} }
+    self.questions.each do |q|
+      topic_responses << { question: q, responses: q.responses}
+    end
     topic_responses
   end
 
