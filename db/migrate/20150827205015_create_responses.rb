@@ -9,5 +9,9 @@ class CreateResponses < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :responses, :poll_id
+    add_index :responses, :question_id
+
   end
 end
