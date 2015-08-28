@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 20150827205025) do
     t.string   "source"
     t.boolean  "partisan"
     t.string   "affiliation"
-    t.integer  "topic_id",    null: false
-    t.integer  "sample_size"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -42,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150827205025) do
     t.integer  "question_id", null: false
     t.decimal  "percentage",  null: false
     t.string   "answer",      null: false
+    t.integer  "sample_size"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
