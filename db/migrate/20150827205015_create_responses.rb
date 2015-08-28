@@ -3,7 +3,7 @@ class CreateResponses < ActiveRecord::Migration
     create_table :responses do |t|
       t.integer :poll_id, null: false
       t.integer :question_id, null: false
-      t.decimal :percentage, null: false
+      t.decimal :percentage, precision: 5, scale: 2, null: false
       t.string :answer, null: false
       t.integer :sample_size
 
