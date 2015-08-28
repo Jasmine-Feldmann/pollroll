@@ -3,5 +3,5 @@ class Question < ActiveRecord::Base
   has_many :responses
   has_many :polls, through: :responses
 
-  validates_presence_of :state, :content, :created_at, :updated_at
+  validates_presence_of :state, :content
 end
