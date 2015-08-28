@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  resources :topics, only: [:index, :show] do
+    resources :polls, only: [:index, :show]
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
