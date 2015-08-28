@@ -1,6 +1,6 @@
 var AppRouter = Backbone.Router.extend({
   routes: {
-    'topics/:topic': 'showResults',
+    'topics/:topic_id': 'showResults',
 
     '*actions': 'defaultAction'
   },
