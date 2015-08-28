@@ -9,11 +9,11 @@ var AppRouter = Backbone.Router.extend({
   showResults: function(topicId) {
     var resultsView = new ResultsView();
     resultsView.render();
-    var topicResponses = new TopicResponses([], { topicId: topicId });
-    topicResponses.fetch({
+    var topicCharts = new TopicCharts([], { topicId: topicId });
+    topicCharts.fetch({
       success: function(response) {
-        var questionsView = new QuestionsView({ collection: response.models });
-        questionsView.render();
+        var topicChartsView = new TopicChartsView({ collection: response.models });
+        topicChartsView.render();
       }
     });
   },
