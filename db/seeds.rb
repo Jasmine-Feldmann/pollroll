@@ -1,12 +1,3 @@
-def build_response_args(response, p_id, q_id)
-  {
-    percentage: response["value"],
-    answer: response["choice"],
-    poll_id: p_id,
-    question_id: q_id
-  }
-end
-
 def build_question_args(question)
   {
     state: question["state"] || "US",
@@ -44,7 +35,11 @@ file.readlines.each do |row|
       question["subpopulations"].each do |pop|
         size = pop["observations"]
         pop["responses"].each do |r|
-          Response.create!(build_response_args(r, poll_obj.id, question_obj.id))
+          Response.create!({ percentage: r["value"],
+                             answer: r["choice"],
+                             poll_id: poll_obj.id,
+                             question_id: question_obj.id,
+                             sample_size: size })
         end
       end
     end
