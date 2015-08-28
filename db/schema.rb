@@ -16,34 +16,27 @@ ActiveRecord::Schema.define(version: 20150827205025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "polls", force: :cascade do |t|
-    t.string   "pollster",    null: false
-    t.date     "start_date",  null: false
-    t.date     "end_date",    null: false
-    t.string   "source"
-    t.boolean  "partisan"
-    t.string   "affiliation"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string   "state",      null: false
+  create_table "charts", force: :cascade do |t|
     t.integer  "topic_id",   null: false
-    t.string   "content",    null: false
+    t.string   "name",       null: false
+    t.string   "state",      null: false
+    t.string   "slug",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "charts", ["topic_id"], name: "index_charts_on_topic_id", using: :btree
+
   create_table "responses", force: :cascade do |t|
-    t.integer  "poll_id",                             null: false
-    t.integer  "question_id",                         null: false
-    t.decimal  "percentage",  precision: 5, scale: 2, null: false
-    t.string   "answer",                              null: false
-    t.integer  "sample_size"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "chart_id",                           null: false
+    t.string   "answer",                             null: false
+    t.decimal  "percentage", precision: 5, scale: 2, null: false
+    t.date     "date"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
+
+  add_index "responses", ["chart_id"], name: "index_responses_on_chart_id", using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.string   "name",       null: false
