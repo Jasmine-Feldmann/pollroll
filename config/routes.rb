@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'pages#index'
   resources :topics, only: [:index, :show]
   resources :polls, only: [:index, :show]
   resources :responses, only: [:index, :show]
