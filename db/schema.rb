@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(version: 20150827205025) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.integer  "poll_id",                             null: false
-    t.integer  "question_id",                         null: false
-    t.decimal  "percentage",  precision: 5, scale: 2, null: false
-    t.string   "answer",                              null: false
+    t.integer  "poll_id",     null: false
+    t.integer  "question_id", null: false
+    t.decimal  "percentage",  null: false
+    t.string   "answer",      null: false
     t.integer  "sample_size"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "topics", force: :cascade do |t|
