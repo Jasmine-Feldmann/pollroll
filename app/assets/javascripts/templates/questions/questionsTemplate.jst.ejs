@@ -1,0 +1,10 @@
+<% _.each(questions, function(question) { %>
+  <p>
+    Question: <%= question.question %>
+    <ul>
+      <% _.each(question.responses, function(response) { %>
+        <li><%= response.answer %>: <%= response.percentage %>%</li>
+      <% }); %>
+    </ul>
+  </p>
+<% }); %>

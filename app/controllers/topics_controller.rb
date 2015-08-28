@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    render json: @topic
+    render json: @topic.responses_json
   end
 
 end
