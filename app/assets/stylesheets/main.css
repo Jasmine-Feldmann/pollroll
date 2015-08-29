@@ -19,22 +19,6 @@ section {
   left: 20px;
 }
 
-.tooltip {
-  position: absolute;
-  display: block;
-  top: -25px;
-  width: 35px;
-  height: 20px;
-  color: black;
-  text-align: center;
-  font: 10pt Tahoma, Arial, sans-serif ;
-  border-radius: 3px;
-  border: 1px solid #333;
-  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, .3);
-  box-sizing: border-box;
-  background: linear-gradient(top, rgba(69,72,77,0.5) 0%,rgba(0,0,0,0.5) 100%);
-}
-
 .ui-slider-handle {
   position: absolute;
   z-index: 2;
