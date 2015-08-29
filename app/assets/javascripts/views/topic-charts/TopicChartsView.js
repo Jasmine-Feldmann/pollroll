@@ -7,6 +7,7 @@ var TopicChartsView = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({ charts: this.collection }));
-    drawDatamap();
+    console.log(this.collection[0].attributes);
+    drawDatamap(this.collection[0].attributes);
   }
 })
