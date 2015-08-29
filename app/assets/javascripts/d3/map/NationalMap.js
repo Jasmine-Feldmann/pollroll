@@ -2,7 +2,7 @@ function drawDatamap(inputData){
    var map = new Datamap({
       scope: 'usa',
       element: document.getElementById('map-container'),
-      height: 500,
+      height: 700,
       geographyConfig: {
         highlightBorderColor: '#bada55',
       popupTemplate: function(geography, data) {
@@ -33,6 +33,6 @@ function drawDatamap(inputData){
       },
       data: inputData
    });
-   
+
    map.labels();
 }
