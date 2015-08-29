@@ -12,6 +12,18 @@ def parse_chart_json(chart_json, topic)
                               percentage: response["value"])
     end
   end
+  return chart
+end
+
+def interpolate_responses(chart, min_responses)
+  interpolation_factor = (min_responses.to_f / chart.responses.length).ceil
+  chart.responses.each do |response|
+    (interpolation_factor-1).times do
+      chart.responses.create!(answer: response.answer,
+                              percentage: response.percentage,
+                              date: response.date)
+    end
+  end
 end
 
 states = %w( alabama alaska arizona arkansas california colorado connecticut
@@ -38,5 +50,8 @@ states.each do |state|
   chart_response = Net::HTTP.get_response(chart_uri)
   chart_json = JSON.parse(chart_response.body)
   next if chart_json["errors"]
-  parse_chart_json(chart_json, new_topic)
+  chart = parse_chart_json(chart_json, new_topic)
+  if chart && chart.responses.length < 90
+    interpolate_responses(chart, 90)
+  end
 end

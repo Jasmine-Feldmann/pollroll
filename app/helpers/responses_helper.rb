@@ -3,15 +3,16 @@ module ResponsesHelper
   NUMBER_OF_RESPONSE_CHUNKS = 30
 
   def calculate_chunk_size(response_count)
-    (response_count.to_f / NUMBER_OF_RESPONSE_CHUNKS).ceil.to_i
+    response_count / NUMBER_OF_RESPONSE_CHUNKS
   end
 
   def bucketize_responses(responses)
     chunk_size = calculate_chunk_size(responses.length / 3)
-    approve_buckets = responses.select { |r| r.answer == "Approve" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
-    disapprove_buckets = responses.select { |r| r.answer == "Disapprove" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
-    undecided_buckets = responses.select { |r| r.answer == "Undecided" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
-    return approve_buckets.zip(disapprove_buckets, undecided_buckets)
+    sorted_responses = responses.sort { |r1, r2| r2.date <=> r1.date }
+    approve_buckets = sorted_responses.select { |r| r.answer == "Approve" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
+    disapprove_buckets = sorted_responses.select { |r| r.answer == "Disapprove" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
+    undecided_buckets = sorted_responses.select { |r| r.answer == "Undecided" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
+    return approve_buckets.zip(disapprove_buckets, undecided_buckets)[0..NUMBER_OF_RESPONSE_CHUNKS-1]
   end
 
   def bucketize_response_chunk(response_chunk)
