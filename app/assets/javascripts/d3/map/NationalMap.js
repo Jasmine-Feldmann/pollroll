@@ -1,12 +1,3 @@
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
-<script src="http://datamaps.github.io/scripts/datamaps.usa.min.js"></script>
-<script src="../../d3/map/sampleData.js"></script>
-
-
-<div id="map-container" style="position: relative; width: 80%; max-height: 450px;"></div>
-
-<script>
 var map = new Datamap({
    scope: 'usa',
    element: document.getElementById('map-container'),
@@ -95,6 +86,3 @@ var map = new Datamap({
    }
 });
 map.labels();
-
-
-</script>
