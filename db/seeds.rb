@@ -1,7 +1,7 @@
 def parse_chart_json(chart_json, topic)
   chart = topic.charts.create!(name: chart_json["title"],
-                               slug: chart_json["slug"],
-                               state: chart_json["state"])
+                             slug: chart_json["slug"],
+                             state: chart_json["state"])
   chart_json["estimates_by_date"].each do |poll|
     poll_date = poll["date"]
     poll["estimates"].each do |response|
@@ -35,5 +35,6 @@ states.each do |state|
   chart_uri = URI(base_url + state + "-" + base_slug)
   chart_response = Net::HTTP.get_response(chart_uri)
   chart_json = JSON.parse(chart_response.body)
+  next if chart_json["errors"]
   parse_chart_json(chart_json, new_topic)
 end
