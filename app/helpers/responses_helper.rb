@@ -3,16 +3,24 @@ module ResponsesHelper
   NUMBER_OF_RESPONSE_CHUNKS = 30
 
   def calculate_chunk_size(response_count)
-    response_count / NUMBER_OF_RESPONSE_CHUNKS
+    (response_count.to_f / NUMBER_OF_RESPONSE_CHUNKS).ceil.to_i
   end
 
   def bucketize_responses(responses)
     chunk_size = calculate_chunk_size(responses.length / 3)
-    sorted_responses = responses.sort { |r1, r2| r2.date <=> r1.date }
+    sorted_responses = responses.sort { |r1, r2| r2.date.to_date <=> r1.date.to_date }
     approve_buckets = sorted_responses.select { |r| r.answer == "Approve" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
     disapprove_buckets = sorted_responses.select { |r| r.answer == "Disapprove" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
     undecided_buckets = sorted_responses.select { |r| r.answer == "Undecided" }.each_slice(chunk_size).map { |chunk| bucketize_response_chunk(chunk) }
-    return approve_buckets.zip(disapprove_buckets, undecided_buckets)[0..NUMBER_OF_RESPONSE_CHUNKS-1]
+    zipped_buckets = approve_buckets.zip(disapprove_buckets, undecided_buckets)
+    if zipped_buckets.length < NUMBER_OF_RESPONSE_CHUNKS
+      (NUMBER_OF_RESPONSE_CHUNKS - zipped_buckets.length).times do
+        zipped_buckets.push(zipped_buckets.last)
+      end
+      return zipped_buckets
+    else
+      return zipped_buckets[0..NUMBER_OF_RESPONSE_CHUNKS-1]
+    end
   end
 
   def bucketize_response_chunk(response_chunk)
