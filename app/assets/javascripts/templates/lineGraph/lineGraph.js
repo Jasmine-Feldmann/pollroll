@@ -69,6 +69,31 @@ function InitLineGraph() {
     .attr("stroke", "blue")
     .attr("stroke-width", 2)
     .attr("fill", "none")
+
+  var yaxiscords = d3.range(26, HEIGHT, 45.4);
+  var xaxiscords = d3.range(50, WIDTH, 25);
+
+  graph.selectAll("line.vertical")
+    .data(xaxiscords)
+    .enter().append("svg:line")
+    .attr("x1", function(d) {return d;})
+    .attr("y1", 26)
+    .attr("x2", function(d) {return d;})
+    .attr("y2", HEIGHT - 25)
+    .style("stroke", "rgb(192,192,192)")
+    .style("opacity", 0.3)
+    .style("stroke-width", 2);
+
+  graph.selectAll("line.horizontal")
+    .data(yaxiscords)
+    .enter().append("svg:line")
+    .attr("x1", 50)
+    .attr("y1", function(d) {return d;})
+    .attr("x2", WIDTH - 25)
+    .attr("y2", function(d) {return d;})
+    .style("stroke", "rgb(192,192,192)")
+    .style("opacity", 0.3)
+    .style("stroke-width", 2)
 }
 
 
