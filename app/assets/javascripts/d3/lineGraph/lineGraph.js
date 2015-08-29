@@ -1,6 +1,4 @@
-InitLineGraph();
-
-function InitLineGraph() {
+function InitLineGraph(inputData) {
   var graph = d3.select("#line-graph");
   var WIDTH = 1000;
   var HEIGHT = 500;
@@ -37,7 +35,7 @@ function InitLineGraph() {
     });
 
   graph.append("svg:path")
-    .attr('d', lineGenApprove(sampleData))
+    .attr('d', lineGenApprove(inputData))
     .attr("stroke", "#29A329")
     .attr("stroke-width", 4)
     .attr("fill", "none");
@@ -51,7 +49,7 @@ function InitLineGraph() {
     });
 
   graph.append("svg:path")
-    .attr('d', lineGenDisapprove(sampleData))
+    .attr('d', lineGenDisapprove(inputData))
     .attr("stroke", "#FF3300")
     .attr("stroke-width", 4)
     .attr("fill", "none");
@@ -65,7 +63,7 @@ function InitLineGraph() {
     });
 
   graph.append("svg:path")
-    .attr('d', lineGenUndecided(sampleData))
+    .attr('d', lineGenUndecided(inputData))
     .attr("stroke", "#006B8F")
     .attr("stroke-width", 4)
     .attr("fill", "none")
