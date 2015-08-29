@@ -38,8 +38,8 @@ function InitLineGraph() {
 
   graph.append("svg:path")
     .attr('d', lineGenApprove(sampleData))
-    .attr("stroke", "green")
-    .attr("stroke-width", 2)
+    .attr("stroke", "#29A329")
+    .attr("stroke-width", 4)
     .attr("fill", "none");
 
   var lineGenDisapprove = d3.svg.line()
@@ -52,8 +52,8 @@ function InitLineGraph() {
 
   graph.append("svg:path")
     .attr('d', lineGenDisapprove(sampleData))
-    .attr("stroke", "red")
-    .attr("stroke-width", 2)
+    .attr("stroke", "#FF3300")
+    .attr("stroke-width", 4)
     .attr("fill", "none");
 
   var lineGenUndecided = d3.svg.line()
@@ -66,8 +66,8 @@ function InitLineGraph() {
 
   graph.append("svg:path")
     .attr('d', lineGenUndecided(sampleData))
-    .attr("stroke", "blue")
-    .attr("stroke-width", 2)
+    .attr("stroke", "#006B8F")
+    .attr("stroke-width", 4)
     .attr("fill", "none")
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);
