@@ -7,11 +7,7 @@ class Topic < ActiveRecord::Base
   include ResponsesHelper
 
   def responses_json
-    self.charts_with_responses.map { |c| { chart: c, responses: bucketize_responses(c.filter_incomplete_polls) } }
-  end
-
-  def charts_with_responses
-    self.charts.select { |ch| ch.responses.length > 0 }
+    self.charts.map { |c| { chart: c, responses: bucketize_responses(c.responses) } }
   end
 
 end
