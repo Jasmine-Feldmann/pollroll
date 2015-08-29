@@ -1,8 +1,10 @@
 def parse_chart_json(chart_json, topic)
+  return if chart_json["estimates_by_date"].empty?
   chart = topic.charts.create!(name: chart_json["title"],
                              slug: chart_json["slug"],
                              state: chart_json["state"])
   chart_json["estimates_by_date"].each do |poll|
+    next if poll["estimates"].length < 3
     poll_date = poll["date"]
     poll["estimates"].each do |response|
       chart.responses.create!(date: poll_date,
