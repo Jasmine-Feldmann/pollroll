@@ -17,6 +17,49 @@
      
      <script>
        // cf. http://datamaps.github.io/
+
+      var sampleDataUS = [
+        {state: "US", date: "2009-12", choice:
+          {"Approve": 44.2,
+          "Disapprove": 35,
+          "Undecided": 15
+          }
+        },
+        {state: "US", date: "2009-11", choice:
+          {"Approve": 44.2,
+          "Disapprove": 35,
+          "Undecided": 15
+          }
+        },
+        {state: "US", date: "2009-10", choice:
+          {"Approve": 44.2,
+          "Disapprove": 35,
+          "Undecided": 15
+          }
+        },
+        {state: "US", date: "2009-09", choice:
+          {"Approve": 44.2,
+          "Disapprove": 35,
+          "Undecided": 15
+          }
+        }
+      ];
+
+      var sampleDataStates = [
+        {state: "AZ", date: "2009-12", choice:
+          {"Approve": 44.2,
+          "Disapprove": 35,
+          "Undecided": 15
+          }
+        },
+        {state: "CO", date: "2009-12", choice:
+          {"Approve": 35,
+          "Disapprove": 44.2,
+          "Undecided": 15
+          }
+        },
+      ];
+
       var map = new Datamap({
         scope: 'usa',
         element: document.getElementById('map-container'),
@@ -24,7 +67,7 @@
         geographyConfig: {
             highlightBorderColor: '#bada55',
            popupTemplate: function(geography, data) {
-              return '<div class="hoverinfo">' + geography.properties.name + 'Electoral Votes:' +  data.electoralVotes + ' '
+              return '<div class="hoverinfo">' + geography.properties.name + 'Electoral Votes:' +  data.electoralVotes + ' ' + 'Approve:' + data.Approve + 'Disapprove:' + 
             },
             highlightBorderWidth: 3
           },
@@ -43,8 +86,7 @@
 		 "AL": {"fillKey": "Republican", "electoralVotes": 32},
          "AK": {"fillKey": "Republican", "electoralVotes": 32},
          "AR": {"fillKey": "Republican", "electoralVotes": 32},
-         "AZ": {"fillKey": "Republican", "electoralVotes": 5},
-         "CO": {"fillKey": "Light Democrat", "electoralVotes": 5},
+         "AZ": {"fillKey": "Republican", "electoralVotes": 5, "Approve": 35, "Disapprove": 44.2, "Undecided": 15},
          "CT": {"fillKey": "Democrat", "electoralVotes": 32},
          "DE": {"fillKey": "Democrat", "electoralVotes": 32},
          "FL": {"fillKey": "UNDECIDED", "electoralVotes": 29},
