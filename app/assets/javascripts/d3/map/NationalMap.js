@@ -7,12 +7,20 @@ function drawDatamap(inputData){
         highlightBorderColor: '#bada55',
       popupTemplate: function(geography, data) {
          var abbr = STATEABBRS[geography.properties.name];
-         return '<div class="hoverinfo">'
-         + geography.properties.name
-         + "<br>" + inputData[abbr]["responses"][0]["answer"] + " " + inputData[abbr]["responses"][0]["percentage"] + "%"
-         + "<br>" + inputData[abbr]["responses"][1]["answer"] + " " + inputData[abbr]["responses"][1]["percentage"] + "%"
-         + "<br>" + inputData[abbr]["responses"][2]["answer"] + " " + inputData[abbr]["responses"][2]["percentage"] + "%"
-         + "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
+
+         if (inputData[abbr]) {
+            return '<div class="hoverinfo">'
+            + geography.properties.name
+            + "<br>" + inputData[abbr]["responses"][0]["answer"] + " " + inputData[abbr]["responses"][0]["percentage"] + "%"
+            + "<br>" + inputData[abbr]["responses"][1]["answer"] + " " + inputData[abbr]["responses"][1]["percentage"] + "%"
+            + "<br>" + inputData[abbr]["responses"][2]["answer"] + " " + inputData[abbr]["responses"][2]["percentage"] + "%"
+            + "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
+         }
+         else {
+            return '<div class="hoverinfo">'
+            + geography.properties.name
+            + "<br>" + "Insufficient data"
+         }
       },
       highlightBorderWidth: 3
       },
