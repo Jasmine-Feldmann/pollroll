@@ -1,4 +1,5 @@
-var map = new Datamap({
+function drawDatamap(){
+ var map = new Datamap({
  scope: 'usa',
  element: document.getElementById('map-container'),
  height: 500,
@@ -73,4 +74,4 @@ data:{
 }
 });
 map.labels();
-
+}

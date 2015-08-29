@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require d3
+//= require topojson
+//= require datamaps
+//= require_tree ./d3
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./templates
