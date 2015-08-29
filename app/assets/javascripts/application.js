@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery-ui-slider-pips
 //= require underscore
 //= require backbone
 //= require d3
