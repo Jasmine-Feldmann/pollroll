@@ -5,7 +5,7 @@ function drawDatamap(inputData){
       height: 500,
       geographyConfig: {
         highlightBorderColor: '#bada55',
-        popupTemplate: function(geography, data) {
+      popupTemplate: function(geography, data) {
          var abbr = STATEABBRS[geography.properties.name];
          return '<div class="hoverinfo">'
          + geography.properties.name
