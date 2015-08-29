@@ -1,0 +1,8 @@
+<%= charts[0].get('chart').slug %>
+<ul>
+<% _.each(charts[0].get('responses'), function(response) { %>
+<li>
+  <%= response.date %> - <%= response.answer %>: <%= response.percentage %>
+</li>
+<% }); %>
+</ul>
