@@ -7,14 +7,18 @@ var TopicChartsView = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({ charts: this.collection }));
-    drawDatamap(this.collection[0].attributes[0]);
-    InitLineGraph(this.collection[1].attributes.responses);
-    $("#line-graph-container").hide();
-    var timeSlider = new TimeSlider();
-    timeSlider.render();
-
-    this.$el.find("#slider").on("slide", this.updateChartData.bind(this));
-    this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
+    if (this.collection.topicId == 1) {
+      drawDatamap(this.collection[0].attributes[0]);
+      InitLineGraph(this.collection[1].attributes.responses);
+      $("#line-graph-container").hide();
+      var timeSlider = new TimeSlider();
+      timeSlider.render();
+      this.$el.find("#slider").on("slide", this.updateChartData.bind(this));
+      this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
+    }
+    else {
+      candidateLineGraph(this.collection);
+    }
   },
 
   updateChartData: function(event, ui) {

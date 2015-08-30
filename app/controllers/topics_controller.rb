@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
     when 1
       render json: @topic.responses_json_obama_approval
     when 2
-      render json: @topic.responses_2016_gop
+      render json: @topic.responses_json_2016_gop
     end
   end
 
