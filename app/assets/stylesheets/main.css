@@ -133,6 +133,7 @@ a {
 .datamap {
   margin-top: 100px;
   margin: auto;
+  width: 100%;
 }
 
 #line-graph {
