@@ -1,3 +1,14 @@
+function toolTipHelper(dataSet, num) {
+   return "<br>" 
+   + "<span class=data-answer>" 
+      + dataSet["responses"][num]["answer"] 
+   + "</span>" + " "
+   + "<span class=data-percentage>" 
+      + dataSet["responses"][num]["percentage"] 
+   + "</span>" + " "
+   + "%"
+}
+
 function drawDatamap(inputData){
    var map = new Datamap({
       scope: 'usa',
@@ -7,13 +18,12 @@ function drawDatamap(inputData){
         highlightBorderColor: '#bada55',
       popupTemplate: function(geography, data) {
          var abbr = STATEABBRS[geography.properties.name];
-
          if (inputData[abbr]) {
             return '<div class="hoverinfo">'
             + geography.properties.name
-            + "<br>" + inputData[abbr]["responses"][0]["answer"] + " " + inputData[abbr]["responses"][0]["percentage"] + "%"
-            + "<br>" + inputData[abbr]["responses"][1]["answer"] + " " + inputData[abbr]["responses"][1]["percentage"] + "%"
-            + "<br>" + inputData[abbr]["responses"][2]["answer"] + " " + inputData[abbr]["responses"][2]["percentage"] + "%"
+            + toolTipHelper(inputData[abbr], 0)
+            + toolTipHelper(inputData[abbr], 1)
+            + toolTipHelper(inputData[abbr], 2)
             + "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
          }
          else {
