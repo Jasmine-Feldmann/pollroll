@@ -15,7 +15,15 @@ class Topic < ActiveRecord::Base
         timeline_array[index][c.state] = { responses: chunk, fillKey: sorted_chunk.last.answer }
       end
     end
-    return timeline_array
+    return [timeline_array, self.all_national_responses]
+  end
+
+  def all_national_responses
+    all = self.charts.where(state: "US").first.responses.each_slice(3).map do |slice|
+      slice.sort_by { |r| r.answer }
+    end
+    all.reject! { |s| s.map(&:answer) != ["Approve", "Disapprove", "Undecided"] }
+    return { responses: all.sort_by { |sl| sl[0].date } }
   end
 
 end

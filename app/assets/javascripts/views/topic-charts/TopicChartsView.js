@@ -7,9 +7,9 @@ var TopicChartsView = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({ charts: this.collection }));
-    drawDatamap(this.collection[0].attributes);
-    InitLineGraph(this.collection[0].attributes);
-    $("#line-graph-container").hide()
+    drawDatamap(this.collection[0].attributes[0]);
+    InitLineGraph(this.collection[1].attributes.responses);
+    $("#line-graph-container").hide();
     var timeSlider = new TimeSlider();
     timeSlider.render();
 
@@ -19,7 +19,7 @@ var TopicChartsView = Backbone.View.extend({
 
   updateChartData: function(event, ui) {
     $("#map-container").html("");
-    drawDatamap(this.collection[30 - ui.value].attributes);
+    drawDatamap(this.collection[0].attributes[30 - ui.value].attributes);
   },
 
   toggleTab: function(event, ui) {
