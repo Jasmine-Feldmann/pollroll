@@ -28,7 +28,7 @@ var StateStats = function(geography, data) {
    this.undecidedPercentage = data.responses[2].percentage;
 }
 
-
+// function quantile 
 
 function calculateFillKeys(inputData) {
    for (state in inputData) {
