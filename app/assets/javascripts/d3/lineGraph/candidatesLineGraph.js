@@ -3,6 +3,7 @@ function candidateLineGraph(nationalData) {
   nationalData.forEach(function(candidate) {
     candidate.minDate = d3.min(candidate.attributes.responses.map(function(d) { return parseDate.parse(d.date); }));
     candidate.maxDate = d3.max(candidate.attributes.responses.map(function(d) { return parseDate.parse(d.date); }));
+    candidate.maxPercentage = d3.max(candidate.attributes.responses.map(function(d) { return d.percentage; }));
   });
   var graph = d3.select("#line-graph");
   var WIDTH = 1000;
@@ -19,6 +20,9 @@ function candidateLineGraph(nationalData) {
       d3.max(nationalData.map(function(candidate) { return candidate.maxDate; }))
     ]);
   var Yscale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,30]);
+
+  var colorScale = d3.scale.category20();
+
   var Xaxis = d3.svg.axis()
       .scale(Xscale)
       .orient("bottom");
@@ -44,47 +48,13 @@ function candidateLineGraph(nationalData) {
       return Yscale(parseFloat(d.percentage));
     });
 
-  nationalData.forEach(function(candidate) {
+  nationalData.forEach(function(candidate, index) {
     graph.append("svg:path")
       .attr('d', lineGen(candidate.attributes.responses))
-      .attr("stroke", "#29A329")
-      .attr("stroke-width", 4)
+      .attr("stroke", colorScale(index))
+      .attr("stroke-width", 3)
       .attr("fill", "none");
   });
-
-  // graph.append("svg:path")
-  //   .attr('d', lineGenApprove(nationalData))
-  //   .attr("stroke", "#29A329")
-  //   .attr("stroke-width", 4)
-  //   .attr("fill", "none");
-
-  // var lineGenDisapprove = d3.svg.line()
-  //   .x(function(d) {
-  //     return Xscale(d.date);
-  //   })
-  //   .y(function(d) {
-  //     return Yscale(parseFloat(d[1].percentage));
-  //   });
-
-  // graph.append("svg:path")
-  //   .attr('d', lineGenDisapprove(nationalData))
-  //   .attr("stroke", "#FF3300")
-  //   .attr("stroke-width", 4)
-  //   .attr("fill", "none");
-
-  // var lineGenUndecided = d3.svg.line()
-  //   .x(function(d) {
-  //     return Xscale(d.date)
-  //   })
-  //   .y(function(d) {
-  //     return Yscale(parseFloat(d[2].percentage));
-  //   });
-
-  // graph.append("svg:path")
-  //   .attr('d', lineGenUndecided(nationalData))
-  //   .attr("stroke", "#006B8F")
-  //   .attr("stroke-width", 4)
-  //   .attr("fill", "none")
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);
   var xaxiscords = d3.range(50, WIDTH, 25);
