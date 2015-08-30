@@ -34,24 +34,32 @@ states = %w( alabama alaska arizona arkansas california colorado connecticut
              pennsylvania rhode-island south-carolina south-dakota tennessee texas
              utah vermont virginia washington west-virginia wisconsin wyoming )
 
-new_topic = Topic.create!(name: "Obama Job Approval")
-base_slug = "obama-job-approval"
+# new_topic = Topic.create!(name: "Obama Job Approval")
+# base_slug = "obama-job-approval"
 base_url = "http://elections.huffingtonpost.com/pollster/api/charts/"
 
 
-chart_uri = URI(base_url + base_slug)
-chart_response = Net::HTTP.get_response(chart_uri)
-chart_json = JSON.parse(chart_response.body)
-parse_chart_json(chart_json, new_topic)
+# chart_uri = URI(base_url + base_slug)
+# chart_response = Net::HTTP.get_response(chart_uri)
+# chart_json = JSON.parse(chart_response.body)
+# parse_chart_json(chart_json, new_topic)
+
+gop_primary = Topic.create!(name: "2016 National GOP Primary")
+gop_slug = "2016-national-gop-primary"
+
+gop_uri = URI(base_url + gop_slug)
+gop_response = Net::HTTP.get_response(gop_uri)
+gop_json = JSON.parse(gop_response.body)
+parse_chart_json(gop_json, gop_primary)
 
 
-states.each do |state|
-  chart_uri = URI(base_url + state + "-" + base_slug)
-  chart_response = Net::HTTP.get_response(chart_uri)
-  chart_json = JSON.parse(chart_response.body)
-  next if chart_json["errors"]
-  chart = parse_chart_json(chart_json, new_topic)
-  if chart && chart.responses.length < 90
-    interpolate_responses(chart, 90)
-  end
-end
+# states.each do |state|
+#   chart_uri = URI(base_url + state + "-" + base_slug)
+#   chart_response = Net::HTTP.get_response(chart_uri)
+#   chart_json = JSON.parse(chart_response.body)
+#   next if chart_json["errors"]
+#   chart = parse_chart_json(chart_json, new_topic)
+#   if chart && chart.responses.length < 90
+#     interpolate_responses(chart, 90)
+#   end
+# end
