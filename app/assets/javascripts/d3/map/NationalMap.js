@@ -32,8 +32,7 @@ function drawDatamap(inputData){
          popupTemplate: function(geography, data) {
             console.log(geography);
             console.log(data);
-            // var abbr = STATEABBRS[geography.properties.name];
-            var abbr = geography.properties.id;
+            var abbr = geography.id;
             if (inputData[abbr]) {
                return toolTipTitleHelper(geography, data)
                + toolTipHelper(inputData[abbr], 0)
