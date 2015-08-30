@@ -43,8 +43,9 @@
 
 /*ToolTip CSS*/
 .hoverinfo {
-  min-width: 300px;
-  background-color: aqua;
+  /*min-width: 300px;*/
+  /*background-color: aqua !important;*/
+  /*border: 3px solid black !important;*/
 }
 .state-name {
   font-size: 1.2em;

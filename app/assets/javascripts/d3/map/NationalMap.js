@@ -8,6 +8,13 @@ function toolTipHelper(dataSet, num) {
    + "</span>" + " "
    + "%"
 }
+function toolTipTitleHelper(geography, data) {
+   return '<div class="hoverinfo">'
+   + "<span class='state-name'>" + geography.properties.name + "</span>"
+}
+function parseGeoStats(geography, data) {
+
+}
 
 function drawDatamap(inputData){
    var map = new Datamap({
@@ -16,13 +23,19 @@ function drawDatamap(inputData){
       element: document.getElementById('map-container'),
       height: 700,
       geographyConfig: {
-         highlightBorderColor: '#bada55',
+         // highlightBorderColor: '#bada55',
+         highlightBorderColor: '#1D1075',
          highlightBorderWidth: 3,
+         highlightFillColor: '#ACE',
+         // highlightFillColor: '#FC8D59',
+         // highlightFillOpacity: 0.85,
          popupTemplate: function(geography, data) {
-            var abbr = STATEABBRS[geography.properties.name];
+            console.log(geography);
+            console.log(data);
+            // var abbr = STATEABBRS[geography.properties.name];
+            var abbr = geography.properties.id;
             if (inputData[abbr]) {
-               return '<div class="hoverinfo">'
-               + "<span class='state-name'>" + geography.properties.name + "</span>"
+               return toolTipTitleHelper(geography, data)
                + toolTipHelper(inputData[abbr], 0)
                + toolTipHelper(inputData[abbr], 1)
                + toolTipHelper(inputData[abbr], 2)
@@ -30,8 +43,7 @@ function drawDatamap(inputData){
                + "</div>"
             }
             else {
-               return '<div class="hoverinfo">'
-               + "<span class='state-name'>" + geography.properties.name + "</span>"
+               return toolTipTitleHelper(geography, data)   
                + "<br>" + "Insufficient data"
                + "</div>"
             }
