@@ -28,7 +28,7 @@ class Topic < ActiveRecord::Base
 
   def responses_json_2016_gop
     candidates = self.responses.pluck(:answer).uniq
-    return candidates.map { |choice| { answer: choice, responses: t.responses.where(answer: choice) } }
+    return candidates.map { |choice| { answer: choice, responses: t.responses.where(answer: choice).order("date ASC") } }
   end
 
 end
