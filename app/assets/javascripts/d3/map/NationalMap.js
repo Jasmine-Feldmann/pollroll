@@ -1,9 +1,3 @@
-// $(document).ready({
-//    alert("hello");
-//    // $("body").prepend("div").css("background-color","red");
-// }); 
-
-
 function toolTipHelper(dataSet, num) {
    return "<br>" 
    + "<span class='data-answer'>" 
@@ -18,32 +12,57 @@ function toolTipTitleHelper(geography, data) {
    return '<div class="hoverinfo">'
    + "<span class='state-name'>" + geography.properties.name + "</span>"
 }
-var StateStats = function(geography, data) {
-   // this.id = geography.id;
-   this.approve = data.responses[0].answer;
-   this.approvePercentage = data.responses[0].percentage;
-   this.disapprove = data.responses[1].answer;
-   this.disapprovePercentage = data.responses[1].percentage;
-   this.undecided = data.responses[2].answer;
-   this.undecidedPercentage = data.responses[2].percentage;
+
+function appToDisappRatio(state) {
+   console.log("state line 17", state);
+   return state["responses"][0]["percentage"] / state["responses"][1]["percentage"];
+}
+function approvalRatioDeciles(inputData) {
+   var allRatios = _.map(inputData, function(state) {
+      return appToDisappRatio(state);
+   }).sort();
+   // console.log("allRatios", allRatios);
+   var first = allRatios[0];
+   var last = allRatios.slice(-1);
+   var difference = last - first;
+   return _.range(first, last, difference/10);
 }
 
-// function quantile 
+function assignFillKeys(inputData) {
+   var deciles = approvalRatioDeciles(inputData);
+   // for (var i = deciles.length - 1; i >= 0; i--) {
+   for (var i = 0; i < deciles.length-1; i++) {
+      for (state in inputData) {
+         console.log("state line 36", state);
+         if (deciles[i] <= appToDisappRatio(state) && appToDisappRatio(onlyStates[state]) < deciles[i+1]) {
+            state["fillKey"] = "color" + i;
+         }
 
-function calculateFillKeys(inputData) {
-   for (state in inputData) {
-      inputData[state]['fillKey'] = _.sample(["a5","a4","a3","a2","a1","neutral","d1","d2","d3","d4","d5"])
+         // switch (true) {
+         //   case (deciles[0] <= appToDisappRatio(state) &&  appToDisappRatio(state) < deciles[1]): /* do something */ break;
+         //   case (1000 <= val &&  val < 2000): /* do something */ break;
+         //   ...
+         //   case (29000 <= val &&  val < 30000): /* do something */ break;
+         // }
+
+      }
    }
 }
 
 function drawDatamap(inputData){
-   calculateFillKeys(inputData);
-   console.log(inputData);
-   d3.select("body").attr("fill",function() {
+   console.log("inputData",inputData);
+   var onlyStates = _.clone(inputData);
+   delete onlyStates["US"]
+   console.log("approvalRatioDeciles(onlyStates)", approvalRatioDeciles(onlyStates));
+   console.log("onlyStates line 57", onlyStates);
+   assignFillKeys(onlyStates);
+   console.log("onlyStates again", onlyStates);
+   // d3.select("body").attr("fill",function() {
 
-   });
-   // var stats = new StateStats(geography, data);
-   // console.log(stats);
+   // });
+
+   // var colors = d3.scale.category10();
+   // console.log(colors);
 
    var map = new Datamap({
       data: inputData,
@@ -61,7 +80,7 @@ function drawDatamap(inputData){
             var abbr = geography.id;
             if (inputData[abbr]) {
                // console.log("geography", geography);
-               console.log("data", data);
+               // console.log("data", data);
                return toolTipTitleHelper(geography, data)
                + toolTipHelper(inputData[abbr], 0)
                + toolTipHelper(inputData[abbr], 1)
@@ -95,17 +114,17 @@ function drawDatamap(inputData){
          // "a4": "rgb(26,152,80)",
          // "a5": "rgb(0,104,55)",
 
-         "d5": "rgb(84,48,5)",
-         "d4": "rgb(140,81,10)",
-         "d3": "rgb(191,129,45)",
-         "d2": "rgb(223,194,125)",
-         "d1": "rgb(246,232,195)",
-         "neutral": "rgb(245,245,245)",
-         "a1": "rgb(199,234,229)",
-         "a2": "rgb(128,205,193)",
-         "a3": "rgb(53,151,143)",
-         "a4": "rgb(1,102,94)",
-         "a5": "rgb(0,60,48)",
+         "color0": "rgb(84,48,5)",
+         "color1": "rgb(140,81,10)",
+         "color2": "rgb(191,129,45)",
+         "color3": "rgb(223,194,125)",
+         "color4": "rgb(246,232,195)",
+         "color5": "rgb(245,245,245)",
+         "color6": "rgb(199,234,229)",
+         "color7": "rgb(128,205,193)",
+         "color8": "rgb(53,151,143)",
+         "color9": "rgb(1,102,94)",
+         "color10": "rgb(0,60,48)",
          defaultFill: '#AAA'
       },
    });
