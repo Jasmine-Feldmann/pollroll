@@ -10,7 +10,7 @@ var TopicChartsView = Backbone.View.extend({
     drawDatamap(this.collection[0].attributes);
     var timeSlider = new TimeSlider();
     timeSlider.render();
-    this.$el.find("#slider").on("slidechange", this.updateChartData.bind(this));
+    this.$el.find("#slider").on("slide", this.updateChartData.bind(this));
     this.$el.find(".ui-tabs-nav").on("click", this.toggeleTab.bind(this))
   },
 
