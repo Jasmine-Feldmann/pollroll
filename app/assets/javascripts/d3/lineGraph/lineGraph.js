@@ -1,5 +1,8 @@
-function InitLineGraph(inputData) {
-  var nationalData = inputData.map(function(dataPoint) { return dataPoint.attributes.US; });
+function InitLineGraph(nationalData) {
+  var parseDate = d3.time.format("%Y-%m-%d");
+  nationalData.forEach(function(d) {
+    d.date = parseDate.parse(d[0].date);
+  });
   var graph = d3.select("#line-graph");
   var WIDTH = 1000;
   var HEIGHT = 500;
@@ -9,10 +12,8 @@ function InitLineGraph(inputData) {
       bottom: 26,
       left: 50
     };
-  var Xscale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right])
-              .domain(d3.extent(nationalData.map(function(usDataPoint) {
-                return formatDate(usDataPoint.responses[0].date);
-              })));
+  var Xscale = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right])
+              .domain(d3.extent(nationalData.map(function(d) { return d.date; })));
   var Yscale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,100]);
   var Xaxis = d3.svg.axis()
       .scale(Xscale)
@@ -32,10 +33,10 @@ function InitLineGraph(inputData) {
 
   var lineGenApprove = d3.svg.line()
     .x(function(d) {
-      return Xscale(formatDate(d.responses[0].date));
+      return Xscale(d.date);
     })
     .y(function(d) {
-      return Yscale(d.responses[0].percentage);
+      return Yscale(parseFloat(d[0].percentage));
     });
 
   graph.append("svg:path")
@@ -46,10 +47,10 @@ function InitLineGraph(inputData) {
 
   var lineGenDisapprove = d3.svg.line()
     .x(function(d) {
-      return Xscale(formatDate(d.responses[1].date))
+      return Xscale(d.date);
     })
     .y(function(d) {
-      return Yscale(d.responses[1].percentage)
+      return Yscale(parseFloat(d[1].percentage));
     });
 
   graph.append("svg:path")
@@ -60,10 +61,10 @@ function InitLineGraph(inputData) {
 
   var lineGenUndecided = d3.svg.line()
     .x(function(d) {
-      return Xscale(formatDate(d.responses[2].date))
+      return Xscale(d.date)
     })
     .y(function(d) {
-      return Yscale(d.responses[2].percentage)
+      return Yscale(parseFloat(d[2].percentage));
     });
 
   graph.append("svg:path")
@@ -99,7 +100,7 @@ function InitLineGraph(inputData) {
 }
 
 function formatDate(date) {
-  return date.substr(0, 4) + date.substr(5, 2);
+  return date.substr(0, 4) + date.substr(5, 2) + date.substr(8, 2);
 }
 
 
