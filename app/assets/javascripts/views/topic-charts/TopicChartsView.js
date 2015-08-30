@@ -7,7 +7,7 @@ var TopicChartsView = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({ charts: this.collection }));
-    if (this.collection.topicId == 1) {
+    if (this.collection[0].collection.options.topicId == 1) {
       drawDatamap(this.collection[0].attributes[0]);
       InitLineGraph(this.collection[1].attributes.responses);
       $("#line-graph-container").hide();
@@ -23,7 +23,7 @@ var TopicChartsView = Backbone.View.extend({
 
   updateChartData: function(event, ui) {
     $("#map-container").html("");
-    drawDatamap(this.collection[0].attributes[30 - ui.value].attributes);
+    drawDatamap(this.collection[0].attributes[30 - ui.value]);
   },
 
   toggleTab: function(event, ui) {
