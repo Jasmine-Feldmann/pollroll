@@ -40,3 +40,18 @@
     height: 100%;
     border-radius: 25px;
 }
+
+/*ToolTip CSS*/
+.hoverinfo {
+  min-width: 300px;
+  background-color: aqua;
+}
+.state-name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.data-answer {
+  font-weight: bold;
+}
+.data-percentage {
+}
