@@ -5,8 +5,8 @@ function toolTipHelper(dataSet, num) {
    + ":" + "</span>" + " "
    + "<span class='data-percentage'>" 
       + dataSet["responses"][num]["percentage"] 
-   + "</span>" + " "
-   + "%"
+   + "</span>" 
+   + "<span class='percent-sign'>%</span>"
 }
 function toolTipTitleHelper(geography, data) {
    return '<div class="hoverinfo">'
