@@ -22,8 +22,10 @@ var TopicChartsView = Backbone.View.extend({
   },
 
   updateChartData: function(event, ui) {
+    var scroll = $(window).scrollTop();
     $("#map-container").html("");
     drawDatamap(this.collection[0].attributes[30 - ui.value]);
+    $(window).scrollTop(scroll);
   },
 
   toggleTab: function(event, ui) {
