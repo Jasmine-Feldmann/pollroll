@@ -16,6 +16,7 @@ var TopicChartsView = Backbone.View.extend({
   updateChartData: function(event, ui) {
     $("#map-container").html("");
     drawDatamap(this.collection[30 - ui.value].attributes);
+    InitLineGraph(this.collection[0].attributes);
   }
 
 })
