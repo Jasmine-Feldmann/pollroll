@@ -12,8 +12,14 @@ function toolTipTitleHelper(geography, data) {
    return '<div class="hoverinfo">'
    + "<span class='state-name'>" + geography.properties.name + "</span>"
 }
-function parseGeoStats(geography, data) {
-
+var StateStats = function(geography, data) {
+   this.id = geography.id;
+   this.approve = data.responses[0].answer;
+   this.approvePercentage = data.responses[0].percentage;
+   this.disapprove = data.responses[1].answer;
+   this.disapprovePercentage = data.responses[1].percentage;
+   this.undecided = data.responses[2].answer;
+   this.undecidedPercentage = data.responses[2].percentage;
 }
 
 function drawDatamap(inputData){
@@ -30,10 +36,10 @@ function drawDatamap(inputData){
          // highlightFillColor: '#FC8D59',
          // highlightFillOpacity: 0.85,
          popupTemplate: function(geography, data) {
-            console.log(geography);
-            console.log(data);
             var abbr = geography.id;
             if (inputData[abbr]) {
+               var stats = new StateStats(geography, data);
+               console.log(stats);
                return toolTipTitleHelper(geography, data)
                + toolTipHelper(inputData[abbr], 0)
                + toolTipHelper(inputData[abbr], 1)
