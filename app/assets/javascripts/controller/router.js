@@ -14,8 +14,6 @@ var AppRouter = Backbone.Router.extend({
       success: function(response) {
         var topicChartsView = new TopicChartsView({ collection: response.models });
         topicChartsView.render();
-        var timeSlider = new TimeSlider();
-        timeSlider.render();
       }
     });
   },

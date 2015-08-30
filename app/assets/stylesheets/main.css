@@ -1,7 +1,6 @@
 .slider-section {
-  width: 150px;
   height: auto;
-  margin: 100px auto 0;
+  /*margin: 100px auto 0;*/
   position: relative;
 }
 
@@ -10,7 +9,7 @@
   border-style: solid;
   border-color: #333 #333 #777 #333;
   border-radius: 25px;
-  width: 100px;
+  width: 400px;
   position: absolute;
   height: 13px;
   background-color: #8e8d8d;
