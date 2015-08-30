@@ -25,10 +25,12 @@ function InitLineGraph(nationalData) {
 
   graph.append("svg:g")
     .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+    .attr("stroke", "#845203")
     .call(Xaxis);
 
   graph.append("svg:g")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+    .attr("stroke", "#845203")
     .call(Yaxis)
 
   var lineGenApprove = d3.svg.line()
@@ -83,7 +85,7 @@ function InitLineGraph(nationalData) {
     .attr("y1", 26)
     .attr("x2", function(d) {return d;})
     .attr("y2", HEIGHT - 25)
-    .style("stroke", "rgb(192,192,192)")
+    .style("stroke", "#845203")
     .style("opacity", 0.3)
     .style("stroke-width", 2);
 
@@ -94,7 +96,7 @@ function InitLineGraph(nationalData) {
     .attr("y1", function(d) {return d;})
     .attr("x2", WIDTH - 25)
     .attr("y2", function(d) {return d;})
-    .style("stroke", "rgb(192,192,192)")
+    .style("stroke", "#845203")
     .style("opacity", 0.3)
     .style("stroke-width", 2)
 }
