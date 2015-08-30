@@ -44,7 +44,6 @@ chart_response = Net::HTTP.get_response(chart_uri)
 chart_json = JSON.parse(chart_response.body)
 parse_chart_json(chart_json, new_topic)
 
-
 states.each do |state|
   chart_uri = URI(base_url + state + "-" + base_slug)
   chart_response = Net::HTTP.get_response(chart_uri)
@@ -55,3 +54,11 @@ states.each do |state|
     interpolate_responses(chart, 90)
   end
 end
+
+gop_primary = Topic.create!(name: "2016 National GOP Primary")
+gop_slug = "2016-national-gop-primary"
+
+gop_uri = URI(base_url + gop_slug)
+gop_response = Net::HTTP.get_response(gop_uri)
+gop_json = JSON.parse(gop_response.body)
+parse_chart_json(gop_json, gop_primary)
