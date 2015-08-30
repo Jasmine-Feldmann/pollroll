@@ -12,8 +12,9 @@ var TopicChartsView = Backbone.View.extend({
     $("#line-graph-container").hide()
     var timeSlider = new TimeSlider();
     timeSlider.render();
-    this.$el.find("#slider").on("slidechange", this.updateChartData.bind(this));
-    this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
+
+    this.$el.find("#slider").on("slide", this.updateChartData.bind(this));
+    this.$el.find(".ui-tabs-panel").on("click", this.toggeleTab)
   },
 
   updateChartData: function(event, ui) {
