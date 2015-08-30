@@ -112,6 +112,10 @@ a {
   padding: 0px 20px;
 }
 
+path {
+  fill: none;
+}
+
 .ui-tabs-nav {
   margin: auto;
   margin-top: 30px;
