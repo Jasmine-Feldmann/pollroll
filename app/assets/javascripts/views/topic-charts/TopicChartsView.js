@@ -8,8 +8,8 @@ var TopicChartsView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template({ charts: this.collection }));
     drawDatamap(this.collection[0].attributes);
-    InitLineGraph(this.collection[0].attributes);
-    $("#line-graph-container").hide()
+    InitLineGraph(this.collection);
+    $("#line-graph-container").hide();
     var timeSlider = new TimeSlider();
     timeSlider.render();
 
