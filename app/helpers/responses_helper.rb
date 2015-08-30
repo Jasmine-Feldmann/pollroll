@@ -27,7 +27,7 @@ module ResponsesHelper
     average = response_chunk.reduce(0) { |acc, resp| acc + resp.percentage } / response_chunk.length
     date_diff = response_chunk.last.date.to_date - response_chunk.first.date.to_date
     new_date = response_chunk.first.date.to_date + (date_diff / 2)
-    Response.new(answer: response_chunk.first.answer, date: new_date.to_s, percentage: average, chart_id: response_chunk.first.chart_id)
+    Response.new(answer: response_chunk.first.answer, date: new_date.to_s, percentage: average.round(2), chart_id: response_chunk.first.chart_id)
   end
 
 end
