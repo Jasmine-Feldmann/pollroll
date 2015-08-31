@@ -58,7 +58,6 @@ function candidateLineGraph(nationalData) {
       .duration(4000)
       .delay(500 + index * 500)
       .ease("linear")
-      .attr()
       .attr('d', lineGen(candidate.attributes.responses));
   });
 
