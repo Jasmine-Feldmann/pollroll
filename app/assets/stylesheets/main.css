@@ -87,7 +87,7 @@ a {
   font-size: 1.2em;
   font-weight: bold;
 }
-.data-answer {
+.data-answer, .ratio {
   font-weight: bold;
 }
 .data-percentage {

@@ -1,50 +1,55 @@
-function toolTipHelper(dataSet, num) {
-   return "<br>" 
-   + "<span class='data-answer'>" 
-      + dataSet["responses"][num]["answer"] 
-   + ":" + "</span>" + " "
-   + "<span class='data-percentage'>" 
-      + dataSet["responses"][num]["percentage"] 
-   + "</span>" 
-   + "<span class='percent-sign'>%</span>"
+function appToDisappRatio(state) {
+   return state["responses"][0]["percentage"] / state["responses"][1]["percentage"];
 }
-function toolTipTitleHelper(geography, data) {
-   return '<div class="hoverinfo">'
-   + "<span class='state-name'>" + geography.properties.name + "</span>"
+
+function assignFillKeys(inputData) {
+   var levels = [0.5,0.75,1,1.25,1.5,1.75,2,2.25]
+   for (var i = 0; i < levels.length-1; i++) {
+      for (state in inputData) {
+         var ratio = appToDisappRatio(inputData[state])
+         if (ratio < levels[0]) {
+            inputData[state]["fillKey"] = "color1";
+         }
+         else if (levels[i] <= ratio && ratio < levels[i+1]) {
+            inputData[state]["fillKey"] = "color" + (i+2);
+         }
+         else if (levels.slice(-1) < ratio) {
+            inputData[state]["fillKey"] = "color9";
+         }
+      }
+   }
 }
-var StateStats = function(geography, data) {
-   this.id = geography.id;
-   this.approve = data.responses[0].answer;
-   this.approvePercentage = data.responses[0].percentage;
-   this.disapprove = data.responses[1].answer;
-   this.disapprovePercentage = data.responses[1].percentage;
-   this.undecided = data.responses[2].answer;
-   this.undecidedPercentage = data.responses[2].percentage;
+
+function makeRatioAProperty(inputData) {
+   for (state in inputData) {
+      inputData[state]["appToDisappRatio"] = appToDisappRatio(inputData[state])
+   }
 }
 
 function drawDatamap(inputData){
+   var onlyStates = _.clone(inputData);
+   delete onlyStates["US"]
+   makeRatioAProperty(onlyStates);
+   assignFillKeys(onlyStates);   
+
    var map = new Datamap({
-      data: inputData,
+      data: onlyStates,
       scope: 'usa',
       element: document.getElementById('map-container'),
       height: 700,
       geographyConfig: {
-         // highlightBorderColor: '#bada55',
          highlightBorderColor: '#1D1075',
          highlightBorderWidth: 3,
          highlightFillColor: '#ACE',
-         // highlightFillColor: '#FC8D59',
-         // highlightFillOpacity: 0.85,
          popupTemplate: function(geography, data) {
             var abbr = geography.id;
-            if (inputData[abbr]) {
-               var stats = new StateStats(geography, data);
-               console.log(stats);
+            if (onlyStates[abbr]) {
                return toolTipTitleHelper(geography, data)
-               + toolTipHelper(inputData[abbr], 0)
-               + toolTipHelper(inputData[abbr], 1)
-               + toolTipHelper(inputData[abbr], 2)
-               + "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
+               + toolTipHelper(onlyStates[abbr], 0)
+               + toolTipHelper(onlyStates[abbr], 1)
+               + toolTipRatioHelper(onlyStates[abbr])
+               + toolTipHelper(onlyStates[abbr], 2)
+               // + "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
                + "</div>"
             }
             else {
@@ -54,13 +59,12 @@ function drawDatamap(inputData){
             }
          },
       },
-      fills: {
-         'Disapprove': '#CC4731',
-         'Approve': '#306596',
-         'Undecided': 'purple',
-         defaultFill: '#AAA'
-      },
+      fills: NINECOLORSCHEME
    });
-
+   makeLegend();
    map.labels();
+}
+
+function makeLegend() {
+   
 }

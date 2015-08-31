@@ -12,7 +12,8 @@ class Topic < ActiveRecord::Base
       response_chunks = bucketize_responses(c.responses)
       response_chunks.each_with_index do |chunk, index|
         sorted_chunk = chunk.sort_by { |r| r.percentage }
-        timeline_array[index][c.state] = { responses: chunk, fillKey: sorted_chunk.last.answer }
+        timeline_array[index][c.state] = { responses: chunk, # fillKey: sorted_chunk.last.answer
+         }
       end
     end
     return [timeline_array, self.all_national_responses_obama_approval]
