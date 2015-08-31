@@ -3,6 +3,7 @@ function InitLineGraph(nationalData) {
   nationalData.forEach(function(d) {
     d.date = parseDate.parse(d[0].date);
   });
+  console.log(nationalData);
   var graph = d3.select("#line-graph");
   var WIDTH = 1000;
   var HEIGHT = 500;
@@ -33,6 +34,7 @@ function InitLineGraph(nationalData) {
     .attr("stroke", "#845203")
     .call(Yaxis)
 
+
   var lineGenApprove = d3.svg.line()
     .x(function(d) {
       return Xscale(d.date);
@@ -41,11 +43,20 @@ function InitLineGraph(nationalData) {
       return Yscale(parseFloat(d[0].percentage));
     });
 
-  graph.append("svg:path")
-    .attr('d', lineGenApprove(nationalData))
+  var approvalLine = graph.append("svg:path")
     .attr("stroke", "#29A329")
     .attr("stroke-width", 4)
-    .attr("fill", "none");
+    .attr("fill", "none")
+
+
+  $(".ui-tabs-panel").on("click", function() {
+      approvalLine.transition()
+        .duration(4000)
+        .delay(500)
+        .ease("linear")
+        .attr('d', lineGenApprove(nationalData));
+  })
+
 
   var lineGenDisapprove = d3.svg.line()
     .x(function(d) {
@@ -55,11 +66,19 @@ function InitLineGraph(nationalData) {
       return Yscale(parseFloat(d[1].percentage));
     });
 
-  graph.append("svg:path")
-    .attr('d', lineGenDisapprove(nationalData))
+  var disapproveLine = graph.append("svg:path")
     .attr("stroke", "#FF3300")
     .attr("stroke-width", 4)
     .attr("fill", "none");
+
+  $(".ui-tabs-panel").on("click", function() {
+    disapproveLine.transition()
+      .transition()
+      .duration(4000)
+      .delay(1000)
+      .ease("linear")
+      .attr('d', lineGenDisapprove(nationalData));
+  })
 
   var lineGenUndecided = d3.svg.line()
     .x(function(d) {
@@ -69,11 +88,18 @@ function InitLineGraph(nationalData) {
       return Yscale(parseFloat(d[2].percentage));
     });
 
-  graph.append("svg:path")
-    .attr('d', lineGenUndecided(nationalData))
+  var undecidedLine = graph.append("svg:path")
     .attr("stroke", "#006B8F")
     .attr("stroke-width", 4)
-    .attr("fill", "none")
+    .attr("fill", "none");
+
+  $(".ui-tabs-panel").on("click", function() {
+    undecidedLine.transition()
+      .duration(4000)
+      .delay(1500)
+      .ease("linear")
+      .attr('d', lineGenUndecided(nationalData));
+  })
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);
   var xaxiscords = d3.range(50, WIDTH, 25);

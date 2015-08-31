@@ -41,7 +41,7 @@ function choiceLineGraph(nationalData) {
 
   graph.append("svg:g")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
-    .call(Yaxis)
+    .call(Yaxis);
 
 
   var lineGen = d3.svg.line()
@@ -54,11 +54,16 @@ function choiceLineGraph(nationalData) {
     .interpolate('basis');
 
   nationalData.forEach(function(choice, index) {
-    graph.append("svg:path")
-      .attr('d', lineGen(choice.attributes.responses))
+    var line = graph.append("svg:path")
       .attr("stroke", colorScale(index))
       .attr("stroke-width", 3)
       .attr("fill", "none");
+
+    line.transition()
+      .duration(4000)
+      .delay(500 + index * 500)
+      .ease("linear")
+      .attr('d', lineGen(choice.attributes.responses));
   });
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);
@@ -84,7 +89,7 @@ function choiceLineGraph(nationalData) {
     .attr("y2", function(d) {return d;})
     .style("stroke", "rgb(192,192,192)")
     .style("opacity", 0.3)
-    .style("stroke-width", 2)
+    .style("stroke-width", 2);
 }
 
 
