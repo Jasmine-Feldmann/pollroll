@@ -9,7 +9,6 @@ function toolTipHelper(state, num) {
    + "<span class='percent-sign'>%</span>"
 }
 function toolTipRatioHelper(state) {
-   // console.log(dataSet);
    return "<br>"
    + "<span class='ratio'>"
       + "Ratio: "
