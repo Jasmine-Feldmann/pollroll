@@ -62,3 +62,11 @@ gop_uri = URI(base_url + gop_slug)
 gop_response = Net::HTTP.get_response(gop_uri)
 gop_json = JSON.parse(gop_response.body)
 parse_chart_json(gop_json, gop_primary)
+
+dem_primary = Topic.create!(name: "2016 National Democratic Primary")
+dem_slug = "2016-national-democratic-primary"
+
+dem_uri = URI(base_url + dem_slug)
+dem_response = Net::HTTP.get_response(dem_uri)
+dem_json = JSON.parse(dem_response.body)
+parse_chart_json(dem_json, dem_primary)
