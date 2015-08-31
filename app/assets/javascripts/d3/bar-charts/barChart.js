@@ -9,8 +9,9 @@ function initBarChart(nationalData) {
   };
   var graph = d3.select("#bar-graph");
 
-  var Xscale = d3.scale.ordinal().range([MARGINS.left, WIDTH - MARGINS.right])
+  var Xscale = d3.scale.ordinal()
                   .rangeRoundBands([0,WIDTH], .1)
+                  .domain(nationalData.map(function(d) { return d.attributes.answer; }));
 
   var Yscale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]);
   Yscale.domain([
@@ -48,25 +49,25 @@ function initBarChart(nationalData) {
   var bars = bar.append("rect")
       .attr("class", "bar2")
       .attr("x", function(d) { return Xscale(d.attributes.answer); })
-      .attr("y", height)
+      .attr("y", HEIGHT)
       .attr("width", Xscale.rangeBand())
       .attr("height", 0)
       .attr("transform", function(d) {
-        return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2)) + "," + height + ")";
+        return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2)) + "," + HEIGHT + ")";
       });
 
   bars.transition()
       .duration(500)
-      .attr("height", function(d) { return height - y(d.attributes.responses.slice(-1).percentage); });
+      .attr("height", function(d) { return HEIGHT - Yscale(d.attributes.responses.slice(-1)[0].percentage); });
 
   var labels = bar.append("text")
-     .attr("x", function(d) { return x(d.attributes.answer) + (x.rangeBand() / 2) - 5; })
-     .attr("y", height)
+     .attr("x", function(d) { return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) - 5; })
+     .attr("y", HEIGHT)
      .attr("dy", "-0.2em")
      .attr("fill", "black")
-     .text(function(d) { return d.attributes.responses.slice(-1).percentage; });
+     .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
 
   labels.transition()
         .duration(500)
-        .attr("y", function(d) { return y(d.attributes.responses.slice(-1).percentage) - 5; });
+        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - 5; });
 }
