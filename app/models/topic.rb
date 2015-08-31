@@ -27,7 +27,7 @@ class Topic < ActiveRecord::Base
     return { responses: all.sort_by { |sl| sl[0].date } }
   end
 
-  def responses_json_2016_gop
+  def responses_json
     candidates = self.responses.pluck(:answer).uniq.reject { |c| c == "Undecided" || c == "Refused" }
     return candidates.map { |choice| { answer: choice, responses: self.responses.where(answer: choice).order("date ASC") } }
   end
