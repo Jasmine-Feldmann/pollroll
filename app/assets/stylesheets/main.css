@@ -209,3 +209,7 @@ select {
   /*margin-left: -4px;*/
 }
 
+.line-hover {
+  stroke: yellow;
+  stroke-width: 6px;
+}

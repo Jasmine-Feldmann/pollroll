@@ -35,10 +35,10 @@ function choiceLineGraph(nationalData) {
       .scale(Yscale)
       .orient("left");
 
+  // append the axes
   graph.append("svg:g")
     .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
     .call(Xaxis);
-
   graph.append("svg:g")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
     .call(Yaxis);
@@ -51,25 +51,27 @@ function choiceLineGraph(nationalData) {
     .y(function(d) {
       return Yscale(parseFloat(d.percentage));
     })
-    .interpolate('basis');
+    .interpolate('basis'); // make the lines rounded
 
   nationalData.forEach(function(choice, index) {
     var line = graph.append("svg:path")
       .attr("stroke", colorScale(index))
       .attr("stroke-width", 3)
-      .attr("fill", "none");
+      .attr("fill", "none")
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout);
 
-    line.transition()
+    line.transition() // transition for line generation
       .duration(4000)
       .delay(500 + index * 500)
       .ease("linear")
-      .attr('d', lineGen(choice.attributes.responses));
+      .attr('d', lineGen(choice.attributes.responses)); // generate lines on graph
   });
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);
   var xaxiscords = d3.range(50, WIDTH, 25);
 
-  graph.selectAll("line.vertical")
+  graph.selectAll("line.vertical") // grid for x axis
     .data(xaxiscords)
     .enter().append("svg:line")
     .attr("x1", function(d) {return d;})
@@ -80,7 +82,7 @@ function choiceLineGraph(nationalData) {
     .style("opacity", 0.3)
     .style("stroke-width", 2);
 
-  graph.selectAll("line.horizontal")
+  graph.selectAll("line.horizontal") // grid for y axis
     .data(yaxiscords)
     .enter().append("svg:line")
     .attr("x1", 50)
@@ -92,4 +94,10 @@ function choiceLineGraph(nationalData) {
     .style("stroke-width", 2);
 }
 
+function mouseover(d) {
+  d3.select(this).classed("line-hover", true);
+}
+function mouseout(d) {
+  d3.select(this).classed("line-hover", false);
+}
 
