@@ -22,6 +22,20 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  # This is slower than directly storing the files on disk, because Rails only stores the database queries in the cache.
+  # It doesn't directly store the results of the method calls. It still takes about 5 seconds to processing the cached database
+  # data. With our homebrew disk-caching method above, the return is nearly instantaneous. However, using the Rails cache does
+  # have the advantage of being managed by Rails, obviating the need for any messy file I/O.
+  def get_responses_json_from_memory_cache
+    Rails.cache.fetch("responses/#{self.id}", expires_in: 12.hours) do
+      if self.id == 1
+        self.responses_json_obama_approval
+      else
+        self.responses_json
+      end
+    end
+  end
+
   def responses_json_obama_approval
     timeline_array = Array.new(30) { Hash.new }
     self.charts.each do |c|
