@@ -1,9 +1,9 @@
 function candidateLineGraph(nationalData) {
   var parseDate = d3.time.format("%Y-%m-%d");
-  nationalData.forEach(function(candidate) {
-    candidate.minDate = d3.min(candidate.attributes.responses.map(function(d) { return parseDate.parse(d.date); }));
-    candidate.maxDate = d3.max(candidate.attributes.responses.map(function(d) { return parseDate.parse(d.date); }));
-    candidate.maxPercentage = d3.max(candidate.attributes.responses.map(function(d) { return d.percentage; }));
+  nationalData.forEach(function(choice) {
+    choice.minDate = d3.min(choice.attributes.responses.map(function(d) { return parseDate.parse(d.date); }));
+    choice.maxDate = d3.max(choice.attributes.responses.map(function(d) { return parseDate.parse(d.date); }));
+    choice.maxPercentage = d3.max(choice.attributes.responses.map(function(d) { return d.percentage; }));
   });
   var graph = d3.select("#line-graph");
   var WIDTH = 1000;
@@ -16,10 +16,14 @@ function candidateLineGraph(nationalData) {
     };
   var Xscale = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]);
   Xscale.domain([
-      d3.min(nationalData.map(function(candidate) { return candidate.minDate; })),
-      d3.max(nationalData.map(function(candidate) { return candidate.maxDate; }))
+      d3.min(nationalData.map(function(choice) { return choice.minDate; })),
+      d3.max(nationalData.map(function(choice) { return choice.maxDate; }))
     ]);
-  var Yscale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,30]);
+  var Yscale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]);
+  Yscale.domain([
+      0,
+      d3.max(nationalData.map(function(choice) { return parseFloat(choice.maxPercentage) })) + 5
+    ]);
 
   var colorScale = d3.scale.category20();
 
@@ -49,9 +53,9 @@ function candidateLineGraph(nationalData) {
     })
     .interpolate('basis');
 
-  nationalData.forEach(function(candidate, index) {
+  nationalData.forEach(function(choice, index) {
     graph.append("svg:path")
-      .attr('d', lineGen(candidate.attributes.responses))
+      .attr('d', lineGen(choice.attributes.responses))
       .attr("stroke", colorScale(index))
       .attr("stroke-width", 3)
       .attr("fill", "none");
