@@ -52,8 +52,18 @@ a {
   margin: auto;
 }
 
+#slider label {
+  position: absolute;
+  width: 20px;
+  margin-top: 25px;
+  margin-left: -10px;
+  text-align: center;
+}
+
 #topics-dropdown {
   font-family: Courier;
+  background-color: rgba(255, 255, 255, 0.35);
+  width: 350px;
 }
 
 #topics-dropdown option {
@@ -103,10 +113,13 @@ a {
 }
 
 .active {
-  border: solid 1px #845203;
-  border-bottom-width: 0px;
+  border-top: solid 1px #bbb;
+  border-right: solid 1px #bbb;
+  border-left: solid 1px #bbb;
+  border-radius: 5px;
+  /*border-bottom-width: 0px;*/
   padding-top: 5px;
-  box-shadow: 2px 2px 1px #6A6A6A;
+  /*box-shadow: 2px 2px 1px #6A6A6A;*/
 }
 
 .ui-tabs-panel {
@@ -146,8 +159,8 @@ path {
 
 .datamap {
   /*margin-top: 100px;*/
-  /*margin: 0 auto;*/
-  margin: -100px auto 0;
+  margin: 0 auto;
+  /*margin: -100px auto 0;*/
   width: 100%;
 }
 
@@ -167,7 +180,10 @@ path {
 }
 
 #topics-container {
-  margin-left: 50px;
+  /*margin-left: 50px;*/
+  max-width: 370px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 select {
@@ -178,10 +194,11 @@ select {
 #map-legend-container {
   max-width: 300px;
   text-align: center;
-  /*margin: 0 auto;*/
+  margin: 0 auto;
   /*margin: -100px auto 0;*/
-  margin: -100px auto 0;
-  border: 1px solid black;
+  border: 1px solid #bbb;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
 }
 .map-legend-square {
   display: inline-block;
