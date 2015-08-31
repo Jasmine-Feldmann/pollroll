@@ -12,3 +12,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore cached database files.
+/db/data-files/*
