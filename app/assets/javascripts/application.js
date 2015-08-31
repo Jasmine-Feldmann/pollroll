@@ -17,6 +17,7 @@
 //= require underscore
 //= require backbone
 //= require d3
+//= require d3.legend
 //= require topojson
 //= require datamaps
 //= require_tree ./d3
