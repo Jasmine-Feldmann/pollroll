@@ -1,4 +1,4 @@
-function candidateLineGraph(nationalData) {
+function choiceLineGraph(nationalData) {
   var parseDate = d3.time.format("%Y-%m-%d");
   nationalData.forEach(function(choice) {
     choice.minDate = d3.min(choice.attributes.responses.map(function(d) { return parseDate.parse(d.date); }));
