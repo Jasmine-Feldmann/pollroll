@@ -55,33 +55,16 @@ states.each do |state|
   end
 end
 
-# gop_primary = Topic.create!(name: "2016 National GOP Primary")
-# gop_slug = "2016-national-gop-primary"
-
-# gop_uri = URI(base_url + gop_slug)
-# gop_response = Net::HTTP.get_response(gop_uri)
-# gop_json = JSON.parse(gop_response.body)
-# parse_chart_json(gop_json, gop_primary)
-
-# dem_primary = Topic.create!(name: "2016 National Democratic Primary")
-# dem_slug = "2016-national-democratic-primary"
-
-# dem_uri = URI(base_url + dem_slug)
-# dem_response = Net::HTTP.get_response(dem_uri)
-# dem_json = JSON.parse(dem_response.body)
-# parse_chart_json(dem_json, dem_primary)
-
-# obama_foreign_policy = Topic.create!(name: "Obama Job Approval - Foreign Policy")
-# fp_slug = "obama-job-approval-foreign-policy"
-
-# fp_uri = URI(base_url + fp_slug)
-# fp_response = Net::HTTP.get_response(fp_uri)
-# fp_json = JSON.parse(fp_response.body)
-# parse_chart_json(fp_json, obama_foreign_policy)
-
 topic_array = [{name: "2016 National GOP Primary", slug: "2016-national-gop-primary"},
                {name: "2016 National Democratic Primary", slug: "2016-national-democratic-primary"},
-               {name: "Obama Job Approval - Foreign Policy", slug: "obama-job-approval-foreign-policy"}]
+               {name: "Obama Job Approval - Foreign Policy", slug: "obama-job-approval-foreign-policy"},
+               {name: "Obama Job Approval - Economy", slug: "obama-job-approval-economy"},
+               {name: "Obama Job Approval - Health", slug: "obama-job-approval-health"},
+               {name: "Obama Health Care Law: Favor/Oppose", slug: "us-health-bill"},
+               {name: "Congress Job Approval", slug: "congress-job-approval"},
+               {name: "US Right Direction Wrong Track", slug: "us-right-direction-wrong-track"},
+               {name: "Democratic Party Favorable Rating", slug: "democratic-party-favorable-rating"},
+               {name: "Republican Party Favorable Rating", slug: "republican-party-favorable-rating"}]
 
 topic_array.each do |topic_hash|
   new_topic = Topic.create!(name: topic_hash[:name])
