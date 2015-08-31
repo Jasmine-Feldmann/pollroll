@@ -145,7 +145,9 @@ path {
   width: 1000px;
   background-color: #ffffff;
   margin: auto;
-  border: 1px solid;
+  border: 1px solid #bbb;
+  padding-bottom: 20px;
+  border-radius: 15px;
 }
 
 #line-graph-container {
@@ -153,4 +155,5 @@ path {
   margin-top: 100px;
   margin: auto;
 }
+
 
