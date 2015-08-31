@@ -28,7 +28,7 @@ class Topic < ActiveRecord::Base
   end
 
   def responses_json
-    candidates = self.responses.pluck(:answer).uniq.reject { |c| c == "Undecided" || c == "Refused" }
+    candidates = self.responses.pluck(:answer).uniq.reject { |c| c == "Refused" }
     return candidates.map { |choice| { answer: choice, responses: self.responses.where(answer: choice).order("date ASC") } }
   end
 
