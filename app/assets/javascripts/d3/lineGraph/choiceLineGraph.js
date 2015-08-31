@@ -7,11 +7,11 @@ function choiceLineGraph(nationalData) {
     choice.name = choice.attributes.answer;
   });
   var graph = d3.select("#line-graph");
-  var WIDTH = 1000;
+  var WIDTH = 975;
   var HEIGHT = 500;
   var MARGINS = {
       top: 20,
-      right: 20,
+      right: 130,
       bottom: 26,
       left: 50
     };
@@ -58,21 +58,22 @@ function choiceLineGraph(nationalData) {
   nationalData.forEach(function(choice, index) {
     var line = graph.append("svg:path")
       .attr("stroke", colorScale(index))
+      .attr("data-legend", choice.name)
       .attr("stroke-width", 3)
       .attr("fill", "none")
-      .attr("name", choice.name)
+
       .on("mouseover", mouseover)
       .on("mouseout", mouseout);
 
     line.transition() // transition for line generation
       .duration(4000)
-      .delay(500 + index * 500)
+      .delay(100 + index * 100)
       .ease("linear")
       .attr('d', lineGen(choice.attributes.responses)); // generate lines on graph
   });
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);
-  var xaxiscords = d3.range(50, WIDTH, 25);
+  var xaxiscords = d3.range(50, WIDTH - 120, 25);
 
   graph.selectAll("line.vertical") // grid for x axis
     .data(xaxiscords)
@@ -80,7 +81,7 @@ function choiceLineGraph(nationalData) {
     .attr("x1", function(d) {return d;})
     .attr("y1", 26)
     .attr("x2", function(d) {return d;})
-    .attr("y2", HEIGHT - 25)
+    .attr("y2", HEIGHT - 20)
     .style("stroke", "rgb(192,192,192)")
     .style("opacity", 0.3)
     .style("stroke-width", 2);
@@ -90,13 +91,19 @@ function choiceLineGraph(nationalData) {
     .enter().append("svg:line")
     .attr("x1", 50)
     .attr("y1", function(d) {return d;})
-    .attr("x2", WIDTH - 25)
+    .attr("x2", WIDTH - 125)
     .attr("y2", function(d) {return d;})
     .style("stroke", "rgb(192,192,192)")
     .style("opacity", 0.3)
     .style("stroke-width", 2);
-}
 
+  var legend = graph.append("g")
+    .attr("class","legend")
+    .attr("transform","translate(870,30)")
+    .style("font-size","15px")
+    .call(d3.legend);
+}
+ b
 // var focus = d3.select('svg')
 //   .append('g')
 //   .attr('class', 'focus')
@@ -104,7 +111,7 @@ function choiceLineGraph(nationalData) {
 
 function mouseover(d) {
   d3.select(this).classed("line-hover", true);
-  // console.log($(this).attr('name'));
+  console.log($(this).attr('name'));
   // console.log(event.clientX, event.clientY);
   // focus.append('text').text($(this).attr('name'))
   //   .style('display', 'initial')
@@ -115,4 +122,3 @@ function mouseout(d) {
   d3.select(this).classed("line-hover", false);
   // focus.style('display', 'none');
 }
-
