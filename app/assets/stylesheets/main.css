@@ -20,7 +20,7 @@ select {
 
 a {
   color: #2F2F31;
-  font-family: Courier;
+  font-family: "Caviar Dreams";
 }
 .slider-section {
   height: auto;
@@ -54,6 +54,10 @@ a {
 
 #topics-dropdown {
   font-family: Courier;
+}
+
+#topics-dropdown option {
+  text-align: center;
 }
 
 .ui-slider-handle {
@@ -162,6 +166,14 @@ path {
   margin: auto;
 }
 
+#topics-container {
+  margin-left: 50px;
+}
+
+select {
+  text-indent: 5px;
+}
+
 /* MAP LEGEND */
 #map-legend-container {
   max-width: 300px;
@@ -179,3 +191,4 @@ path {
   text-align: center;
   /*margin-left: -4px;*/
 }
+
