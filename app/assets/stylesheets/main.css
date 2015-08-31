@@ -23,9 +23,9 @@ a {
   font-family: Courier;
 }
 .slider-section {
-  /*height: auto;*/
-  /*margin: 100px auto 0;*/
-  /*position: relative;*/
+  height: auto;
+  margin: 100px auto 0;
+  position: relative;
   margin: 0 auto;
   width: 600px;
   margin-top: 40px;
@@ -33,7 +33,7 @@ a {
 }
 
 #map-container {
-  /*margin: -100px auto 0;*/
+  margin: -375px auto 0;
   margin: 0 auto;
 }
 
@@ -110,7 +110,8 @@ a {
   width: 100px;
   font-size: 30px;
   margin: auto;
-  margin-bottom: 50px;
+  /*margin-bottom: 50px;*/
+  margin-bottom: -1050px;
   padding: 0px 20px;
 }
 
@@ -140,8 +141,9 @@ path {
 }
 
 .datamap {
-  margin-top: 100px;
-  margin: auto;
+  /*margin-top: 100px;*/
+  /*margin: 0 auto;*/
+  margin: -100px auto 0;
   width: 100%;
 }
 
@@ -163,14 +165,17 @@ path {
 /* MAP LEGEND */
 #map-legend-container {
   max-width: 300px;
-  margin: 0 auto;
+  text-align: center;
+  /*margin: 0 auto;*/
+  /*margin: -100px auto 0;*/
+  margin: -100px auto 0;
   border: 1px solid black;
 }
 .map-legend-square {
   display: inline-block;
   height: 25px;
   width: 25px;
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-align: center;
   /*margin-left: -4px;*/
 }
