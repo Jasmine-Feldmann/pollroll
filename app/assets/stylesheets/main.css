@@ -214,7 +214,9 @@ select {
 }
 
 .line-hover {
-  /*stroke: yellow;*/
   stroke-width: 6px;
 }
 
+/*.focus {
+  color: red;
+}*/
