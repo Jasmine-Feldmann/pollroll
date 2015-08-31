@@ -1,7 +1,8 @@
 html {
-  background-color: #AA7E39;
-  color: #D0B385;
+  background-color: #EDEDF3;
+  color: #2F2F31;
   font-family: "Caviar Dreams";
+  background-image: url("background-image.png");
 }
 
 select {
@@ -13,12 +14,12 @@ select {
    height: 25px;
    font-size: 16px;
    background: transparent;
-   color: #D0B385;
-   box-shadow: 2px 2px 1px #845203;
+   color: #2F2F31;
+   box-shadow: 2px 2px 1px #6A6A6A;
 }
 
 a {
-  color: #D0B385;
+  color: #2F2F31;
   font-family: Courier;
 }
 .slider-section {
@@ -38,12 +39,12 @@ a {
 #slider{
   border-width: 1px;
   border-style: solid;
-  border-color: #333 #333 #777 #333;
+  border-color: black;
   border-radius: 25px;
   width: 400px;
   position: absolute;
   height: 13px;
-  background-color: #845203;
+  background-color: #6A6A6A;
   box-shadow: inset 0 1px 5px 0px rgba(0, 0, 0, .5),
                  0 1px 0 0px rgba(250, 250, 250, .5);
   right: 70px;
@@ -69,7 +70,7 @@ a {
 }
 
 .ui-slider-range {
-    background: linear-gradient(top, #b2b2b2 0%,#333333 100%);
+    background: linear-gradient(top, #2F2F31 0%,#333333 100%);
     position: absolute;
     border: 0;
     top: 0;
@@ -100,7 +101,7 @@ a {
   border: solid 1px #845203;
   border-bottom-width: 0px;
   padding-top: 5px;
-  box-shadow: 2px 2px 1px #845203;
+  box-shadow: 2px 2px 1px #6A6A6A;
 }
 
 .ui-tabs-panel {
@@ -142,8 +143,9 @@ path {
 
 #line-graph {
   width: 1000px;
-  background-color: #D3B385;
+  background-color: #ffffff;
   margin: auto;
+  border: 1px solid;
 }
 
 #line-graph-container {
