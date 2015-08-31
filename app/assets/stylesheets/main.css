@@ -159,8 +159,8 @@ path {
 
 .datamap {
   /*margin-top: 100px;*/
-  /*margin: 0 auto;*/
-  margin: -100px auto 0;
+  margin: 0 auto;
+  /*margin: -100px auto 0;*/
   width: 100%;
 }
 
@@ -180,7 +180,10 @@ path {
 }
 
 #topics-container {
-  margin-left: 50px;
+  /*margin-left: 50px;*/
+  max-width: 370px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 select {
@@ -191,9 +194,8 @@ select {
 #map-legend-container {
   max-width: 300px;
   text-align: center;
-  /*margin: 0 auto;*/
+  margin: 0 auto;
   /*margin: -100px auto 0;*/
-  margin: -100px auto 0;
   border: 1px solid #bbb;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.25);
