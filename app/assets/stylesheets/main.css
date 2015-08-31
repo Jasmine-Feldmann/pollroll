@@ -179,6 +179,10 @@ path {
   margin: auto;
 }
 
+.ui-tabs {
+  margin-bottom: 50px;
+}
+
 #topics-container {
   /*margin-left: 50px;*/
   max-width: 370px;
@@ -208,4 +212,5 @@ select {
   text-align: center;
   /*margin-left: -4px;*/
 }
+
 
