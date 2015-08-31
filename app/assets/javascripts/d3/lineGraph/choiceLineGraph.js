@@ -55,7 +55,6 @@ function choiceLineGraph(nationalData) {
 
   nationalData.forEach(function(choice, index) {
     var line = graph.append("svg:path")
-      .attr('d', lineGen(choice.attributes.responses))
       .attr("stroke", colorScale(index))
       .attr("stroke-width", 3)
       .attr("fill", "none");
