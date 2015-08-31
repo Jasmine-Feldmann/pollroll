@@ -4,9 +4,42 @@
     <a href="#line-graph-container"><li class="ui-tabs-panel">Trends</li></a>
   </ul>
 </div>
+
 <div id="map-slider-container" class="charts">
-  <div id="map-container" style="position: relative; width: 80%;"></div>
+
+
+	<div id="map-container" style="position: relative; width: 80%;"></div>
+
+	<div id="map-legend-container">
+
+		<div class="map-legend-title"> Legend: Approval to Disapproval Ratio </div>
+
+		<br>
+
+		<% _.each(NINECOLORSCHEME, function(color) { %>
+			<% console.log(color) %>
+			<div id="<%= color %>" class="map-legend-square" style="background-color:<%= color %>"></div>
+		<% }); %>
+
+		<br>
+
+		<div class="map-legend-square"></div>
+		<div class="map-legend-square">0.5</div>
+		<div class="map-legend-square"></div>
+		<div class="map-legend-square">1</div>
+		<div class="map-legend-square"></div>
+		<div class="map-legend-square">1.5</div>
+		<div class="map-legend-square"></div>
+		<div class="map-legend-square">2</div>
+		<div class="map-legend-square"></div>
+		<div class="map-legend-square">n/a</div>
+
+	</div>
+
 </div>
+
+
+
 <div class="charts" id="line-graph-container">
   <svg id="line-graph" width="1000" height="500"></svg>
 </div>
