@@ -62,6 +62,8 @@ a {
 
 #topics-dropdown {
   font-family: Courier;
+  background-color: rgba(255, 255, 255, 0.35);
+  width: 350px;
 }
 
 #topics-dropdown option {
@@ -111,10 +113,13 @@ a {
 }
 
 .active {
-  border: solid 1px #845203;
-  border-bottom-width: 0px;
+  border-top: solid 1px #bbb;
+  border-right: solid 1px #bbb;
+  border-left: solid 1px #bbb;
+  border-radius: 5px;
+  /*border-bottom-width: 0px;*/
   padding-top: 5px;
-  box-shadow: 2px 2px 1px #6A6A6A;
+  /*box-shadow: 2px 2px 1px #6A6A6A;*/
 }
 
 .ui-tabs-panel {
