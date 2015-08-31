@@ -46,7 +46,8 @@ function candidateLineGraph(nationalData) {
     })
     .y(function(d) {
       return Yscale(parseFloat(d.percentage));
-    });
+    })
+    .interpolate('basis');
 
   nationalData.forEach(function(candidate, index) {
     graph.append("svg:path")
