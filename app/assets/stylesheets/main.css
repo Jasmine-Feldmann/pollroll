@@ -179,6 +179,10 @@ path {
   margin: auto;
 }
 
+.ui-tabs {
+  margin-bottom: 50px;
+}
+
 #topics-container {
   /*margin-left: 50px;*/
   max-width: 370px;
@@ -210,6 +214,7 @@ select {
 }
 
 .line-hover {
-  stroke: yellow;
+  /*stroke: yellow;*/
   stroke-width: 6px;
 }
+
