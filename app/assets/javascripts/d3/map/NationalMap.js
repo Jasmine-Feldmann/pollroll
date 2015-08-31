@@ -61,10 +61,5 @@ function drawDatamap(inputData){
       },
       fills: NINECOLORSCHEME
    });
-   makeLegend();
    map.labels();
-}
-
-function makeLegend() {
-   
 }
