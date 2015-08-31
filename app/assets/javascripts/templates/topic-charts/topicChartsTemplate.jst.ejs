@@ -6,36 +6,36 @@
 </div>
 
 <div id="map-slider-container" class="charts">
+</div>
 
-  <div id="map-legend-container">
+<div id="map-legend-container">
 
-  	<div class="map-legend-title"> Legend: Approval to Disapproval Ratio </div>
-	
-	  	<br>
+	<div class="map-legend-title"> Legend: Approval to Disapproval Ratio </div>
 
-			<% _.each(NINECOLORSCHEME, function(color) { %>
-				<% console.log(color) %>
-				<div id="<%= color %>" class="map-legend-square" style="background-color:<%= color %>"></div>
-			<% }); %>
+	<br>
 
-	  	<br>
+	<% _.each(NINECOLORSCHEME, function(color) { %>
+		<% console.log(color) %>
+		<div id="<%= color %>" class="map-legend-square" style="background-color:<%= color %>"></div>
+	<% }); %>
 
-			<div class="map-legend-square"></div>
-			<div class="map-legend-square">0.5</div>
-			<div class="map-legend-square"></div>
-			<div class="map-legend-square">1</div>
-			<div class="map-legend-square"></div>
-			<div class="map-legend-square">1.5</div>
-			<div class="map-legend-square"></div>
-			<div class="map-legend-square">2</div>
-			<div class="map-legend-square"></div>
-			<div class="map-legend-square">n/a</div>
+	<br>
 
-		</div>
-
-  <div id="map-container" style="position: relative; width: 80%;"></div>
+	<div class="map-legend-square"></div>
+	<div class="map-legend-square">0.5</div>
+	<div class="map-legend-square"></div>
+	<div class="map-legend-square">1</div>
+	<div class="map-legend-square"></div>
+	<div class="map-legend-square">1.5</div>
+	<div class="map-legend-square"></div>
+	<div class="map-legend-square">2</div>
+	<div class="map-legend-square"></div>
+	<div class="map-legend-square">n/a</div>
 
 </div>
+
+
+<div id="map-container" style="position: relative; width: 80%;"></div>
 
 
 <div class="charts" id="line-graph-container">
