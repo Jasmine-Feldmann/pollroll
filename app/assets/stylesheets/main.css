@@ -52,6 +52,14 @@ a {
   margin: auto;
 }
 
+#slider label {
+  position: absolute;
+  width: 20px;
+  margin-top: 25px;
+  margin-left: -10px;
+  text-align: center;
+}
+
 #topics-dropdown {
   font-family: Courier;
 }
