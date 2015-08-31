@@ -18,6 +18,7 @@ var TopicChartsView = Backbone.View.extend({
     }
     else {
       candidateLineGraph(this.collection);
+      $(".ui-tabs-panel").hide()
     }
   },
 

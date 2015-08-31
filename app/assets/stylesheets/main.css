@@ -55,6 +55,10 @@ a {
   font-family: Courier;
 }
 
+#topics-dropdown option {
+  text-align: center;
+}
+
 .ui-slider-handle {
   position: absolute;
   z-index: 2;
@@ -156,4 +160,10 @@ path {
   margin: auto;
 }
 
+#topics-container {
+  margin-left: 50px;
+}
 
+select {
+  text-indent: 5px;
+}
