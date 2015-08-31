@@ -43,16 +43,18 @@ function InitLineGraph(nationalData) {
       return Yscale(parseFloat(d[0].percentage));
     });
 
+  var approvalLine = graph.append("svg:path")
+    .attr("stroke", "#29A329")
+    .attr("stroke-width", 4)
+    .attr("fill", "none")
+
+
   $(".ui-tabs-panel").on("click", function() {
-    graph.append("svg:path")
-      .attr("stroke", "#29A329")
-      .attr("stroke-width", 4)
-      .attr("fill", "none")
-      .attr('d', lineGenApprove(nationalData))
-      .transition()
-      .duration(4000)
-      .delay(500)
-      .ease("linear")
+      approvalLine.transition()
+        .duration(4000)
+        .delay(500)
+        .ease("linear")
+        .attr('d', lineGenApprove(nationalData));
   })
 
 
@@ -64,11 +66,13 @@ function InitLineGraph(nationalData) {
       return Yscale(parseFloat(d[1].percentage));
     });
 
+  var disapproveLine = graph.append("svg:path")
+    .attr("stroke", "#FF3300")
+    .attr("stroke-width", 4)
+    .attr("fill", "none");
+
   $(".ui-tabs-panel").on("click", function() {
-    graph.append("svg:path")
-      .attr("stroke", "#FF3300")
-      .attr("stroke-width", 4)
-      .attr("fill", "none")
+    disapproveLine.transition()
       .transition()
       .duration(4000)
       .delay(1000)
@@ -84,12 +88,13 @@ function InitLineGraph(nationalData) {
       return Yscale(parseFloat(d[2].percentage));
     });
 
+  var undecidedLine = graph.append("svg:path")
+    .attr("stroke", "#006B8F")
+    .attr("stroke-width", 4)
+    .attr("fill", "none");
+
   $(".ui-tabs-panel").on("click", function() {
-    graph.append("svg:path")
-      .attr("stroke", "#006B8F")
-      .attr("stroke-width", 4)
-      .attr("fill", "none")
-      .transition()
+    undecidedLine.transition()
       .duration(4000)
       .delay(1500)
       .ease("linear")
