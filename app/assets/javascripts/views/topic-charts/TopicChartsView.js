@@ -9,6 +9,7 @@ var TopicChartsView = Backbone.View.extend({
     this.$el.html(this.template({ charts: this.collection }));
     if (this.collection[0].collection.options.topicId == 1) {
       drawDatamap(this.collection[0].attributes[0]);
+      this.$el.find("#map-slider-container").append(JST["templates/topic-charts/map-legend-template"]);
       InitLineGraph(this.collection[1].attributes.responses);
       $("#line-graph-container").hide();
       var timeSlider = new TimeSlider();
