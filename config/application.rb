@@ -26,3 +26,5 @@ module Pollarity
     config.cache_store = :memory_store
   end
 end
+
+config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
