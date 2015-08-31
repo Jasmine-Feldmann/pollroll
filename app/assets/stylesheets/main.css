@@ -166,7 +166,7 @@ path {
 
 #line-graph {
   width: 1000px;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.4);
   margin: auto;
   border: 1px solid #bbb;
   padding-bottom: 20px;
@@ -202,7 +202,7 @@ select {
   /*margin: -100px auto 0;*/
   border: 1px solid #bbb;
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 .map-legend-square {
   display: inline-block;
@@ -220,3 +220,12 @@ select {
 /*.focus {
   color: red;
 }*/
+
+.legend-box {
+  height: 150px;
+  fill: rgba(255, 255, 255, 0.25);
+}
+
+.legend-items {
+  margin-right: -1000px;
+}
