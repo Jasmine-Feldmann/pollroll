@@ -146,6 +146,7 @@ path {
   background-color: #ffffff;
   margin: auto;
   border: 1px solid;
+  padding-bottom: 20px;
 }
 
 #line-graph-container {
