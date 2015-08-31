@@ -24,16 +24,17 @@ a {
 }
 .slider-section {
   height: auto;
-  /*margin: 100px auto 0;*/
+  margin: 100px auto 0;
   position: relative;
-  margin: auto;
+  margin: 0 auto;
   width: 600px;
   margin-top: 40px;
   margin-bottom: 100px;
 }
 
 #map-container {
-  margin: auto;
+  margin: -375px auto 0;
+  margin: 0 auto;
 }
 
 #slider{
@@ -74,7 +75,7 @@ a {
 }
 
 .ui-slider-range {
-    background: linear-gradient(top, #2F2F31 0%,#333333 100%);
+    background: linear-gradient(top, #b2b2b2 0%,#333333 100%);
     position: absolute;
     border: 0;
     top: 0;
@@ -113,7 +114,8 @@ a {
   width: 100px;
   font-size: 30px;
   margin: auto;
-  margin-bottom: 50px;
+  /*margin-bottom: 50px;*/
+  margin-bottom: -1050px;
   padding: 0px 20px;
 }
 
@@ -138,10 +140,14 @@ path {
   text-align: center;
   font-family: "Caviar Dreams", "Courier";
 }
+#title a {
+  text-decoration: none;
+}
 
 .datamap {
-  margin-top: 100px;
-  margin: auto;
+  /*margin-top: 100px;*/
+  /*margin: 0 auto;*/
+  margin: -100px auto 0;
   width: 100%;
 }
 
@@ -167,3 +173,22 @@ path {
 select {
   text-indent: 5px;
 }
+
+/* MAP LEGEND */
+#map-legend-container {
+  max-width: 300px;
+  text-align: center;
+  /*margin: 0 auto;*/
+  /*margin: -100px auto 0;*/
+  margin: -100px auto 0;
+  border: 1px solid black;
+}
+.map-legend-square {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  font-size: 0.9em;
+  text-align: center;
+  /*margin-left: -4px;*/
+}
+
