@@ -6,14 +6,29 @@ class Topic < ActiveRecord::Base
 
   include ResponsesHelper
 
+  def file_path
+    "db/data-files/topic_#{self.id}.json"
+  end
+
+  def get_responses_json
+    if File.exist?(self.file_path)
+      file = File.open(self.file_path)
+      return file.read
+    else
+      file = File.new(self.file_path, 'wb')
+      responses = (self.id == 1 ? self.responses_json_obama_approval : self.responses_json)
+      file.write(responses.to_json)
+      return responses
+    end
+  end
+
   def responses_json_obama_approval
     timeline_array = Array.new(30) { Hash.new }
     self.charts.each do |c|
       response_chunks = bucketize_responses(c.responses)
       response_chunks.each_with_index do |chunk, index|
         sorted_chunk = chunk.sort_by { |r| r.percentage }
-        timeline_array[index][c.state] = { responses: chunk, # fillKey: sorted_chunk.last.answer
-         }
+        timeline_array[index][c.state] = { responses: chunk }
       end
     end
     return [timeline_array, self.all_national_responses_obama_approval]

@@ -7,8 +7,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    render json: @topic.responses_json_obama_approval if @topic.id ==  1
-    render json: @topic.responses_json if @topic.id > 1
+    render json: @topic.get_responses_json
   end
 
 end
