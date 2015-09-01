@@ -17,9 +17,9 @@ function initBarChart(nationalData) {
   var HEIGHT = 500;
   var MARGINS = {
     top: 20,
-    right: 20,
+    right: 10,
     bottom: 26,
-    left: 50
+    left: 60
   };
   var graph = d3.select("#bar-graph");
 
@@ -57,7 +57,7 @@ function initBarChart(nationalData) {
 
   var yAxisLabel = d3.select(".y-axis")
                      .append("text")
-                     .attr("transform", "translate(-" + (MARGINS.left / 2) + "," + (HEIGHT / 2) + "), rotate(-90)" )
+                     .attr("transform", "translate(-" + ((MARGINS.left / 2) + 10) + ",350), rotate(-90)" )
                      .text("Poll Response Percentage");
 
   var bar = graph.selectAll(".bar-group")
@@ -75,7 +75,7 @@ function initBarChart(nationalData) {
       .attr("fill", function(d) {
         return colorScale(d.attributes.answer); })
       .attr("transform", function(d) {
-        return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 20) + "," + HEIGHT + ")";
+        return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 30) + "," + HEIGHT + ")";
       });
 
   bars.transition()
@@ -84,12 +84,12 @@ function initBarChart(nationalData) {
 
   var barLabels = bar.append("text")
      .attr("x", function(d) {
-      return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 25; })
+      return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 45; })
      .attr("y", HEIGHT)
      .attr("fill", "black")
      .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
 
   barLabels.transition()
         .duration(500)
-        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
+        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - 10; });
 }
