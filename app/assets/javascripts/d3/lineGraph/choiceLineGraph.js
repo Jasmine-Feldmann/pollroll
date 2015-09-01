@@ -61,8 +61,7 @@ function choiceLineGraph(nationalData) {
       .attr("data-legend", choice.name)
       .attr("stroke-width", 3)
       .attr("fill", "none")
-
-      .on("mouseover", mouseover)
+      .on("mousemove", mouseover)
       .on("mouseout", mouseout);
 
     line.transition() // transition for line generation
@@ -103,22 +102,14 @@ function choiceLineGraph(nationalData) {
     .style("font-size","15px")
     .call(d3.legend);
 }
- b
-// var focus = d3.select('svg')
-//   .append('g')
-//   .attr('class', 'focus')
-  // .style('display', 'none')
+
 
 function mouseover(d) {
   d3.select(this).classed("line-hover", true);
-  console.log($(this).attr('name'));
-  // console.log(event.clientX, event.clientY);
-  // focus.append('text').text($(this).attr('name'))
-  //   .style('display', 'initial')
-  //   .attr('x', function(d) { return event.clientX; })
-  //   .attr('y', function(d) { return event.clientY; })
+  $(this).parent().find($(".legend-items").find($("text:contains('" + $(this).attr('data-legend') + "')"))).css("font-weight","bold").css("font-size","1.3em");
 }
+
 function mouseout(d) {
   d3.select(this).classed("line-hover", false);
-  // focus.style('display', 'none');
+  $(this).parent().find($(".legend-items").find($("text:contains('" + $(this).attr('data-legend') + "')"))).css("font-weight","initial").css("font-size","initial");
 }
