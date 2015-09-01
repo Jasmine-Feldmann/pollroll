@@ -24,5 +24,7 @@ module Pollarity
     config.active_record.raise_in_transactional_callbacks = true
 
     config.cache_store = :memory_store
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end
+
