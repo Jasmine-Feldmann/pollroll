@@ -23,13 +23,8 @@ a {
   font-family: "Caviar Dreams";
 }
 
-#chart-tab:hover {
-  border: solid 1px #bbb;
-  border-radius: 5px;
-}
-
-#trends-tab:hover {
-  border: solid 1px #bbb;
+.ui-tabs-panel:hover {
+  box-shadow: 1px 1px 1px #bbb;
   border-radius: 5px;
 }
 
@@ -136,12 +131,13 @@ a {
 
 .ui-tabs-panel {
   display: inline-block;
-  width: 100px;
+  min-width: 140px;
   font-size: 30px;
   margin: auto;
   /*margin-bottom: 50px;*/
   margin-bottom: -1050px;
   padding: 0px 20px;
+  text-align: center;
 }
 
 path {
@@ -151,13 +147,14 @@ path {
 .ui-tabs-nav {
   margin: auto;
   margin-top: 30px;
-  max-width: 500px;
+  max-width: 610px;
   /*border-bottom: solid 1px #bbb;*/
 }
 
 .ui-tabs {
   margin: auto;
-  max-width: 500px;
+  max-width: 610px;
+  box-sizing: border-box;
 }
 
 #title {
