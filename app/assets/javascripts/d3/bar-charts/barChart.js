@@ -68,7 +68,8 @@ function initBarChart(nationalData) {
       .attr("height", function(d) { return HEIGHT - Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
 
   var labels = bar.append("text")
-     .attr("x", function(d) { return Xscale(d.attributes.answer) + MARGINS.left; })
+     .attr("x", function(d) {
+      return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 25; })
      .attr("y", HEIGHT)
      .attr("fill", "black")
      .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
