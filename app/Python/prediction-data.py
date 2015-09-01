@@ -12,11 +12,19 @@ linear = svm.SVC()
 
 df = pd.read_csv('FINALOBAMA.csv', header=0)
 
-xtrain, xtest, ytrain, ytest = train_test_split(df['Approval'], df['Close'], train_size = 0.8)
+xtrain, xtest, ytrain, ytest = train_test_split(df['Close'], df['Approval'], train_size = 0.8)
 
-linear.fit(xtrain, ytrain)
+linear.fit(pd.DataFrame(xtrain), pd.DataFrame(ytrain))
 
-output = linear.predict(xtest)
+output = linear.predict(pd.DataFrame(xtest))
+
+ytest = ytest.reset_index()["Approval"]
+
+for i in range (0, len(output)):
+    difference = output[i] - ytest[i]
+    print difference, output[i], ytest[i]
+
+linear.score(pd.DataFrame(xtrain), pd.DataFrame(ytrain))
 
 
 
