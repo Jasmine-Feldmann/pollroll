@@ -3,7 +3,6 @@ function InitLineGraph(nationalData) {
   nationalData.forEach(function(d) {
     d.date = parseDate.parse(d[0].date);
   });
-  console.log(nationalData);
   var graph = d3.select("#line-graph");
   var WIDTH = 1000;
   var HEIGHT = 500;

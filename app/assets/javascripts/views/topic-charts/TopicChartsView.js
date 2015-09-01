@@ -11,9 +11,9 @@ var TopicChartsView = Backbone.View.extend({
     // this condition handles the display of the map.
     if (this.collection[0].collection.options.topicId == 1) {
       drawDatamap(this.collection[0].attributes[0]);
-
       // display map legend
       this.$el.find("#map-slider-container").append(JST["templates/topic-charts/map-legend-template"]);
+      // initiate the line graph
       InitLineGraph(this.collection[1].attributes.responses);
       $("#line-graph-container").hide();
       var timeSlider = new TimeSlider();
@@ -23,6 +23,7 @@ var TopicChartsView = Backbone.View.extend({
     }
     else {
       choiceLineGraph(this.collection);
+      initBarChart(this.collection);
       $(".ui-tabs-panel").hide()
     }
   },
