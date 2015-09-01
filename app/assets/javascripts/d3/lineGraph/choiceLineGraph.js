@@ -99,7 +99,7 @@ function choiceLineGraph(nationalData) {
   var legend = graph.append("g")
     .attr("class","legend")
     .attr("transform","translate(860,30)")
-    .style("font-size","15px")
+    .style("font-size","14px")
     .call(d3.legend);
 
   $(".legend-items > text").on("mouseenter", mouseOnLegend);
@@ -113,7 +113,8 @@ function mousemove() {
   $(this).parent()
     .find($(".legend-items")
     .find($("text:contains('" + $(this).attr('data-legend') + "')")))
-    .css("font-weight","bold");
+    .css("font-size", "15px")
+    .css("font-weight","900");
 }
 
 function mouseout() {
@@ -121,11 +122,13 @@ function mouseout() {
   $(this).parent()
     .find($(".legend-items")
     .find($("text:contains('" + $(this).attr('data-legend') + "')")))
+    .css("font-size", "14px")
     .css("font-weight","initial");
 }
 
 function mouseOnLegend() {
-  $(this).css("font-weight", "bold")
+  $(this).css("font-weight", "900")
+    .css("font-size", "15px")
     .css("cursor", "pointer");
   $(document)
     .find("path[data-legend='" + $(this).text() +"']")
@@ -133,7 +136,8 @@ function mouseOnLegend() {
 }
 
 function mouseOffOfLegend() {
-  $(this).css("font-weight", "initial");
+  $(this).css("font-weight", "initial")
+    .css("font-size", "14px");
   $(document)
     .find("path[data-legend='" + $(this).text() +"']")
     .css("stroke-width", "3px");
