@@ -213,14 +213,6 @@ select {
   /*margin-left: -4px;*/
 }
 
-.line-hover {
-  stroke-width: 6px;
-}
-
-/*.focus {
-  color: red;
-}*/
-
 .legend-box {
   height: 150px;
   fill: rgba(255, 255, 255, 0.25);
