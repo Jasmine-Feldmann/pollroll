@@ -26,8 +26,8 @@ var TopicChartsView = Backbone.View.extend({
       choiceLineGraph(this.collection);
       initBarChart(this.collection);
       $("#line-graph-container").hide();
+      $("#projections-tab").hide();
       this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
-      // $(".ui-tabs-panel").hide()
     }
   },
 
