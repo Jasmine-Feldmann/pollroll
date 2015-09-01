@@ -7,6 +7,12 @@ function initBarChart(nationalData) {
   nationalDataFiltered = nationalData.filter(function(d) {
     return d.attributes.responses.slice(-1)[0].date == latestDate;
   });
+  // Shorten answers so the bar labels don't overlap.
+  if (nationalDataFiltered.length > 15) {
+    nationalDataFiltered.forEach(function(d) {
+      d.attributes.answer = d.attributes.answer.substr(0, 7);
+    });
+  }
   var WIDTH = 1000;
   var HEIGHT = 500;
   var MARGINS = {
@@ -45,9 +51,14 @@ function initBarChart(nationalData) {
     .attr("transform", "translate(" + (MARGINS.left - 8) + "," + (HEIGHT - MARGINS.bottom) + ")")
     .call(Xaxis);
   graph.append("svg:g")
+    .attr("class", "y-axis")
     .attr("transform", "translate(" + MARGINS.left + ",0)")
     .call(Yaxis);
 
+  var yAxisLabel = d3.select(".y-axis")
+                     .append("text")
+                     .attr("transform", "translate(-" + (MARGINS.left / 2) + "," + (HEIGHT / 2) + "), rotate(-90)" )
+                     .text("Poll Response Percentage");
 
   var bar = graph.selectAll(".bar-group")
               .data(nationalDataFiltered)
@@ -71,14 +82,14 @@ function initBarChart(nationalData) {
       .duration(500)
       .attr("height", function(d) { return HEIGHT - Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
 
-  var labels = bar.append("text")
+  var barLabels = bar.append("text")
      .attr("x", function(d) {
       return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 25; })
      .attr("y", HEIGHT)
      .attr("fill", "black")
      .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
 
-  labels.transition()
+  barLabels.transition()
         .duration(500)
         .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
 }
