@@ -106,10 +106,18 @@ function choiceLineGraph(nationalData) {
 
 function mouseover(d) {
   d3.select(this).classed("line-hover", true);
-  $(this).parent().find($(".legend-items").find($("text:contains('" + $(this).attr('data-legend') + "')"))).css("font-weight","bold").css("font-size","1.3em");
+  $(this).parent()
+    .find($(".legend-items")
+    .find($("text:contains('" + $(this).attr('data-legend') + "')")))
+    .css("font-weight","bold")
+    .css("font-size","1.3em");
 }
 
 function mouseout(d) {
   d3.select(this).classed("line-hover", false);
-  $(this).parent().find($(".legend-items").find($("text:contains('" + $(this).attr('data-legend') + "')"))).css("font-weight","initial").css("font-size","initial");
+  $(this).parent()
+    .find($(".legend-items")
+    .find($("text:contains('" + $(this).attr('data-legend') + "')")))
+    .css("font-weight","initial")
+    .css("font-size","initial");
 }
