@@ -1,4 +1,5 @@
 function predictionLineGraph(PREDICTIONDATA) {
+  var monthAbbrev = d3.time.format("%b");
   var minDate = new Date(2015,8,1);
   var maxDate = new Date(2016,7,1);
   var parseDate = d3.time.format("%m/%d/%Y");
@@ -14,10 +15,10 @@ function predictionLineGraph(PREDICTIONDATA) {
   var Xscale = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]);
   Xscale.domain([minDate, maxDate]);
   var Yscale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]);
-  Yscale.domain([30, 70]);
+  Yscale.domain([35, 60]);
 
   var colorScale = d3.scale.ordinal()
-    .range(["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#a65628","#f781bf","#999999", "#66c2a5","#fc8d62","#8da0cb","#e78ac3","#a6d854","#ffd92f","#e5c494","#b3b3b3", "#8dd3c7","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5", "#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#b15928"]);
+    .range(["#984ea3","#ff7f00","#a65628","#f781bf","#999999", "#66c2a5","#fc8d62","#8da0cb","#e78ac3","#a6d854","#ffd92f","#e5c494","#b3b3b3", "#8dd3c7","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5", "#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#b15928"]);
 
   var Xaxis = d3.svg.axis()
       .scale(Xscale)
