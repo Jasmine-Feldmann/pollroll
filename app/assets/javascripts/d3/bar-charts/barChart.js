@@ -1,4 +1,4 @@
-function initBarChart(nationalData) {
+function initBarChart(nationalData, title) {
   // Find the most recent poll date.
   var latestDate = d3.max(nationalData.map(function(d) {
     return d.attributes.responses.slice(-1)[0].date;
@@ -7,16 +7,10 @@ function initBarChart(nationalData) {
   nationalDataFiltered = nationalData.filter(function(d) {
     return d.attributes.responses.slice(-1)[0].date == latestDate;
   });
-  // Shorten answers so the bar labels don't overlap.
-  // if (nationalDataFiltered.length > 15) {
-  //   nationalDataFiltered.forEach(function(d) {
-  //     d.attributes.answer = d.attributes.answer.substr(0, 7);
-  //   });
-  // }
   var WIDTH = 1000;
   var HEIGHT = 500;
   var MARGINS = {
-    top: 20,
+    top: 40,
     right: 10,
     bottom: 50,
     left: 60
@@ -52,6 +46,7 @@ function initBarChart(nationalData) {
     .attr("transform", "translate(" + (MARGINS.left - 8) + "," + (HEIGHT - MARGINS.bottom) + ")")
     .call(Xaxis);
 
+  // Rotate the x-axis labels if there are more than 10 bars.
   if (nationalDataFiltered.length > 10) {
     xAxis.selectAll("text")
          .style("text-anchor", "end")
@@ -60,13 +55,19 @@ function initBarChart(nationalData) {
 
   graph.append("svg:g")
     .attr("class", "y-axis")
-    .attr("transform", "translate(" + MARGINS.left + ",-30)")
+    .attr("transform", "translate(" + MARGINS.left + ",-10)")
     .call(Yaxis);
 
   var yAxisLabel = d3.select(".y-axis")
                      .append("text")
                      .attr("transform", "translate(-" + ((MARGINS.left / 2) + 10) + ",350), rotate(-90)" )
                      .text("Poll Response Percentage");
+
+  var chartTitle = graph.append("text")
+                        .attr("class", "bar-chart-title")
+                        .attr("text-anchor", "center")
+                        .attr("transform", "translate(" + (WIDTH / 4) + ",30)")
+                        .text(title + " - Latest Poll (" + latestDate + ")");
 
   var bar = graph.selectAll(".bar-group")
               .data(nationalDataFiltered)

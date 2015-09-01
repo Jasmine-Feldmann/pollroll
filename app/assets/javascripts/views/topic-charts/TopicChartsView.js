@@ -39,7 +39,9 @@ var TopicChartsView = Backbone.View.extend({
     else {
       $("#projections-tab").hide();
       $("#line-graph-container").hide();
-      initBarChart(this.collection);
+      // Hackily extract the chart title from the topic selector dropdown so it can be displayed on the chart.
+      var chartTitle = $('#topics-dropdown').children()[$('#topics-dropdown').val()].innerText;
+      initBarChart(this.collection, chartTitle);
       var viewToBind = this;
 
       //reanimates line graph on tab click
@@ -54,7 +56,7 @@ var TopicChartsView = Backbone.View.extend({
       //reanimates bar graph on tab click
       $("#chart-tab").on("click", function() {
         $('<svg class="graph" id="bar-graph" width="1000" height="500"></svg>').appendTo("#bar-graph-container");
-        initBarChart(viewToBind.collection);
+        initBarChart(viewToBind.collection, chartTitle);
       })
       $(".ui-tabs-panel:not(#chart-tab)").on("click", function() {
         $("#bar-graph").remove()

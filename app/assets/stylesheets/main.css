@@ -248,3 +248,7 @@ select {
 text {
   font-family: 'Helvetica Neue';
 }
+
+.bar-chart-title {
+  font-size: 125%;
+}
