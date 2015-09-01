@@ -117,7 +117,6 @@ a {
   border-right: solid 1px #bbb;
   border-left: solid 1px #bbb;
   border-radius: 5px;
-  /*border-bottom-width: 0px;*/
   padding-top: 5px;
   /*box-shadow: 2px 2px 1px #6A6A6A;*/
 }
@@ -139,12 +138,13 @@ path {
 .ui-tabs-nav {
   margin: auto;
   margin-top: 30px;
-  width: 300px;
+  max-width: 500px;
+  border-bottom: solid 1px #bbb;
 }
 
 .ui-tabs {
   margin: auto;
-  width: 300px;
+  max-width: 500px;
 }
 
 #title {
@@ -185,7 +185,7 @@ path {
 
 #topics-container {
   /*margin-left: 50px;*/
-  max-width: 370px;
+  max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
