@@ -26,7 +26,7 @@ var TopicChartsView = Backbone.View.extend({
       $("#trends-tab").on("click", function () {
         $("#line-graph").remove();
         $('<svg class="graph" id="line-graph" width="1000" height="500"></svg>').appendTo("#line-graph-container");
-        InitLineGraph(bindToThis.collection[1].attributes.responses);
+        choiceLineGraph(_.values(bindToThis.collection[1].attributes));
       })
       $(".ui-tabs-panel:not(#trends-tab)").on("click", function() {
         $("#line-graph").remove()
