@@ -8,17 +8,17 @@ function initBarChart(nationalData) {
     return d.attributes.responses.slice(-1)[0].date == latestDate;
   });
   // Shorten answers so the bar labels don't overlap.
-  if (nationalDataFiltered.length > 15) {
-    nationalDataFiltered.forEach(function(d) {
-      d.attributes.answer = d.attributes.answer.substr(0, 7);
-    });
-  }
+  // if (nationalDataFiltered.length > 15) {
+  //   nationalDataFiltered.forEach(function(d) {
+  //     d.attributes.answer = d.attributes.answer.substr(0, 7);
+  //   });
+  // }
   var WIDTH = 1000;
   var HEIGHT = 500;
   var MARGINS = {
     top: 20,
     right: 10,
-    bottom: 26,
+    bottom: 50,
     left: 60
   };
   var graph = d3.select("#bar-graph");
@@ -48,11 +48,16 @@ function initBarChart(nationalData) {
 
   // append the axes
   graph.append("svg:g")
+    .attr("class", "x-axis")
     .attr("transform", "translate(" + (MARGINS.left - 8) + "," + (HEIGHT - MARGINS.bottom) + ")")
-    .call(Xaxis);
+    .call(Xaxis)
+    .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("transform", "rotate(-30), translate(5, 0)");
+
   graph.append("svg:g")
     .attr("class", "y-axis")
-    .attr("transform", "translate(" + MARGINS.left + ",0)")
+    .attr("transform", "translate(" + MARGINS.left + ",-" + (MARGINS.bottom / 4) + ")")
     .call(Yaxis);
 
   var yAxisLabel = d3.select(".y-axis")
