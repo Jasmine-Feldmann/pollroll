@@ -57,7 +57,7 @@ function initBarChart(nationalData) {
 
   graph.append("svg:g")
     .attr("class", "y-axis")
-    .attr("transform", "translate(" + MARGINS.left + ",-" + (MARGINS.bottom / 4) + ")")
+    .attr("transform", "translate(" + MARGINS.left + ",-30)")
     .call(Yaxis);
 
   var yAxisLabel = d3.select(".y-axis")
@@ -91,10 +91,11 @@ function initBarChart(nationalData) {
      .attr("x", function(d) {
       return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 45; })
      .attr("y", HEIGHT)
+     .attr("dy", "-0.8em")
      .attr("fill", "black")
      .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
 
   barLabels.transition()
         .duration(500)
-        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - 10; });
+        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
 }
