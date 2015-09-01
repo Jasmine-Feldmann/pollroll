@@ -1,5 +1,9 @@
 <div class="ui-tabs">
-  <ul class="ui-tabs-nav">
+  <% if (charts[0].collection.options.topicId == 1) { %>
+    <ul class="ui-tabs-nav">
+  <% } else { %>
+    <ul class="ui-tabs-nav-small">
+  <% } %>
     <a href="#first-chart-container"><li id="chart-tab" class="ui-tabs-panel active">Chart</li></a>
     <a href="#line-graph-container"><li id="trends-tab" class="ui-tabs-panel">Trends</li></a>
     <a href="#prediction-graph-container"><li id="predictions-tab" class="ui-tabs-panel">Predictions</li></a>
@@ -20,3 +24,4 @@
 
 <div class="charts" id="prediction-graph-container">
 </div>
+

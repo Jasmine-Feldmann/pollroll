@@ -26,6 +26,7 @@ a {
 .ui-tabs-panel:hover {
   box-shadow: 1px 1px 1px #bbb;
   border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .slider-section {
@@ -82,7 +83,7 @@ a {
   width: 25px;
   height: 25px;
   cursor: pointer;
-  background-image: url('pin-icon.png');
+  background-image: url('pin-thing-good.png');
   font-weight: bold;
   color: #1C94C4;
   outline: none;
@@ -148,14 +149,19 @@ path {
   margin: auto;
   margin-top: 30px;
   max-width: 610px;
-  /*border-bottom: solid 1px #bbb;*/
 }
 
-.ui-tabs {
+.ui-tabs-nav-small {
+  margin: auto;
+  margin-top: 30px;
+  max-width: 410px;
+}
+
+/*.ui-tabs {
   margin: auto;
   max-width: 610px;
   box-sizing: border-box;
-}
+}*/
 
 #title {
   font-size: 48px;
@@ -245,4 +251,8 @@ select {
 
 text {
   font-family: 'Helvetica Neue';
+}
+
+.bar-chart-title {
+  font-size: 125%;
 }
