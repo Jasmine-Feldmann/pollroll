@@ -37,13 +37,13 @@ var TopicChartsView = Backbone.View.extend({
         predictionLineGraph(PREDICTIONDATA);
       });
 
-      // $(".ui-tabs-panel:not(#projections-tab").on("click", function() {
-      //   $("").remove();
-      // })
+      $(".ui-tabs-panel:not(#predictions-tab").on("click", function() {
+        $("#prediction-graph").remove();
+      })
 
     }
     else {
-      $("#projections-tab").hide();
+      $("#predictions-tab").hide();
       $("#line-graph-container").hide();
       initBarChart(this.collection);
       var viewToBind = this;
