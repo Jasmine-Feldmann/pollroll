@@ -114,8 +114,7 @@ function mousemove() {
   $(this).parent()
     .find($(".legend-items")
     .find($("text:contains('" + $(this).attr('data-legend') + "')")))
-    .css("font-size", "15px")
-    .css("font-weight","900");
+    .css("font-weight","bold");
 }
 
 function mouseout() {
@@ -128,8 +127,7 @@ function mouseout() {
 }
 
 function mouseOnLegend() {
-  $(this).css("font-weight", "900")
-    .css("font-size", "15px")
+  $(this).css("font-weight", "bold")
     .css("cursor", "pointer");
   $(document)
     .find("path[data-legend='" + $(this).text() +"']")
