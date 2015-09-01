@@ -1,7 +1,7 @@
 var TimeSlider = Backbone.View.extend({
 
   initialize: function() {
-    this.$el = $('#map-slider-container');
+    this.$el = $('#first-chart-container');
     this.template = JST["templates/time-slider/timeSliderTemplate"];
   },
 
