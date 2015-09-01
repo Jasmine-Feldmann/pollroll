@@ -61,7 +61,7 @@ function choiceLineGraph(nationalData) {
       .attr("data-legend", choice.name)
       .attr("stroke-width", 3)
       .attr("fill", "none")
-      .on("mousemove", mouseover)
+      .on("mousemove", mousemove)
       .on("mouseout", mouseout);
 
     line.transition() // transition for line generation
@@ -101,10 +101,13 @@ function choiceLineGraph(nationalData) {
     .attr("transform","translate(870,30)")
     .style("font-size","15px")
     .call(d3.legend);
+
+  $(".legend-items > text").on("mouseenter", mouseOnLegend);
+  $(".legend-items > text").on("mouseleave", mouseOffOfLegend);
+
 }
 
-
-function mouseover(d) {
+function mousemove() {
   d3.select(this).classed("line-hover", true);
   $(this).parent()
     .find($(".legend-items")
@@ -113,11 +116,23 @@ function mouseover(d) {
     .css("font-size","1.3em");
 }
 
-function mouseout(d) {
+function mouseout() {
   d3.select(this).classed("line-hover", false);
   $(this).parent()
     .find($(".legend-items")
     .find($("text:contains('" + $(this).attr('data-legend') + "')")))
     .css("font-weight","initial")
     .css("font-size","initial");
+}
+
+function mouseOnLegend() {
+  $(document)
+    .find("path[data-legend='" + escape($(this).text()) +"']")
+    .css("stroke-width", "18px");
+}
+
+function mouseOffOfLegend() {
+  $(document)
+    .find("path[data-legend='" + escape($(this).text()) +"']")
+    .css("stroke-width", "3px");
 }
