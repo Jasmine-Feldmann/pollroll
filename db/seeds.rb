@@ -26,6 +26,11 @@ def interpolate_responses(chart, min_responses)
   end
 end
 
+def delete_cache_files
+  cache_files = Dir.glob("db/data-files/topic*")
+  cache_files.each { |file| File.delete(file) }
+end
+
 states = %w( alabama alaska arizona arkansas california colorado connecticut
              delaware florida georgia hawaii idaho illinois indiana iowa kansas
              kentucky louisiana maine maryland massachusetts michigan minnesota
@@ -34,10 +39,11 @@ states = %w( alabama alaska arizona arkansas california colorado connecticut
              pennsylvania rhode-island south-carolina south-dakota tennessee texas
              utah vermont virginia washington west-virginia wisconsin wyoming )
 
+delete_cache_files
+
 new_topic = Topic.create!(name: "Obama Job Approval")
 base_slug = "obama-job-approval"
 base_url = "http://elections.huffingtonpost.com/pollster/api/charts/"
-
 
 chart_uri = URI(base_url + base_slug)
 chart_response = Net::HTTP.get_response(chart_uri)
