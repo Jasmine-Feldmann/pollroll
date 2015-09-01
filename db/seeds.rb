@@ -81,4 +81,3 @@ topic_array.each do |topic_hash|
   chart_json = JSON.parse(chart_response.body)
   parse_chart_json(chart_json, new_topic)
 end
-

@@ -32,12 +32,18 @@ var TopicChartsView = Backbone.View.extend({
         $("#line-graph").remove()
       });
 
-      // $("#projections-tab").on("click", function() {
-      // });
+      $("#predictions-tab").on("click", function() {
+        $('<svg class="graph" id="prediction-graph" width="1000" height="500"></svg>').appendTo("#prediction-graph-container");
+        predictionLineGraph(PREDICTIONDATA);
+      });
+
+      $(".ui-tabs-panel:not(#predictions-tab").on("click", function() {
+        $("#prediction-graph").remove();
+      })
 
     }
     else {
-      $("#projections-tab").hide();
+      $("#predictions-tab").hide();
       $("#line-graph-container").hide();
       // Hackily extract the chart title from the topic selector dropdown so it can be displayed on the chart.
       var chartTitle = $('#topics-dropdown').children()[$('#topics-dropdown').val()].innerText;
