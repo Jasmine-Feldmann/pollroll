@@ -131,7 +131,7 @@ function mouseOnLegend() {
     .css("font-size", "1.3em")
     .css("cursor", "pointer");
   $(document)
-    .find("path[data-legend='" + escape($(this).text()) +"']")
+    .find("path[data-legend='" + $(this).text() +"']")
     .css("stroke-width", "6px");
 }
 
@@ -139,6 +139,6 @@ function mouseOffOfLegend() {
   $(this).css("font-weight", "initial")
     .css("font-size","initial");
   $(document)
-    .find("path[data-legend='" + escape($(this).text()) +"']")
+    .find("path[data-legend='" + $(this).text() +"']")
     .css("stroke-width", "3px");
 }
