@@ -49,11 +49,8 @@ class Topic < ActiveRecord::Base
   end
 
   def all_national_responses_obama_approval
-    all = self.charts.where(state: "US").first.responses.each_slice(3).map do |slice|
-      slice.sort_by { |r| r.answer }
-    end
-    all.reject! { |s| s.map(&:answer) != ["Approve", "Disapprove", "Undecided"] }
-    return { responses: all.sort_by { |sl| sl[0].date } }
+    all = self.charts.where(state: "US").first.responses.pluck(:answer).uniq
+    return all.map { |choice| {attributes: {answer: choice, responses: self.responses.where(answer: choice).order("date ASC") } } }
   end
 
   def responses_json
