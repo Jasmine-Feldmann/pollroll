@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-csv
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery-ui-slider-pips

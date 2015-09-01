@@ -32,8 +32,14 @@ var TopicChartsView = Backbone.View.extend({
         $("#line-graph").remove()
       });
 
-      // $("#projections-tab").on("click", function() {
-      // });
+      $("#predictions-tab").on("click", function() {
+        $('<svg class="graph" id="prediction-graph" width="1000" height="500"></svg>').appendTo("#prediction-graph-container");
+        predictionLineGraph(PREDICTIONDATA);
+      });
+
+      // $(".ui-tabs-panel:not(#projections-tab").on("click", function() {
+      //   $("").remove();
+      // })
 
     }
     else {

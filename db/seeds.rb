@@ -1,3 +1,5 @@
+# require 'csv'
+
 def parse_chart_json(chart_json, topic)
   return if chart_json["estimates_by_date"].empty?
   chart = topic.charts.create!(name: chart_json["title"],
@@ -82,3 +84,13 @@ topic_array.each do |topic_hash|
   parse_chart_json(chart_json, new_topic)
 end
 
+# # create prediction chart
+# temp = []
+# CSV.foreach('app/Python/prediction_data_for_obama_approval.csv', headers: true) do |csv|
+#   temp << Hash[csv.to_a]
+# end
+# {stock_up: temp[0..11]}.to_json
+# {stock_even: temp[12..23]}.to_json
+# {stock_down: temp[24..35]}.to_json
+
+# Topic.first.charts.create!(name: "Obama Job Approval Predictions", state: "US", slug: "obama-job-approval-predictions").responses.create!(answer: "stock_up")
