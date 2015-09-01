@@ -1,8 +1,10 @@
 function initBarChart(nationalData) {
+  // Find the most recent poll date.
   var latestDate = d3.max(nationalData.map(function(d) {
     return d.attributes.responses.slice(-1)[0].date;
   }));
-  nationalData = nationalData.filter(function(d) {
+  // Filter out any candidates who aren't currently polling.
+  nationalDataFiltered = nationalData.filter(function(d) {
     return d.attributes.responses.slice(-1)[0].date == latestDate;
   });
   var WIDTH = 1000;
@@ -17,15 +19,16 @@ function initBarChart(nationalData) {
 
   var Xscale = d3.scale.ordinal()
                   .rangeRoundBands([0,WIDTH - (MARGINS.left + MARGINS.right)], .1)
-                  .domain(nationalData.map(function(d) { return d.attributes.answer; }));
+                  .domain(nationalDataFiltered.map(function(d) { return d.attributes.answer; }));
 
   var Yscale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]);
   Yscale.domain([
       0,
-      d3.max(nationalData.map(function(choice) { return parseFloat(choice.attributes.responses.slice(-1)[0].percentage) })) + 5
+      d3.max(nationalDataFiltered.map(function(choice) { return parseFloat(choice.attributes.responses.slice(-1)[0].percentage) })) + 5
     ]);
 
   var colorScale = d3.scale.ordinal()
+    .domain(nationalData.map(function(d) { return d.attributes.answer; }))
     .range(["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#a65628","#f781bf","#999999", "#66c2a5","#fc8d62","#8da0cb","#e78ac3","#a6d854","#ffd92f","#e5c494","#b3b3b3", "#8dd3c7","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5", "#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#b15928"]);
 
   // define the axes
@@ -47,7 +50,7 @@ function initBarChart(nationalData) {
 
 
   var bar = graph.selectAll(".bar-group")
-              .data(nationalData)
+              .data(nationalDataFiltered)
               .enter()
               .append("g")
               .attr("class", "bar-group")
@@ -58,7 +61,8 @@ function initBarChart(nationalData) {
       .attr("y", HEIGHT + MARGINS.bottom)
       .attr("width", Xscale.rangeBand())
       .attr("height", 0)
-      .attr("fill", function(d, i) { return colorScale(i); })
+      .attr("fill", function(d) {
+        return colorScale(d.attributes.answer); })
       .attr("transform", function(d) {
         return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 20) + "," + HEIGHT + ")";
       });
