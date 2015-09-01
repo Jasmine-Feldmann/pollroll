@@ -148,14 +148,19 @@ path {
   margin: auto;
   margin-top: 30px;
   max-width: 610px;
-  /*border-bottom: solid 1px #bbb;*/
 }
 
-.ui-tabs {
+.ui-tabs-nav-small {
+  margin: auto;
+  margin-top: 30px;
+  max-width: 410px;
+}
+
+/*.ui-tabs {
   margin: auto;
   max-width: 610px;
   box-sizing: border-box;
-}
+}*/
 
 #title {
   font-size: 48px;
