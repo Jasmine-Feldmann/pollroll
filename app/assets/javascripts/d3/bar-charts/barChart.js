@@ -1,10 +1,4 @@
 function initBarChart(nationalData) {
-  var latestDate = d3.max(nationalData.map(function(d) {
-    return d.attributes.responses.slice(-1)[0].date;
-  }));
-  nationalData = nationalData.filter(function(d) {
-    return d.attributes.responses.slice(-1)[0].date == latestDate;
-  });
   var WIDTH = 1000;
   var HEIGHT = 500;
   var MARGINS = {
@@ -16,13 +10,13 @@ function initBarChart(nationalData) {
   var graph = d3.select("#bar-graph");
 
   var Xscale = d3.scale.ordinal()
-                  .rangeRoundBands([0,WIDTH - (MARGINS.left + MARGINS.right)], .1)
+                  .rangeRoundBands([0,WIDTH], .1)
                   .domain(nationalData.map(function(d) { return d.attributes.answer; }));
 
   var Yscale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]);
   Yscale.domain([
       0,
-      d3.max(nationalData.map(function(choice) { return parseFloat(choice.attributes.responses.slice(-1)[0].percentage) })) + 5
+      d3.max(nationalData.map(function(choice) { return parseFloat(choice.maxPercentage) })) + 5
     ]);
 
   var colorScale = d3.scale.ordinal()
@@ -39,10 +33,10 @@ function initBarChart(nationalData) {
 
   // append the axes
   graph.append("svg:g")
-    .attr("transform", "translate(" + (MARGINS.left - 8) + "," + (HEIGHT - MARGINS.bottom) + ")")
+    .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
     .call(Xaxis);
   graph.append("svg:g")
-    .attr("transform", "translate(" + MARGINS.left + ",0)")
+    .attr("transform", "translate(" + (MARGINS.left) + ",0)")
     .call(Yaxis);
 
 
@@ -55,12 +49,11 @@ function initBarChart(nationalData) {
   var bars = bar.append("rect")
       .attr("class", "bar2")
       .attr("x", function(d) { return Xscale(d.attributes.answer); })
-      .attr("y", HEIGHT + MARGINS.bottom)
+      .attr("y", HEIGHT)
       .attr("width", Xscale.rangeBand())
       .attr("height", 0)
-      .attr("fill", function(d, i) { return colorScale(i); })
       .attr("transform", function(d) {
-        return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 20) + "," + HEIGHT + ")";
+        return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2)) + "," + HEIGHT + ")";
       });
 
   bars.transition()
@@ -68,7 +61,7 @@ function initBarChart(nationalData) {
       .attr("height", function(d) { return HEIGHT - Yscale(d.attributes.responses.slice(-1)[0].percentage); });
 
   var labels = bar.append("text")
-     .attr("x", function(d) { return Xscale(d.attributes.answer) + MARGINS.left; })
+     .attr("x", function(d) { return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) - 5; })
      .attr("y", HEIGHT)
      .attr("dy", "-0.2em")
      .attr("fill", "black")
@@ -76,5 +69,5 @@ function initBarChart(nationalData) {
 
   labels.transition()
         .duration(500)
-        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.bottom; });
+        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - 5; });
 }
