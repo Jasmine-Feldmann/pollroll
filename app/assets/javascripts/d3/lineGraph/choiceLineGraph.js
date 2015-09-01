@@ -108,8 +108,8 @@ function choiceLineGraph(nationalData) {
 }
 
 function mousemove() {
-  $(this).css("cursor", "pointer");
   d3.select(this).classed("line-hover", true);
+  $(this).css("cursor", "pointer");
   $(this).parent()
     .find($(".legend-items")
     .find($("text:contains('" + $(this).attr('data-legend') + "')")))
