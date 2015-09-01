@@ -101,11 +101,7 @@ a {
 }
 
 /*ToolTip CSS*/
-.hoverinfo {
-  /*min-width: 300px;*/
-  /*background-color: aqua !important;*/
-  /*border: 3px solid black !important;*/
-}
+.hoverinfo {}
 .state-name {
   font-size: 1.2em;
   font-weight: bold;
@@ -120,9 +116,6 @@ a {
 }
 
 .active {
-  /*border-top: solid 1px #bbb;
-  border-right: solid 1px #bbb;
-  border-left: solid 1px #bbb;*/
   border: solid 1px #bbb;
   border-radius: 5px;
   padding-top: 5px;
@@ -135,8 +128,6 @@ a {
   min-width: 140px;
   font-size: 30px;
   margin: auto;
-  /*margin-bottom: 50px;*/
-  margin-bottom: -1050px;
   padding: 0px 20px;
   text-align: center;
 }
@@ -174,9 +165,7 @@ path {
 }
 
 .datamap {
-  /*margin-top: 100px;*/
   margin: 0 auto;
-  /*margin: -100px auto 0;*/
   width: 100%;
 }
 
@@ -212,7 +201,6 @@ path {
 }
 
 #topics-container {
-  /*margin-left: 50px;*/
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
