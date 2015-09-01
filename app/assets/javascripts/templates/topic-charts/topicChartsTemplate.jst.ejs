@@ -1,16 +1,19 @@
 <div class="ui-tabs">
   <ul class="ui-tabs-nav">
-    <a href="#map-slider-container"><li class="ui-tabs-panel active">Chart</li></a>
+    <a href="#first-chart-container"><li class="ui-tabs-panel active">Chart</li></a>
     <a href="#line-graph-container"><li class="ui-tabs-panel">Trends</li></a>
   </ul>
 </div>
 
-<div id="map-slider-container" class="charts">
+<div id="first-chart-container" class="charts">
 	<div id="map-container" style="position: relative; width: 80%;"></div>
+
+	<div id="bar-graph-container">
+	  <svg class="graph" id="bar-graph" width="1000" height="500"></svg>
+	</div>
 </div>
 
 <div class="charts" id="line-graph-container">
   <svg class="graph" id="line-graph" width="1000" height="500"></svg>
-  <svg class="graph" id="bar-graph" width="1000" height="500"></svg>
 </div>
 

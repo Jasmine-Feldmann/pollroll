@@ -173,7 +173,7 @@ path {
   border-radius: 15px;
 }
 
-#line-graph-container {
+#line-graph-container, #bar-graph-container {
   width: 1000px;
   margin-top: 100px;
   margin: auto;

@@ -12,10 +12,11 @@ var TopicChartsView = Backbone.View.extend({
     if (this.collection[0].collection.options.topicId == 1) {
       drawDatamap(this.collection[0].attributes[0]);
       // display map legend
-      this.$el.find("#map-slider-container").append(JST["templates/topic-charts/map-legend-template"]);
+      this.$el.find("#first-chart-container").append(JST["templates/topic-charts/map-legend-template"]);
       // initiate the line graph
       InitLineGraph(this.collection[1].attributes.responses);
       $("#line-graph-container").hide();
+      $("#bar-graph-container").hide();
       var timeSlider = new TimeSlider();
       timeSlider.render();
       this.$el.find("#slider").on("slide", this.updateChartData.bind(this));
@@ -24,7 +25,9 @@ var TopicChartsView = Backbone.View.extend({
     else {
       choiceLineGraph(this.collection);
       initBarChart(this.collection);
-      $(".ui-tabs-panel").hide()
+      $("#line-graph-container").hide();
+      this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
+      // $(".ui-tabs-panel").hide()
     }
   },
 
