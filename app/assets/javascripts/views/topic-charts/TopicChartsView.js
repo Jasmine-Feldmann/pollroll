@@ -13,14 +13,28 @@ var TopicChartsView = Backbone.View.extend({
       drawDatamap(this.collection[0].attributes[0]);
       // display map legend
       this.$el.find("#first-chart-container").append(JST["templates/topic-charts/map-legend-template"]);
-      // initiate the line graph
-      InitLineGraph(this.collection[1].attributes.responses);
       $("#line-graph-container").hide();
       $("#bar-graph-container").hide();
       var timeSlider = new TimeSlider();
       timeSlider.render();
       this.$el.find("#slider").on("slide", this.updateChartData.bind(this));
       this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
+
+      // initiate the line graph
+      var bindToThis = this;
+
+      $("#trends-tab").on("click", function () {
+        $("#line-graph").remove();
+        $('<svg class="graph" id="line-graph" width="1000" height="500"></svg>').appendTo("#line-graph-container");
+        InitLineGraph(bindToThis.collection[1].attributes.responses);
+      })
+      $(".ui-tabs-panel:not(#trends-tab)").on("click", function() {
+        $("#line-graph").remove()
+      });
+
+      // $("#projections-tab").on("click", function() {
+      // });
+
     }
     else {
       $("#projections-tab").hide();
