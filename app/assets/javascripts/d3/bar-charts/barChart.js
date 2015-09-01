@@ -65,16 +65,15 @@ function initBarChart(nationalData) {
 
   bars.transition()
       .duration(500)
-      .attr("height", function(d) { return HEIGHT - Yscale(d.attributes.responses.slice(-1)[0].percentage); });
+      .attr("height", function(d) { return HEIGHT - Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
 
   var labels = bar.append("text")
      .attr("x", function(d) { return Xscale(d.attributes.answer) + MARGINS.left; })
      .attr("y", HEIGHT)
-     .attr("dy", "-0.2em")
      .attr("fill", "black")
      .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
 
   labels.transition()
         .duration(500)
-        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.bottom; });
+        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
 }
