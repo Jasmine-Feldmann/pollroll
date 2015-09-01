@@ -47,13 +47,16 @@ function initBarChart(nationalData) {
       .orient("left");
 
   // append the axes
-  graph.append("svg:g")
+  var xAxis = graph.append("svg:g")
     .attr("class", "x-axis")
     .attr("transform", "translate(" + (MARGINS.left - 8) + "," + (HEIGHT - MARGINS.bottom) + ")")
-    .call(Xaxis)
-    .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("transform", "rotate(-30), translate(5, 0)");
+    .call(Xaxis);
+
+  if (nationalDataFiltered.length > 10) {
+    xAxis.selectAll("text")
+         .style("text-anchor", "end")
+         .attr("transform", "rotate(-30), translate(5, 0)");
+  }
 
   graph.append("svg:g")
     .attr("class", "y-axis")
