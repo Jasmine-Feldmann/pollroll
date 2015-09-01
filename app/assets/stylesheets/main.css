@@ -164,7 +164,7 @@ path {
   width: 100%;
 }
 
-#line-graph {
+.graph {
   width: 1000px;
   background-color: rgba(255, 255, 255, 0.4);
   margin: auto;
@@ -228,4 +228,9 @@ select {
 
 .legend-items {
   margin-right: -1000px;
+}
+
+#bar-graph path {
+  stroke: black;
+  stroke-width: 1px;
 }
