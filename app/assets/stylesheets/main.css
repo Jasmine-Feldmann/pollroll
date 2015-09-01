@@ -186,6 +186,14 @@ path {
   border-radius: 15px;
 }
 
+#bar-graph {
+  padding: 0;
+}
+
+.x-axis {
+  font-size: 90%;
+}
+
 #line-graph-container, #bar-graph-container {
   width: 1000px;
   margin-top: 100px;

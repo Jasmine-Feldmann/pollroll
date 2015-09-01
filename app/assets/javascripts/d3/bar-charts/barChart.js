@@ -8,18 +8,18 @@ function initBarChart(nationalData) {
     return d.attributes.responses.slice(-1)[0].date == latestDate;
   });
   // Shorten answers so the bar labels don't overlap.
-  if (nationalDataFiltered.length > 15) {
-    nationalDataFiltered.forEach(function(d) {
-      d.attributes.answer = d.attributes.answer.substr(0, 7);
-    });
-  }
+  // if (nationalDataFiltered.length > 15) {
+  //   nationalDataFiltered.forEach(function(d) {
+  //     d.attributes.answer = d.attributes.answer.substr(0, 7);
+  //   });
+  // }
   var WIDTH = 1000;
   var HEIGHT = 500;
   var MARGINS = {
     top: 20,
-    right: 20,
-    bottom: 26,
-    left: 50
+    right: 10,
+    bottom: 50,
+    left: 60
   };
   var graph = d3.select("#bar-graph");
 
@@ -47,17 +47,25 @@ function initBarChart(nationalData) {
       .orient("left");
 
   // append the axes
-  graph.append("svg:g")
+  var xAxis = graph.append("svg:g")
+    .attr("class", "x-axis")
     .attr("transform", "translate(" + (MARGINS.left - 8) + "," + (HEIGHT - MARGINS.bottom) + ")")
     .call(Xaxis);
+
+  if (nationalDataFiltered.length > 10) {
+    xAxis.selectAll("text")
+         .style("text-anchor", "end")
+         .attr("transform", "rotate(-30), translate(5, 0)");
+  }
+
   graph.append("svg:g")
     .attr("class", "y-axis")
-    .attr("transform", "translate(" + MARGINS.left + ",0)")
+    .attr("transform", "translate(" + MARGINS.left + ",-30)")
     .call(Yaxis);
 
   var yAxisLabel = d3.select(".y-axis")
                      .append("text")
-                     .attr("transform", "translate(-" + (MARGINS.left / 2) + "," + (HEIGHT / 2) + "), rotate(-90)" )
+                     .attr("transform", "translate(-" + ((MARGINS.left / 2) + 10) + ",350), rotate(-90)" )
                      .text("Poll Response Percentage");
 
   var bar = graph.selectAll(".bar-group")
@@ -75,7 +83,7 @@ function initBarChart(nationalData) {
       .attr("fill", function(d) {
         return colorScale(d.attributes.answer); })
       .attr("transform", function(d) {
-        return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 20) + "," + HEIGHT + ")";
+        return "rotate(180," + (Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 30) + "," + HEIGHT + ")";
       });
 
   bars.transition()
@@ -84,8 +92,9 @@ function initBarChart(nationalData) {
 
   var barLabels = bar.append("text")
      .attr("x", function(d) {
-      return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 25; })
+      return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 45; })
      .attr("y", HEIGHT)
+     .attr("dy", "-0.8em")
      .attr("fill", "black")
      .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
 
