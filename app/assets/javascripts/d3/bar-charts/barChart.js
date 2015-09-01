@@ -92,12 +92,13 @@ function initBarChart(nationalData, title) {
       .attr("height", function(d) { return HEIGHT - Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
 
   var barLabels = bar.append("text")
+     .attr("text-anchor", "center")
      .attr("x", function(d) {
-      return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 45; })
+      return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 40; })
      .attr("y", HEIGHT - MARGINS.bottom)
      .attr("dy", "-0.8em")
      .attr("fill", "black")
-     .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
+     .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage + "%"; });
 
   barLabels.transition()
         .duration(500)
