@@ -47,9 +47,10 @@ function predictionLineGraph(PREDICTIONDATA) {
     .interpolate('basis'); // make the lines rounded
 
   PREDICTIONDATA.forEach(function(item, index) {
+    console.log(item);
     var line = graph.append("svg:path")
       .attr("stroke", colorScale(index))
-      .attr("data-legend", item.name)
+      .attr("data-legend", item[index].name)
       .attr("stroke-width", 3)
       .attr("fill", "none")
       .on("mousemove", mousemove)
