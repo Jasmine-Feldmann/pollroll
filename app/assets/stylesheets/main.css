@@ -220,3 +220,7 @@ select {
   stroke: black;
   stroke-width: 1px;
 }
+
+text {
+  font-family: 'Helvetica Neue';
+}
