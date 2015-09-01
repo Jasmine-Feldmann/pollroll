@@ -207,10 +207,6 @@ path {
   margin-bottom: 50px;
 }
 
-#prediction-graph .tick {
-  font-size: 14px;
-}
-
 #topics-container {
   /*margin-left: 50px;*/
   max-width: 800px;
