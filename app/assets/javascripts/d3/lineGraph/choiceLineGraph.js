@@ -129,7 +129,7 @@ function mouseout() {
 function mouseOnLegend() {
   $(this).css("font-weight", "bold")
     .css("font-size", "1.3em")
-    .css("cursor", "pointer")
+    .css("cursor", "pointer");
   $(document)
     .find("path[data-legend='" + escape($(this).text()) +"']")
     .css("stroke-width", "6px");
