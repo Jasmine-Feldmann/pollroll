@@ -24,7 +24,6 @@ a {
 }
 
 .ui-tabs-panel:hover {
-  /*border: solid 1px #bbb;*/
   box-shadow: 1px 1px 1px #bbb;
   border-radius: 5px;
 }
