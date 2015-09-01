@@ -22,6 +22,17 @@ a {
   color: #2F2F31;
   font-family: "Caviar Dreams";
 }
+
+#chart-tab:hover {
+  border: solid 1px #bbb;
+  border-radius: 5px;
+}
+
+#trends-tab:hover {
+  border: solid 1px #bbb;
+  border-radius: 5px;
+}
+
 .slider-section {
   height: auto;
   margin: 100px auto 0;
@@ -113,12 +124,14 @@ a {
 }
 
 .active {
-  border-top: solid 1px #bbb;
+  /*border-top: solid 1px #bbb;
   border-right: solid 1px #bbb;
-  border-left: solid 1px #bbb;
+  border-left: solid 1px #bbb;*/
+  border: solid 1px #bbb;
   border-radius: 5px;
   padding-top: 5px;
-  /*box-shadow: 2px 2px 1px #6A6A6A;*/
+  background-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 2px 2px 1px #6A6A6A;
 }
 
 .ui-tabs-panel {
@@ -139,7 +152,7 @@ path {
   margin: auto;
   margin-top: 30px;
   max-width: 500px;
-  border-bottom: solid 1px #bbb;
+  /*border-bottom: solid 1px #bbb;*/
 }
 
 .ui-tabs {
@@ -196,7 +209,7 @@ select {
 
 /* MAP LEGEND */
 #map-legend-container {
-  max-width: 300px;
+  max-width: 320px;
   text-align: center;
   margin: 0 auto;
   border: 1px solid #bbb;
