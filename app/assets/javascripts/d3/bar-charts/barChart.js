@@ -66,7 +66,7 @@ function initBarChart(nationalData, title) {
   var chartTitle = graph.append("text")
                         .attr("class", "bar-chart-title")
                         .attr("text-anchor", "center")
-                        .attr("transform", "translate(" + (WIDTH / 4) + ",30)")
+                        .attr("transform", "translate(" + ((WIDTH + 30) / 4) + ",30)")
                         .text(title + " - Latest Poll (" + latestDate + ")");
 
   var bar = graph.selectAll(".bar-group")
@@ -94,12 +94,12 @@ function initBarChart(nationalData, title) {
   var barLabels = bar.append("text")
      .attr("x", function(d) {
       return Xscale(d.attributes.answer) + (Xscale.rangeBand() / 2) + 45; })
-     .attr("y", HEIGHT)
+     .attr("y", HEIGHT - MARGINS.bottom)
      .attr("dy", "-0.8em")
      .attr("fill", "black")
      .text(function(d) { return d.attributes.responses.slice(-1)[0].percentage; });
 
   barLabels.transition()
         .duration(500)
-        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage) - MARGINS.top; });
+        .attr("y", function(d) { return Yscale(d.attributes.responses.slice(-1)[0].percentage); });
 }
