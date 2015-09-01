@@ -68,7 +68,8 @@ function choiceLineGraph(nationalData) {
       .duration(4000)
       .delay(100 + index * 100)
       .ease("linear")
-      .attr('d', lineGen(choice.attributes.responses)); // generate lines on graph
+      .attr('d', lineGen(choice.attributes.responses));
+ // generate lines on graph
   });
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);

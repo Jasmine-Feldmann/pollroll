@@ -23,10 +23,28 @@ var TopicChartsView = Backbone.View.extend({
       this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
     }
     else {
-      choiceLineGraph(this.collection);
-      initBarChart(this.collection);
-      $("#line-graph-container").hide();
       $("#projections-tab").hide();
+      $("#line-graph-container").hide();
+      initBarChart(this.collection);
+      var viewToBind = this;
+
+      //reanimates line graph on tab click
+      $("#trends-tab").on("click", function () {
+        $('<svg class="graph" id="line-graph" width="1000" height="500"></svg>').appendTo("#line-graph-container");
+        choiceLineGraph(viewToBind.collection);
+      });
+      $(".ui-tabs-panel:not(#trends-tab)").on("click", function() {
+        $("#line-graph").remove()
+      });
+      //reanimates bar graph on tab click
+      $("#chart-tab").on("click", function() {
+        $('<svg class="graph" id="bar-graph" width="1000" height="500"></svg>').appendTo("#bar-graph-container");
+        initBarChart(viewToBind.collection);
+      })
+      $(".ui-tabs-panel:not(#chart-tab)").on("click", function() {
+        $("#bar-graph").remove()
+      });
+
       this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
     }
   },
