@@ -108,6 +108,7 @@ function choiceLineGraph(nationalData) {
 }
 
 function mousemove() {
+  $(this).css("cursor", "pointer");
   d3.select(this).classed("line-hover", true);
   $(this).parent()
     .find($(".legend-items")
@@ -126,12 +127,17 @@ function mouseout() {
 }
 
 function mouseOnLegend() {
+  $(this).css("font-weight", "bold")
+    .css("font-size", "1.3em")
+    .css("cursor", "pointer");
   $(document)
     .find("path[data-legend='" + escape($(this).text()) +"']")
-    .css("stroke-width", "18px");
+    .css("stroke-width", "6px");
 }
 
 function mouseOffOfLegend() {
+  $(this).css("font-weight", "initial")
+    .css("font-size","initial");
   $(document)
     .find("path[data-legend='" + escape($(this).text()) +"']")
     .css("stroke-width", "3px");
