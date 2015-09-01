@@ -46,15 +46,12 @@ function InitLineGraph(nationalData) {
     .attr("stroke", "#29A329")
     .attr("stroke-width", 4)
     .attr("fill", "none")
+    .transition()
+    .duration(4000)
+    .delay(500)
+    .ease("linear")
+    .attr('d', lineGenApprove(nationalData));
 
-
-  $(".ui-tabs-panel").on("click", function() {
-      approvalLine.transition()
-        .duration(4000)
-        .delay(500)
-        .ease("linear")
-        .attr('d', lineGenApprove(nationalData));
-  })
 
 
   var lineGenDisapprove = d3.svg.line()
@@ -68,16 +65,13 @@ function InitLineGraph(nationalData) {
   var disapproveLine = graph.append("svg:path")
     .attr("stroke", "#FF3300")
     .attr("stroke-width", 4)
-    .attr("fill", "none");
+    .attr("fill", "none")
+    .transition()
+    .duration(4000)
+    .delay(1000)
+    .ease("linear")
+    .attr('d', lineGenDisapprove(nationalData));
 
-  $(".ui-tabs-panel").on("click", function() {
-    disapproveLine.transition()
-      .transition()
-      .duration(4000)
-      .delay(1000)
-      .ease("linear")
-      .attr('d', lineGenDisapprove(nationalData));
-  })
 
   var lineGenUndecided = d3.svg.line()
     .x(function(d) {
@@ -90,15 +84,13 @@ function InitLineGraph(nationalData) {
   var undecidedLine = graph.append("svg:path")
     .attr("stroke", "#006B8F")
     .attr("stroke-width", 4)
-    .attr("fill", "none");
+    .attr("fill", "none")
+    .transition()
+    .duration(4000)
+    .delay(1500)
+    .ease("linear")
+    .attr('d', lineGenUndecided(nationalData));
 
-  $(".ui-tabs-panel").on("click", function() {
-    undecidedLine.transition()
-      .duration(4000)
-      .delay(1500)
-      .ease("linear")
-      .attr('d', lineGenUndecided(nationalData));
-  })
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);
   var xaxiscords = d3.range(50, WIDTH, 25);
