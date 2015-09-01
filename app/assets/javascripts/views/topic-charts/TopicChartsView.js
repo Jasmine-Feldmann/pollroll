@@ -44,6 +44,7 @@ var TopicChartsView = Backbone.View.extend({
 
       //reanimates line graph on tab click
       $("#trends-tab").on("click", function () {
+        $("#line-graph").remove();
         $('<svg class="graph" id="line-graph" width="1000" height="500"></svg>').appendTo("#line-graph-container");
         choiceLineGraph(viewToBind.collection);
       });
