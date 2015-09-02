@@ -15,10 +15,10 @@ var AppRouter = Backbone.Router.extend({
     var topicCharts = new TopicCharts([], { topicId: topicId });
     topicCharts.fetch({
       success: function(response) {
+        // Ensure that the correct option is displayed as 'selected' in the dropdown.
         $('option:nth-child(' + (parseInt(topicId)+1) + ')').attr('selected', true);
         var topicChartsView = new TopicChartsView({ collection: response.models });
         topicChartsView.render();
-        // Ensure that the correct option is displayed as 'selected' in the dropdown.
       }
     });
   },
