@@ -49,6 +49,11 @@ function drawApprovalScatterPlot() {
                       .attr("text-anchor", "middle")
                       .attr("transform", "translate(" + (WIDTH / 2) + "," + ((MARGINS.top / 2) + (MARGINS.top / 6)) + ")")
                       .text("Obama's Approval Rating vs. Unemployment and S&P 500 Price");
+  var yAxisLabel = plot.append("text")
+                      .attr("class", "scatter-axis-label")
+                      .attr("text-anchor", "middle")
+                      .attr("transform", "rotate(-90), translate(-" + (HEIGHT / 2) + ", 30)")
+                      .text("Unemployment Rate (%)");
 
   plot.append("g")
         .attr("class", "x-axis")
