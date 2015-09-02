@@ -1,9 +1,14 @@
 require 'csv'
 
-NUMBER_OF_CENTROIDS = 3
+NUMBER_OF_CENTROIDS = 2
+
+def date_to_days_in_office(date)
+  (Date.parse(date) - Date.new(2009,1,1)).to_i
+end
 
 def vectorize_row(row)
   [row[2].to_f, row[3].gsub(",", "").to_f]
+  # [date_to_days_in_office(row[0]), row[2].to_f]
 end
 
 def compute_distance(centroid, data)
@@ -23,11 +28,11 @@ CSV.foreach('obama_data_train.csv') do |row|
   vector_ratings << row[1]
 end
 
-unemployment_max = row_vectors.max_by { |vector| vector[0] }.first
-sp500_max = row_vectors.max_by { |vector| vector[1] }.last
+x_max = row_vectors.max_by { |vector| vector[0] }.first
+y_max = row_vectors.max_by { |vector| vector[1] }.last
 
 # Generate centroids
-centroids = Array.new(NUMBER_OF_CENTROIDS) { random_centroid(unemployment_max, sp500_max) }
+centroids = Array.new(NUMBER_OF_CENTROIDS) { random_centroid(x_max, y_max) }
 old_centroids = []
 
 until centroids == old_centroids
@@ -48,7 +53,7 @@ until centroids == old_centroids
       new_y = vectors.reduce(0) { |acc, v| acc + v[:vector][1] } / vectors.length
       centroids[index] = [new_x, new_y]
     else
-      centroids[index] = random_centroid(unemployment_max, sp500_max)
+      centroids[index] = random_centroid(x_max, y_max)
     end
   end
 end
