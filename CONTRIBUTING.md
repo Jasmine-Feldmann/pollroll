@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to Pollarity!
 
-This one-page web app was originally designed as a Dev Bootcamp final project by Matt Bogen, Connor Ring, Jay Quigley, and Jasmine Feldmann. It uses the Huffington Post Pollster API to gather poll data, the D3 library to visualize the datat into maps, charts, and bar graphs, Backbone.js to strcture our front-end, and the Python SKlearn library as well as clustering methods to make predictions.
+This one-page web app was originally designed as a Dev Bootcamp final project by Matt Bogen, Connor Ring, Jay Quigley, and Jasmine Feldmann. It uses the Huffington Post Pollster API to gather poll data, the D3 library to visualize the data into maps, charts, and bar graphs, Backbone.js to structure our front-end, and the Python SKlearn library as well as clustering methods to make predictions.
 
 ### Submitting Issues
 
