@@ -58,11 +58,16 @@ until centroids == old_centroids
   end
 end
 
+training_results = []
+
 vector_centroids.each_with_index do |vc, i|
   puts "TRAIN: Closest centroid for vector #{vc[:vector]}:"
   p vc[:centroid]
   puts "Corresponding approval value: #{vector_ratings[i]}"
+  training_results << [vc[:vector][0], vc[:vector][1], vector_ratings[i], vc[:centroid]]
 end
+
+test_results = []
 
 CSV.foreach('obama_data_test.csv') do |row|
   vector = vectorize_row(row)
@@ -71,6 +76,7 @@ CSV.foreach('obama_data_test.csv') do |row|
   puts "TEST: Closest centroid for vector #{vector}:"
   p closest_centroid
   puts "Corresponding approval value: #{row[1]}"
+  test_results << [vector[0], vector[1], row[1], closest_centroid]
 end
 
 centroids.each_with_index do |centroid, i|
@@ -80,4 +86,12 @@ centroids.each_with_index do |centroid, i|
   puts "Average approval rating for centroid:"
   p centroid
   puts ratings.reduce(:+).to_f / ratings.length
+end
+
+CSV.open('kmeans_training_results.csv', 'wb') do |csv|
+  training_results.each { |result| csv << result }
+end
+
+CSV.open('kmeans_test_results.csv', 'wb') do |csv|
+  test_results.each { |result| csv << result }
 end
