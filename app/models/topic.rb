@@ -49,12 +49,22 @@ class Topic < ActiveRecord::Base
   end
 
   def all_national_responses_obama_approval
-    all = self.charts.where(state: "US").first.responses.pluck(:answer).uniq
+    all = self.charts.where(state: "US").first.responses.pluck(:answer).uniq.sort
+    p "YO!! " * 111
+    p all
     return all.map { |choice| {attributes: {answer: choice, responses: self.responses.where(answer: choice).order("date ASC").reject { |r| r.id % 20 != 0 } } } }
   end
 
   def responses_json
-    candidates = self.responses.pluck(:answer).uniq.reject { |c| c == "Refused" }
+    candidates = self.responses.pluck(:answer).uniq.reject { |c| c == "Refused" }.sort
+    ["Neither","No Opinion","Neutral","Not Heard Enough"].each do |word|
+      if candidates.include?(word)
+        candidates.push(candidates.delete(word))
+      end
+    end
+    ["Wrong Track", "Unfavorable"].each do |word|
+      candidates.insert(1, candidates.delete(word)) if candidates.include?(word)
+    end
     return candidates.map { |choice| { answer: choice, responses: self.responses.where(answer: choice).order("date ASC") } }
   end
 
