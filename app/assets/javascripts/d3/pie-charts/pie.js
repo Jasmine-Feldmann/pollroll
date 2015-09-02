@@ -1,7 +1,3 @@
-// var StateData = function(state) {
-//     this.state = state;
-// }
-
 function getDataForPieGraph(state) {
     var data = state.responses.map(function(resp) {
         return {label: resp["answer"].substr(0,1), value: resp["percentage"]};
@@ -10,9 +6,9 @@ function getDataForPieGraph(state) {
 }
 
 function pieGraph(stateApprovalData) {
-    var w = 300,
-    h = 300,
-    r = 100,
+    var w = 350,
+    h = 350,
+    r = 175,
     color = d3.scale.category20c();
 
     data = stateApprovalData;

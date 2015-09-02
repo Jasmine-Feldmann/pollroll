@@ -39,11 +39,6 @@ a {
   margin-bottom: 100px;
 }
 
-#map-container {
-  margin: -375px auto 0;
-  margin: 0 auto;
-}
-
 #slider{
   border-width: 1px;
   border-style: solid;
@@ -254,9 +249,26 @@ text {
   font-size: 0.8em !important;
 }
 
+#first-chart-container
 
-#pie-chart-container {
-  max-width: 300px;
-  max-height: 300px;
+#map-container {
+  /*margin: -375px auto 0;*/
+  /*margin: 0 auto;*/
+  background-color: green;
+  clear: right;
+  display: inline-block;
+}
+
+.pie-chart-container {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 1;
+  height: 375px;
+  width: 375px;
+  float: right;
+  /*max-width: 350px;*/
+  /*max-height: 350px;*/
   overflow: hidden;
+  background-color: red;
 }

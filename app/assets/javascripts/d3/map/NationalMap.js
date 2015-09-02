@@ -1,11 +1,3 @@
-var img = new Image();
-img.onload = function() {
-    ctx.drawImage(img, 0, 0);
-}
-img.src = "http://upload.wikimedia.org/wikipedia/commons/d/d2/Svg_example_square.svg";
-
-
-
 function appToDisappRatio(state) {
    return state["responses"][0]["percentage"] / state["responses"][1]["percentage"];
 }
@@ -50,33 +42,19 @@ function drawDatamap(inputData){
          highlightBorderWidth: 3,
          highlightFillColor: '#ACE',
          popupTemplate: function(geography, data) {
-            // console.log("geography",geography)
-            // console.log("data",data)
             var abbr = geography.id;
             if (onlyStates[abbr]) {
-               // console.log(onlyStates);
-               // console.log(onlyStates[abbr]["responses"][0]["answer"], onlyStates[abbr]["responses"][0]["percentage"]);
-
-               // _.map(onlyStates, function(state) {
-               //    return new StateData()
-               // })
-
-               var stateData = getDataForPieGraph(onlyStates[abbr]);
-               pieGraph(stateData);
-               // console.log(stateData);
-
-               // var x = "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
-               var x = "<br>sampleImage:" + "<img src='#pie-chart-container'>"
-               return x
-               // return toolTipTitleHelper(geography, data)
-               // + toolTipHelper(onlyStates[abbr], 0)
-               // + toolTipHelper(onlyStates[abbr], 1)
-               // + toolTipRatioHelper(onlyStates[abbr])
-               // + toolTipHelper(onlyStates[abbr], 2)
-               // // + "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
-               // // + "<svg id='pie-graph' width='300' height='300'></svg>"
-               // // + pieGraph(stateData);
-               // + "</div>"
+               return toolTipTitleHelper(geography, data)
+               + toolTipHelper(onlyStates[abbr], 0)
+               + toolTipHelper(onlyStates[abbr], 1)
+               + toolTipRatioHelper(onlyStates[abbr])
+               + toolTipHelper(onlyStates[abbr], 2)
+               // + "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
+                  + "<div id='pie-chart-container'"
+                     // + "<svg id='pie-graph' width='300' height='300'></svg>"
+                  + "</div>"
+               // + pieGraph(stateData);
+               + "</div>"
             }
             else {
                return toolTipTitleHelper(geography, data)   
@@ -86,6 +64,15 @@ function drawDatamap(inputData){
          },
       },
       fills: NINECOLORSCHEME
+   });
+   // $("path").on("mousemove", function() {
+   d3.selectAll("path").on("mouseenter", function() {
+      d3.event.preventDefault();
+      var dataInfo = $(this).attr("data-info");
+      console.log(dataInfo);
+      $(this).find("#pie-chart-container").css("background-color","blue");
+      var stateData = getDataForPieGraph(JSON.parse(dataInfo));
+      pieGraph(stateData);
    });
    map.labels();
 }
