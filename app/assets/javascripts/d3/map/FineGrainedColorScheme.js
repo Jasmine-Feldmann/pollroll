@@ -3,28 +3,17 @@ function customFloor(value, floor) {
 	return value;
 }
 
-function funkyFunc(ratio) {
+function colorModelFunc(ratio) {
+	if (ratio > 2.5) {return "rgb(49,54,149)";}
+
 	var redFloor = 49;
 	var greenFloor = 48;
 	var blueFloor = 39;
-	redNum = customFloor(Math.floor((125*Math.pow((ratio-1.2),2) - 256)*-1-1), redFloor);
-	greenNum = customFloor(Math.floor((250*Math.pow((ratio-1.45),2) - 256)*-1-1), greenFloor);
-	blueNum = customFloor(Math.floor((188*Math.pow((ratio-1.75),2) - 248)*-1-1), blueFloor);
+	redNum = customFloor(Math.floor(193.4 + -92.4*Math.pow(ratio,1) + 422.6*Math.pow(ratio,2) + -335.2*Math.pow(ratio,3) + 68.69*Math.pow(ratio,4)), redFloor);
+	greenNum = customFloor(Math.floor(53.7 + -347*Math.pow(ratio,1) + 913.5*Math.pow(ratio,2) + -535*Math.pow(ratio,3) + 90.1*Math.pow(ratio,4)), greenFloor);
+	blueNum = customFloor(Math.floor(863.3 -3815.3*Math.pow(ratio,1) + 6280*Math.pow(ratio,2) + -4599.3*Math.pow(ratio,3) + 1597.6*Math.pow(ratio,4) + -214.6*Math.pow(ratio,5)), blueFloor);
 	return "rgb(" + redNum + ", " + greenNum + ", " + blueNum + ")";
 }
-
-console.log("color1", funkyFunc(0.5));
-console.log("color2", funkyFunc(0.75));
-console.log("color3", funkyFunc(1));
-console.log("color4", funkyFunc(1.25));
-console.log("color5", funkyFunc(1.5));
-console.log("color6", funkyFunc(1.75));
-console.log("color7", funkyFunc(2));
-console.log("color8", funkyFunc(2.25));
-console.log("color9+", funkyFunc(2.5));
-console.log("colorA3", funkyFunc(3));
-console.log("colorA3.5", funkyFunc(3.5));
-console.log("colorA4", funkyFunc(4));
 
 var fineGrainedColorScheme = function(arrayOfStateInfo) {
 	var obj = {};
@@ -32,17 +21,7 @@ var fineGrainedColorScheme = function(arrayOfStateInfo) {
 	_.each(arrayOfStateInfo, function(val, key) {	
 		var stateLetters = key;
 		var ratio = appToDisappRatio(val);
-		obj["color" + stateLetters] = funkyFunc(ratio);
+		obj["color" + stateLetters] = colorModelFunc(ratio);
 	});
 	return obj;
 }
-
-// var SampleConstructor = function(stuff) {
-// 	var ab = stuff.abbrev
-// 	// this.stuff = stuff;
-// 	var callLetters = "color" + ab
-// 	this["color" + ab] = stuff.abbrev;
-// }
-
-// var samp = new SampleConstructor({greeting: 'hi', abbrev: "KY"});
-// console.log(samp)
