@@ -55,6 +55,12 @@ function drawApprovalScatterPlot() {
                       .attr("transform", "rotate(-90), translate(-" + (HEIGHT / 2) + ", 30)")
                       .text("Unemployment Rate (%)");
 
+  var xAxisLabel = plot.append("text")
+                      .attr("class", "scatter-axis-label")
+                      .attr("text-anchor", "middle")
+                      .attr("transform", "translate(" + (WIDTH / 2) + "," + (HEIGHT - (MARGINS.bottom / 4)) + ")")
+                      .text("S&P 500 Close Price");
+
   plot.append("g")
         .attr("class", "x-axis")
         .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
