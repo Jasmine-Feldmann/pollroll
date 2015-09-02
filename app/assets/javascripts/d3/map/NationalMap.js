@@ -20,6 +20,14 @@ function assignFillKeys(inputData) {
    }
 }
 
+function assignFineGrainedFillKeys(inputData) {
+   _.each(inputData, function(state, stateAbbrev) {
+      state.fillKey = "color" + stateAbbrev;
+   });
+   console.log("line 27", inputData);
+}
+
+
 function makeRatioAProperty(inputData) {
    for (state in inputData) {
       inputData[state]["appToDisappRatio"] = appToDisappRatio(inputData[state])
@@ -29,8 +37,13 @@ function makeRatioAProperty(inputData) {
 function drawDatamap(inputData){
    var onlyStates = _.clone(inputData);
    delete onlyStates["US"]
+   var colorScheme = fineGrainedColorScheme(onlyStates);
    makeRatioAProperty(onlyStates);
-   assignFillKeys(onlyStates);   
+   
+   
+   // assignFillKeys(onlyStates);
+   assignFineGrainedFillKeys(onlyStates);
+
 
    var map = new Datamap({
       data: onlyStates,
@@ -59,7 +72,8 @@ function drawDatamap(inputData){
             }
          },
       },
-      fills: NINECOLORSCHEME
+      // fills: NINECOLORSCHEME
+      fills: colorScheme
    });
    map.labels();
 }
