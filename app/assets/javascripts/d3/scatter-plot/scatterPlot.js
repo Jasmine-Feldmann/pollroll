@@ -106,13 +106,18 @@ function drawApprovalScatterPlot() {
                       .attr("r", function(d) {
                         return 10 * Math.pow((d.approval / 50), 2);
                       })
-                      .attr("cx", function(d) {
-                        return xScale(parseFloat(d.stockPrice));
-                      })
-                      .attr("cy", function(d) {
-                        return yScale(parseFloat(d.unemployment));
-                      })
+                      .attr("cx", WIDTH / 2)
+                      .attr("cy", HEIGHT / 2)
                       .attr("fill", function(d) {
                         return colorScale(parseInt(d.approval));
                       });
+
+  plotPoints.transition()
+            .duration(1500)
+            .attr("cx", function(d) {
+              return xScale(parseFloat(d.stockPrice));
+            })
+            .attr("cy", function(d) {
+              return yScale(parseFloat(d.unemployment));
+            });
 }
