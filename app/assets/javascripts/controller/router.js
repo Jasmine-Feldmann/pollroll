@@ -26,12 +26,6 @@ var AppRouter = Backbone.Router.extend({
   defaultAction: function() {
     var homeView = new HomeView();
     homeView.render();
-    $('#topics-container').on('change', '#topics-dropdown', function(event) {
-      var targetVal = event.target.value;
-      if (targetVal.length > 0) {
-        this.navigate("topics/" + targetVal, { trigger: true });
-      }
-    }.bind(this));
   }
 
 });
