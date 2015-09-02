@@ -9,7 +9,7 @@ function predictionLineGraph(PREDICTIONDATA) {
   var MARGINS = {
       top: 20,
       right: 130,
-      bottom: 26,
+      bottom: 23,
       left: 50
     };
   var Xscale = d3.time.scale().range([MARGINS.left, WIDTH - MARGINS.right]);
@@ -22,6 +22,8 @@ function predictionLineGraph(PREDICTIONDATA) {
 
   var Xaxis = d3.svg.axis()
       .scale(Xscale)
+      .ticks(d3.time.months, 2)
+      .tickFormat(d3.time.format("%b. '%y"))
       .orient("bottom");
 
   var Yaxis = d3.svg.axis()
