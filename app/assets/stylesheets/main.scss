@@ -2,7 +2,7 @@ html {
   background-color: #EDEDF3;
   color: #2F2F31;
   font-family: 'Caviar Dreams';
-  background-image: url("background-image.png");
+  background-image: image-url("background-image.png");
 }
 
 select {
@@ -83,7 +83,7 @@ a {
   width: 25px;
   height: 25px;
   cursor: pointer;
-  background-image: url('pin-thing-good.png');
+  background-image: image-url('pin-thing-good.png');
   font-weight: bold;
   color: #1C94C4;
   outline: none;
