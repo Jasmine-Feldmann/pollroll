@@ -1,12 +1,12 @@
 function drawApprovalScatterPlot() {
   var plot = d3.select("#approval-scatter");
   var WIDTH = 1000;
-  var HEIGHT = 500;
+  var HEIGHT = 600;
   var MARGINS = {
-    top: 50,
-    right: 20,
-    bottom: 50,
-    left: 50
+    top: 60,
+    right: 40,
+    bottom: 80,
+    left: 80
   };
 
   // KMEANS_DATA is defined in kmeans_training_results.js
@@ -54,8 +54,8 @@ function drawApprovalScatterPlot() {
         .attr("transform", "translate(" + MARGINS.left + ",0)")
         .call(yAxis);
 
-  var yaxiscords = d3.range(MARGINS.top, HEIGHT - MARGINS.bottom, 25);
-  var xaxiscords = d3.range(MARGINS.left, WIDTH, 25);
+  var yaxiscords = d3.range(MARGINS.top, HEIGHT - MARGINS.bottom + 1, 20);
+  var xaxiscords = d3.range(MARGINS.left, WIDTH - MARGINS.right + 1, 20);
 
   plot.selectAll("line.vertical") // grid for x axis
     .data(xaxiscords)
