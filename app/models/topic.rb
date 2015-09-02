@@ -50,7 +50,7 @@ class Topic < ActiveRecord::Base
 
   def all_national_responses_obama_approval
     all = self.charts.where(state: "US").first.responses.pluck(:answer).uniq
-    return all.map { |choice| {attributes: {answer: choice, responses: self.responses.where(answer: choice).order("date ASC") } } }
+    return all.map { |choice| {attributes: {answer: choice, responses: self.responses.where(answer: choice).order("date ASC").reject { |r| r.id % 20 != 0 } } } }
   end
 
   def responses_json
