@@ -8,11 +8,12 @@ var TopicChartsView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template({ charts: this.collection }));
 
-    // this condition handles the display of the map.
+    // this condition handles the display of the charts for Obama Job Approval.
     if (this.collection[0].collection.options.topicId == 1) {
       drawDatamap(this.collection[0].attributes[0]);
       // display map legend
       this.$el.find("#first-chart-container").append(JST["templates/topic-charts/map-legend-template"]);
+
       $("#line-graph-container").hide();
       $("#bar-graph-container").hide();
       var timeSlider = new TimeSlider();
@@ -20,23 +21,24 @@ var TopicChartsView = Backbone.View.extend({
       this.$el.find("#slider").on("slide", this.updateChartData.bind(this));
       this.$el.find(".ui-tabs-panel").on("click", this.toggleTab)
 
-      // initiate the line graph
+      // initiate the trends line graph
       var bindToThis = this;
-
       $("#trends-tab").on("click", function () {
         $("#line-graph").remove();
         $('<svg class="graph" id="line-graph" width="1000" height="500"></svg>').appendTo("#line-graph-container");
         choiceLineGraph(_.values(bindToThis.collection[1].attributes));
       })
+      // handle tab toggling
       $(".ui-tabs-panel:not(#trends-tab)").on("click", function() {
         $("#line-graph").remove()
       });
 
+      // initiate the prediction line graph
       $("#predictions-tab").on("click", function() {
         $('<svg class="graph" id="prediction-graph" width="1000" height="500"></svg>').appendTo("#prediction-graph-container");
         predictionLineGraph(PREDICTIONDATA);
       });
-
+      // handle tab toggling
       $(".ui-tabs-panel:not(#predictions-tab").on("click", function() {
         $("#prediction-graph").remove();
       })
