@@ -5,6 +5,10 @@ html {
   background-image: image-url("background-image.png");
 }
 
+body {
+  margin-bottom: 45px;
+}
+
 select {
    -webkit-appearance: none;
    -moz-appearance: none;
@@ -249,6 +253,9 @@ text {
 .fb-like {
   margin-left: 10px;
   display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .team {
@@ -257,5 +264,8 @@ text {
 
 .footer {
   position: fixed;
-  bottom: 5px;
+  bottom: 0px;
+  padding: 3px 0;
+  width: 100%;
+  background-color: rgba(255,255,255,0.4); 
 }
