@@ -87,7 +87,7 @@ a {
   width: 25px;
   height: 25px;
   cursor: pointer;
-  background-image: image-url('pin-thing-good.png');
+  background-image: image-url("pin-thing-good.png");
   font-weight: bold;
   color: #1C94C4;
   outline: none;
@@ -250,12 +250,21 @@ text {
   font-size: 0.8em !important;
 }
 
+.social-media {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+}
+
 .fb-like {
   margin-left: 10px;
   display: inline-block;
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 3px;
+}
+
+.tweet-button {
+  display: inline-block;
 }
 
 .team {
@@ -265,7 +274,8 @@ text {
 .footer {
   position: fixed;
   bottom: 0px;
-  padding: 3px 0;
+  padding: 5px 0;
   width: 100%;
   background-color: rgba(255,255,255,0.4); 
 }
+
