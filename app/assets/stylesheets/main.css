@@ -245,3 +245,17 @@ text {
 .labels text {
   font-size: 0.8em !important;
 }
+
+.fb-like {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.team {
+  display: inline-block;
+}
+
+.footer {
+  position: fixed;
+  bottom: 5px;
+}
