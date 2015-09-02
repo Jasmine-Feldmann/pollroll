@@ -3,9 +3,9 @@ function drawApprovalScatterPlot() {
   var WIDTH = 1000;
   var HEIGHT = 600;
   var MARGINS = {
-    top: 60,
+    top: 40,
     right: 40,
-    bottom: 80,
+    bottom: 60,
     left: 80
   };
 
@@ -43,6 +43,12 @@ function drawApprovalScatterPlot() {
   var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient("left");
+
+  var chartTitle = plot.append("text")
+                      .attr("class", "scatter-plot-title")
+                      .attr("text-anchor", "middle")
+                      .attr("transform", "translate(" + (WIDTH / 2) + "," + ((MARGINS.top / 2) + (MARGINS.top / 6)) + ")")
+                      .text("Obama's Approval Rating vs. Unemployment and S&P 500 Price");
 
   plot.append("g")
         .attr("class", "x-axis")
