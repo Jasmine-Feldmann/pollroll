@@ -41,6 +41,8 @@ var TopicChartsView = Backbone.View.extend({
         $("#prediction-graph").remove();
       })
 
+      // temporarily append pie chart for Florida to DOM
+
     }
     else {
       $("#predictions-tab").hide();

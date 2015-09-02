@@ -138,9 +138,9 @@ a {
   text-align: center;
 }
 
-path {
+/*path {
   fill: none;
-}
+}*/
 
 .ui-tabs-nav {
   margin: auto;
@@ -252,4 +252,11 @@ text {
 
 .labels text {
   font-size: 0.8em !important;
+}
+
+
+#pie-chart-container {
+  max-width: 300px;
+  max-height: 300px;
+  overflow: hidden;
 }
