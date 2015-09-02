@@ -4,13 +4,12 @@
 
 	<br>
 
-	<% _.each(NINECOLORSCHEME, function(color) { %>
+	<% _.each(COLORSFORLEGEND, function(color) { %>
 		<div id="<%= color %>" class="map-legend-square" style="background-color:<%= color %>"></div>
 	<% }); %>
 
 	<br>
 
-	<div class="map-legend-square">-</div>
 	<div class="map-legend-square">0.5</div>
 	<div class="map-legend-square"></div>
 	<div class="map-legend-square">1</div>
@@ -18,6 +17,7 @@
 	<div class="map-legend-square">1.5</div>
 	<div class="map-legend-square"></div>
 	<div class="map-legend-square">2</div>
+	<div class="map-legend-square"></div>
 	<div class="map-legend-square">+</div>
 	<div class="map-legend-square">n/a</div>
 
