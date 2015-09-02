@@ -101,22 +101,19 @@ a {
 }
 
 /*ToolTip CSS*/
-.hoverinfo {
-  /*min-width: 300px;*/
-  /*background-color: aqua !important;*/
-  /*border: 3px solid black !important;*/
-}
+.hoverinfo {}
 .state-name {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.data-answer, .ratio-text {
+  font-weight: bold;
+}
+.data-answer, .data-percentage, .ratio {
   font-size: 1.2em;
-  font-weight: bold;
-}
-.data-answer, .ratio {
-  font-weight: bold;
-}
-.data-percentage {
 }
 .percent-sign {
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .active {
@@ -251,4 +248,8 @@ text {
 
 .bar-chart-title {
   font-size: 125%;
+}
+
+.labels text {
+  font-size: 0.8em !important;
 }
