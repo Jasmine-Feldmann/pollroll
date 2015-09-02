@@ -25,6 +25,7 @@ var TopicChartsView = Backbone.View.extend({
       var bindToThis = this;
       $("#trends-tab").on("click", function () {
         $("#line-graph").remove();
+        $("#approval-scatter").remove();
         $('<svg class="graph" id="line-graph" width="1000" height="500"></svg>').appendTo("#line-graph-container");
         choiceLineGraph(_.values(bindToThis.collection[1].attributes));
         $('<svg class="graph" id="approval-scatter" width="1000" height="600"></svg>').appendTo("#line-graph-container");
