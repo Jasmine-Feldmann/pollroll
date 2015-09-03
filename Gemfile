@@ -42,6 +42,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov'
 
