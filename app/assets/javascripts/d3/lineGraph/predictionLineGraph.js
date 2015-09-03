@@ -97,41 +97,7 @@ function predictionLineGraph(PREDICTIONDATA) {
     .style("font-size","14px")
     .call(d3.legend);
 
-  $(".legend-items > text").on("mouseenter", mouseOnLegend);
-  $(".legend-items > text").on("mouseleave", mouseOffOfLegend);
-
+  d3.selectAll(".legend-items > text").on("mouseenter", mouseOnLegend);
+  d3.selectAll(".legend-items > text").on("mouseleave", mouseOffOfLegend);
 }
 
-function mousemove() {
-  $(this).css("stroke-width", "6px");
-  $(this).css("cursor", "pointer");
-  $(this).parent()
-    .find($(".legend-items")
-    .find($("text:contains('" + $(this).attr('data-legend') + "')")))
-    .css("font-weight","bold");
-}
-
-function mouseout() {
-  $(this).css("stroke-width", "3px");
-  $(this).parent()
-    .find($(".legend-items")
-    .find($("text:contains('" + $(this).attr('data-legend') + "')")))
-    .css("font-size", "14px")
-    .css("font-weight","initial");
-}
-
-function mouseOnLegend() {
-  $(this).css("font-weight", "bold")
-    .css("cursor", "pointer");
-  $(document)
-    .find("path[data-legend='" + $(this).text() +"']")
-    .css("stroke-width", "6px");
-}
-
-function mouseOffOfLegend() {
-  $(this).css("font-weight", "initial")
-    .css("font-size", "14px");
-  $(document)
-    .find("path[data-legend='" + $(this).text() +"']")
-    .css("stroke-width", "3px");
-}

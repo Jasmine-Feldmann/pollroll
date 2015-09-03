@@ -55,22 +55,45 @@ function choiceLineGraph(nationalData) {
     })
     .interpolate('basis'); // make the lines rounded
 
-  nationalData.forEach(function(choice, index) {
-    var line = graph.append("svg:path")
-      .attr("stroke", colorScale(index))
-      .attr("data-legend", choice.name)
-      .attr("stroke-width", 3)
-      .attr("fill", "none")
-      .on("mousemove", mousemove)
-      .on("mouseout", mouseout);
+  var lines = graph.selectAll("path")
+                  .data(nationalData)
+                  .enter()
+                  .append("path")
+                  .attr("stroke", function(d, i) { return colorScale(i); })
+                  .attr("data-legend", function(d) { return d.name; })
+                  .attr("stroke-width", 3)
+                  .attr("fill", "none");
 
-    line.transition() // transition for line generation
+  lines.transition()
       .duration(4000)
-      .delay(100 + index * 100)
+      .delay(function(d, i) { return 100 + i * 100; })
       .ease("linear")
-      .attr('d', lineGen(choice.attributes.responses));
- // generate lines on graph
-  });
+      .attr('d', function(d) {
+        return lineGen(d.attributes.responses);
+      });
+
+  lines.on("mousemove", mousemove);
+  lines.on("mouseout", mouseout);
+
+ //  nationalData.forEach(function(choice, index) {
+ //    var lineGroup = graph.select("path")
+ //      .data(choice.attributes.responses)
+ //      .enter()
+ //      .append("path")
+ //      .attr("stroke", colorScale(index))
+ //      .attr("data-legend", choice.name)
+ //      .attr("stroke-width", 3)
+ //      .attr("fill", "none");
+
+ //    lineGroup.transition() // transition for line generation
+ //      .duration(4000)
+ //      .delay(100 + index * 100)
+ //      .ease("linear")
+ //      .attr('d', function(d) {
+ //        return lineGen(d);
+ //      });
+ // // generate lines on graph
+ //  });
 
   var yaxiscords = d3.range(26, HEIGHT, 45.4);
   var xaxiscords = d3.range(50, WIDTH - 120, 25);
@@ -103,41 +126,6 @@ function choiceLineGraph(nationalData) {
     .style("font-size","14px")
     .call(d3.legend);
 
-  $(".legend-items > text").on("mouseenter", mouseOnLegend);
-  $(".legend-items > text").on("mouseleave", mouseOffOfLegend);
-
-}
-
-function mousemove() {
-  $(this).css("stroke-width", "6px");
-  $(this).css("cursor", "pointer");
-  $(this).parent()
-    .find($(".legend-items")
-    .find($("text:contains('" + $(this).attr('data-legend') + "')")))
-    .css("font-weight","bold");
-}
-
-function mouseout() {
-  $(this).css("stroke-width", "3px");
-  $(this).parent()
-    .find($(".legend-items")
-    .find($("text:contains('" + $(this).attr('data-legend') + "')")))
-    .css("font-size", "14px")
-    .css("font-weight","initial");
-}
-
-function mouseOnLegend() {
-  $(this).css("font-weight", "bold")
-    .css("cursor", "pointer");
-  $(document)
-    .find("path[data-legend='" + $(this).text() +"']")
-    .css("stroke-width", "6px");
-}
-
-function mouseOffOfLegend() {
-  $(this).css("font-weight", "initial")
-    .css("font-size", "14px");
-  $(document)
-    .find("path[data-legend='" + $(this).text() +"']")
-    .css("stroke-width", "3px");
+  d3.selectAll(".legend-items > text").on("mouseenter", mouseOnLegend);
+  d3.selectAll(".legend-items > text").on("mouseleave", mouseOffOfLegend);
 }
