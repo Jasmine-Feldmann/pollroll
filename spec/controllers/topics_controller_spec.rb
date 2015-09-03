@@ -16,7 +16,16 @@ RSpec.describe TopicsController, :type => :controller do
     end
   end
 
+  describe 'GET #show' do
+    it "should assign @topic" do
+      get :show, { id: topic.to_param }
+      expect(assigns(:topic)).to eq topic
+    end
 
-
+    it "renders the topic's responses in JSON" do
+      get :show, { id: topic.to_param }
+      expect(response.body).to eq [].to_json
+    end
+  end
 
 end
