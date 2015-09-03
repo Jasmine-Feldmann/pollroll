@@ -1,3 +1,9 @@
+var levels = [0.5,0.75,1,1.25,1.5,1.75,2,2.25, 2.5];
+var COLORSFORLEGEND = levels.map(function(level){
+	return colorModelFunc(level);
+});
+COLORSFORLEGEND.push("#AAA");
+
 function customFloor(value, floor) {
 	value = value < floor ? floor : value;
 	return value;
