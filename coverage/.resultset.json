@@ -1,19 +1,24 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/apprentice/Desktop/pollarity/pollarity/app/models/chart.rb": [
-        1,
-        1,
+      "/Users/apprentice/Desktop/pollarity/pollarity/app/controllers/topics_controller.rb": [
         1,
         null,
         1,
+        2,
+        2,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
         null,
         null
       ],
-      "/Users/apprentice/Desktop/pollarity/pollarity/app/models/response.rb": [
+      "/Users/apprentice/Desktop/pollarity/pollarity/app/controllers/application_controller.rb": [
         1,
-        1,
-        1,
+        null,
         null,
         1,
         null
@@ -90,6 +95,6 @@
         null
       ]
     },
-    "timestamp": 1441292342
+    "timestamp": 1441293786
   }
 }
