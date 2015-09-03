@@ -39,11 +39,7 @@ function drawDatamap(inputData){
    delete onlyStates["US"]
    var colorScheme = fineGrainedColorScheme(onlyStates);
    makeRatioAProperty(onlyStates);
-   
-   
-   // assignFillKeys(onlyStates);
    assignFineGrainedFillKeys(onlyStates);
-
 
    var map = new Datamap({
       data: onlyStates,
@@ -62,7 +58,6 @@ function drawDatamap(inputData){
                + toolTipHelper(onlyStates[abbr], 1)
                + toolTipRatioHelper(onlyStates[abbr])
                + toolTipHelper(onlyStates[abbr], 2)
-               // + "<br>sampleImage:" + "<img src='https://thingiverse-production-new.s3.amazonaws.com/renders/ed/21/ea/ac/8d/ray_graphics_thumb_tiny.jpg'>"
                + "</div>"
             }
             else {
@@ -72,7 +67,6 @@ function drawDatamap(inputData){
             }
          },
       },
-      // fills: NINECOLORSCHEME
       fills: colorScheme
    });
    map.labels();
