@@ -164,9 +164,21 @@ path {
   font-weight: bold;
   text-align: center;
   font-family: "Caviar Dreams", "Courier";
+  margin-bottom: 25px;
 }
 #title a {
   text-decoration: none;
+}
+
+#title span {
+  border-bottom: 2px solid #aaa;
+  padding: 10px 20px;
+}
+
+#subheading {
+  margin: 0 0 50px;
+  text-align: center;
+  font-size: 150%;
 }
 
 .datamap {
