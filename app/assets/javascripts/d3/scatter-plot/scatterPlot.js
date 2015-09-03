@@ -124,17 +124,19 @@ function drawApprovalScatterPlot() {
   plotPoints.on("mousemove", function(d) {
     d3.selectAll(".scatter-plot-tooltip").remove();
     var toolTipX = d3.mouse(this)[0] + 10;
-    var toolTipY = d3.mouse(this)[1] - 5;
+    var toolTipY = d3.mouse(this)[1] - 10;
     var toolTip = d3.select(this.parentElement)
             .append("g")
             .attr("class", "scatter-plot-tooltip")
             .attr("transform", "translate(" + toolTipX + "," + toolTipY + ")")
     toolTip.append("rect")
-            .attr("width", 25)
-            .attr("height", 25)
-            .attr("fill", "#bbb")
-            .attr("transform", "translate(0, -15)");
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("rx", 2)
+            .attr("ry", 2)
+            .attr("transform", "translate(-5, -15)");
     toolTip.append("text")
+            .attr("transform", "translate(-2, 0)")
             .text(d.approval);
   });
 

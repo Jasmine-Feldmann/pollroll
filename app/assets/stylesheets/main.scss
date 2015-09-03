@@ -290,3 +290,13 @@ text {
 .scatter-axis-label {
   font-size: 110%;
 }
+
+.scatter-plot-tooltip {
+  font-size: 80%;
+  font-weight: bold;
+}
+
+.scatter-plot-tooltip rect {
+  fill: rgba(246, 246, 246, .9);
+  stroke: #ccc;
+}
