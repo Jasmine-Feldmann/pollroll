@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Jasmine-Feldmann/pollarity.svg?branch=master)](https://travis-ci.org/Jasmine-Feldmann/pollarity)
-# Pollarity
+# Pollarity ([http://pollarity.herokuapp.com/](http://pollarity.herokuapp.com/))
 
 Pollarity takes data gleaned from state-wide and national polls, and visualizes them in a more digestible format through the use of charts, maps, and bar graphs. The timeline scroll-bar on maps show averages of poll data across the US at different time intervals, while charts and bar graphs illustrate changes in national public opinion over the course of months and years.
 
